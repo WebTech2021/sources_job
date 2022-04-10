@@ -5,12 +5,11 @@ namespace App\Models\JobSeeker;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JSExperience extends Model
+class jsExperience extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'employee_id',
+        'job_seeker_id',
         'designation',
         'department',
         'company_name',
@@ -21,5 +20,4 @@ class JSExperience extends Model
         'currently_working',
         'description'
     ];
-
 }

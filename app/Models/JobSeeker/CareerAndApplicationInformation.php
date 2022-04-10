@@ -10,7 +10,7 @@ class CareerAndApplicationInformation extends Model
     use HasFactory;
 
     protected $fillable =[
-       'employee_id',
+       'job_seeker_id',
        'objective',
        'present_salary',
         'expected_salary',

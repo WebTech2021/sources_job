@@ -28,8 +28,8 @@
 <!-- BEGIN: Body-->
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
-@include('job-seeker.inc.header')
-@include('job-seeker.inc.sidebar')
+@include('jobSeeker.inc.header')
+@include('jobSeeker.inc.sidebar')
 <!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-overlay"></div>
@@ -52,7 +52,7 @@
 <div class="sidenav-overlay"></div>
 <div class="drag-target"></div>
 
-@include('job-seeker.inc.footer')
+@include('jobSeeker.inc.footer')
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 {{--    <script src="{{ asset('admin/app-assets/vendors/js/extensions/toastr.min.js') }}"></script>--}}

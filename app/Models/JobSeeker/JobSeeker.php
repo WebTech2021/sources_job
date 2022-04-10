@@ -5,19 +5,20 @@ namespace App\Models\JobSeeker;
 use App\Models\Country;
 use App\Models\District;
 use App\Models\Division;
-use App\Models\JobSeeker\CareerAndApplicationInformation;
 use App\Models\Upazila;
 use App\Notifications\JobSeeker\jsEmailVerifyNotification;
 use App\Notifications\JobSeeker\ResetPasswordNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 //use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class JobSeeker extends Model
+class JobSeeker extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, SoftDeletes;
+
     protected $fillable=[
         'first_name',
         'last_name',

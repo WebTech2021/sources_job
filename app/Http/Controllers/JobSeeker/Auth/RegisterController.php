@@ -10,7 +10,6 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 
-
 class RegisterController extends Controller
 {
     protected $redirectTo = RouteServiceProvider::JOBSEEKERHOME;

@@ -22,6 +22,7 @@ class AdminTableSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123'),
         ]);
-        $admin->assignRole(2);
+        $admin->save();
+//        $admin->assignRole(2);
     }
 }

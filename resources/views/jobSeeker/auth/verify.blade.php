@@ -11,7 +11,7 @@
                 </a>
             </div>
         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-            <h1 class="card-title font-weight-bold mb-1" style="text-align: center; text-decoration: underline"><b>Employee Verify</b></h1>
+            <h1 class="card-title font-weight-bold mb-1" style="text-align: center; text-decoration: underline"><b>Job Seeker Verify</b></h1>
 {{--            <h2 class="card-title font-weight-bold mb-1" style="text-align: center">Welcome to Sources BD!</h2>--}}
 {{--            <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>--}}
             @if ($errors->any())

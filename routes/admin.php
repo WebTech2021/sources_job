@@ -8,14 +8,16 @@ use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 Route::group(['prefix' => 'admin'], function () {
   //admin authentication system
-    Route::get('logon', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('logon', [AdminLoginController::class, 'login']);
+    Route::get('jlogon', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('jlogon', [AdminLoginController::class, 'login']);
     Route::post('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
     Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
     Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
     Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('admin.password.reset');
     Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('admin.password.update');
     Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+    Route::get('upazila/get_by_district', [AdminHomeController::class, 'get_by_district'])->name('upazila.get_by_district');
+    Route::get('district/get_by_divison', [AdminHomeController::class, 'get_by_division'])->name('districts.get_by_division');
 
 
     Route::group(['middleware' => ['auth:admin']], function () {

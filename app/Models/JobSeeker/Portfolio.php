@@ -10,7 +10,7 @@ class Portfolio extends Model
 {
     use HasFactory;
     protected $fillable =[
-       'employee_id',
+       'job_seeker_id',
        'title',
        'image',
        'description',
