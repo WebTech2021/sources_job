@@ -21,10 +21,10 @@
                     <span class="selected-language">{{ app()->getLocale() == 'en' ?'English':'বাংলা' }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-flag">
-                    <a class="dropdown-item" href="{{ route('set-locale','en') }}" data-language="en">
+                    <a class="dropdown-item" href="#" data-language="en">
                         <i class="flag-icon flag-icon-us"></i> English
                     </a>
-                    <a class="dropdown-item" href="{{ route('set-locale','bn') }}" data-language="fr">
+                    <a class="dropdown-item" href="#" data-language="fr">
                         <i class="flag-icon flag-icon-bd"></i> বাংলা
                     </a>
                 </div>
@@ -39,43 +39,43 @@
 {{--                </div>--}}
 {{--            </li>--}}
 
-            <li class="nav-item dropdown dropdown-notification mr-25"><a class="nav-link" href="javascript:void(0);"
-                                                                         data-toggle="dropdown"><i class="ficon"
-                                                                                                   data-feather="bell"></i><span
-                        class="badge badge-pill badge-danger badge-up">{{auth('admin')->user()->unreadNotifications->count()}}</span></a>
-                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                    <li class="dropdown-menu-header">
-                        <div class="dropdown-header d-flex">
-                            <h4 class="notification-title mb-0 mr-auto">{{__('Notifications')}}</h4>
-                            <div
-                                class="badge badge-pill badge-light-primary">{{auth('admin')->user()->unreadNotifications->count()}}
-                                New
-                            </div>
-                        </div>
-                    </li>
-                        <li class="scrollable-container media-list">
-                            @foreach(auth('admin')->user()->unreadNotifications->take(15) as $notification)
-                            <a class="d-flex" href="javascript:void(0)">
-                                <div class="media d-flex align-items-start">
-                                    <div class="media-left">
-                                        {{--                                    avatar goes here--}}
-                                        {{--                                    <div class="avatar"><img src="#" alt="avatar" width="32" height="32"></div>--}}
-                                    </div>
-                                    <div class="media-body">
-                                        <a href="{{ route('mark-as-read',[encrypt($notification->id), $notification->data['route_name'], encrypt($notification->data['item_id'])??"null"]) }}">
-                                            <p class="media-heading">{!! $notification->data['data'] !!}
-                                            </p><small
-                                                class="notification-text"> {{$notification->created_at->diffForHumans()}}</small></a>
-                                    </div>
-                                </div>
-                            </a>
-                            @endforeach
-                        </li>
-                    <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block"
-                                                        href="{{ route('notification.index') }}">
-                            {{__('Read all Notifications')}}</a></li>
-                </ul>
-            </li>
+{{--            <li class="nav-item dropdown dropdown-notification mr-25"><a class="nav-link" href="javascript:void(0);"--}}
+{{--                                                                         data-toggle="dropdown"><i class="ficon"--}}
+{{--                                                                                                   data-feather="bell"></i><span--}}
+{{--                        class="badge badge-pill badge-danger badge-up">{{auth('admin')->user()->unreadNotifications->count()}}</span></a>--}}
+{{--                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">--}}
+{{--                    <li class="dropdown-menu-header">--}}
+{{--                        <div class="dropdown-header d-flex">--}}
+{{--                            <h4 class="notification-title mb-0 mr-auto">{{__('Notifications')}}</h4>--}}
+{{--                            <div--}}
+{{--                                class="badge badge-pill badge-light-primary">{{auth('admin')->user()->unreadNotifications->count()}}--}}
+{{--                                New--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                        <li class="scrollable-container media-list">--}}
+{{--                            @foreach(auth('admin')->user()->unreadNotifications->take(15) as $notification)--}}
+{{--                            <a class="d-flex" href="javascript:void(0)">--}}
+{{--                                <div class="media d-flex align-items-start">--}}
+{{--                                    <div class="media-left">--}}
+{{--                                        --}}{{----}}{{--                                    avatar goes here--}}
+{{--                                        --}}{{----}}{{--                                    <div class="avatar"><img src="#" alt="avatar" width="32" height="32"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="media-body">--}}
+{{--                                        <a href="{{ route('mark-as-read',[encrypt($notification->id), $notification->data['route_name'], encrypt($notification->data['item_id'])??"null"]) }}">--}}
+{{--                                            <p class="media-heading">{!! $notification->data['data'] !!}--}}
+{{--                                            </p><small--}}
+{{--                                                class="notification-text"> {{$notification->created_at->diffForHumans()}}</small></a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            @endforeach--}}
+{{--                        </li>--}}
+{{--                    <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block"--}}
+{{--                                                        href="#">--}}
+{{--                            {{__('Read all Notifications')}}</a></li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
 
             <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
                                                            id="dropdown-user" href="javascript:void(0);"
@@ -83,11 +83,11 @@
                                                            aria-expanded="false">
                     <div class="user-nav d-sm-flex d-none"><span
                             class="user-name font-weight-bolder">{{ ucfirst(Auth::user()->name) }}</span>
-                        @foreach(auth()->user()->getRoleNames() as $name)
-                            <span class="user-status">
-                                {{$name}}
-                            </span>
-                        @endforeach
+{{--                        @foreach(auth()->user()->getRoleNames() as $name)--}}
+{{--                            <span class="user-status">--}}
+{{--                                {{$name}}--}}
+{{--                            </span>--}}
+{{--                        @endforeach--}}
                     </div>
                     <span class="avatar">
                         @if(auth('admin')->user()->image)

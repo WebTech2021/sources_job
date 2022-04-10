@@ -8,8 +8,8 @@ use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 Route::group(['prefix' => 'admin'], function () {
   //admin authentication system
-    Route::get('jlogon', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('jlogon', [AdminLoginController::class, 'login']);
+    Route::get('logon', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('logon', [AdminLoginController::class, 'login']);
     Route::post('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
     Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
     Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');

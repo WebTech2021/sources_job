@@ -12,24 +12,11 @@ use Brian2694\Toastr\Facades\Toastr;
 
 class HomeController extends Controller
 {
-    use UploadAble;
-
-//    public function index()
-//    {
-//         $products = Product::with('report')->get()->sortByDesc('report.click')->take(10);
-//         $services = Service::with('report')->get()->sortByDesc('report.click')->take(10);
-//        return view('admin.home.home', compact('products', 'services'));
-//    }
+//    use UploadAble;
 
     public function getDashboard()
     {
-        $products = Product::with('report')->get()->sortByDesc('report.click')->take(7);
-        $services = Service::with('report')->get()->sortByDesc('report.click')->take(7);
-        $organizations = Organizations::active()->with('sellers', 'sectorType')->get()->sortByDesc('created_at')->take(7);
-        return view('admin.home.dashboard', compact(
-            'products', 'services', 'organizations'
-        ));
-//        return view('admin.home.dashboard');
+        return view('admin.home.dashboard');
     }
 
     public function login()
