@@ -25,7 +25,7 @@ class JSPortfolioController extends Controller
         return view('jobSeeker.portfolio.create');
     }
 
-    //store data for employee portfolio
+    //store data for jobSeeker portfolio
     public function store(Request $request)
     {
         $request->validate([

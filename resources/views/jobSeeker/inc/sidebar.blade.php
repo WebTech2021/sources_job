@@ -81,8 +81,8 @@
                 <li class="{{ request()->segment(2)=='portfolio' ? 'active' :'' }} nav-item">
                     <a class="d-flex align-items-center" href="{{route('jobSeeker.portfolio.index')}}"><i class="fad fa-file-word"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('My WorkPack')}}</span></a>
                 </li>
-{{--                <li class="{{ Route::currentRouteName()=='employee.application.status' ? 'active':'' }} nav-item">--}}
-{{--                    <a class="d-flex align-items-center" href="{{route('employee.application.status')}}"><i class="fad fa-badge-check"></i> <span--}}
+{{--                <li class="{{ Route::currentRouteName()=='jobSeeker.application.status' ? 'active':'' }} nav-item">--}}
+{{--                    <a class="d-flex align-items-center" href="{{route('jobSeeker.application.status')}}"><i class="fad fa-badge-check"></i> <span--}}
 {{--                            class="menu-title text-truncate" data-i18n="Home"--}}
 {{--                        >{{__('job status')}}</span></a>--}}
 {{--                </li>--}}
@@ -91,8 +91,8 @@
                             class="menu-title text-truncate" data-i18n="Home"
                         >{{__('Job Invite')}}</span></a>
                 </li>
-{{--                <li class="{{ Route::currentRouteName()=='employee.jobs.list' ? 'active':'' }} nav-item">--}}
-{{--                    <a class="d-flex align-items-center" href="{{route('employee.jobs.list')}}">--}}
+{{--                <li class="{{ Route::currentRouteName()=='jobSeeker.jobs.list' ? 'active':'' }} nav-item">--}}
+{{--                    <a class="d-flex align-items-center" href="{{route('jobSeeker.jobs.list')}}">--}}
 {{--                        <i class="fal fa-list-ul"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('Job List')}}</span></a>--}}
 {{--                </li>--}}
             @endif

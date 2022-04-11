@@ -96,7 +96,7 @@
     {{--                    processing: true,--}}
     {{--                    responsive: true,--}}
     {{--                    ajax: {--}}
-    {{--                        url: '{!! route('employee.jobs.list', ['status'=>request('status')]) !!}',--}}
+    {{--                        url: '{!! route('jobSeeker.jobs.list', ['status'=>request('status')]) !!}',--}}
     {{--                        data: filterData--}}
     {{--                    },--}}
 

@@ -13,7 +13,7 @@ class JS_jobsController extends Controller
 {
     public function get_job_list(Request $request)
     {
-//        $data = CareerAndApplicationInformation::where(['employee_id' => \auth('employee')->user()->id])->first()->pre_job_categories ?? '-';
+//        $data = CareerAndApplicationInformation::where(['employee_id' => \auth('jobSeeker')->user()->id])->first()->pre_job_categories ?? '-';
 //        $categories = explode(',', $data);
         $info = EmployeeJobs::whereIn('job_categories', explode(',', \auth()->user()->career->pre_job_categories ?? '-'))
             ->where('status', '=', 'publish');

@@ -28,7 +28,7 @@ class LoginController extends Controller
             $this->guard()->logout();
             Toastr::error('Your account has been Restricted. Please,Contact with Admin', 'Error');
             return back();
-//            return redirect()->route('employee.login')->with('error', 'Your account has been Restricted. Please,Contact with Admin');
+//            return redirect()->route('jobSeeker.login')->with('error', 'Your account has been Restricted. Please,Contact with Admin');
         }
         session()->forget('loggedIn-from-admin');
     }

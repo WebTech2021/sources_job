@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\Auth\VerificationController;
+use App\Http\Controllers\Admin\JobSeekerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
@@ -26,6 +27,11 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/profile', [AdminHomeController::class, 'view_profile'])->name('view.profile');
         Route::post('/profile/{id}', [AdminHomeController::class, 'update_general'])->name('update_general');
         Route::post('/profile/password/{id}', [AdminHomeController::class, 'update_password'])->name('admin.update.password');
+
+        Route::get('/job-seeker-list',[JobSeekerController::class,'getJobSeekerList'])->name('jobSeeker.list');
+        Route::put('/job-seeker/{id}/active', [JobSeekerController::class, 'activeInactiveBlocked'])->name('jobSeeker.activeInactiveBlocked');
+        Route::get('/job-seeker-export', [JobSeekerController::class, 'ExportJobSeeker'])->name('jobSeeker-export');
+        Route::post('/login-as-jobSeeker',[JobSeekerController::class,'loginAsJobSeeker'])->name('login.as.jobSeeker');
     });
 });
 

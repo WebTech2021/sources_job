@@ -58,8 +58,8 @@
 {{--                            <a class="d-flex" href="javascript:void(0)">--}}
 {{--                                <div class="media d-flex align-items-start">--}}
 {{--                                    <div class="media-left">--}}
-{{--                                        --}}{{----}}{{--                                    avatar goes here--}}
-{{--                                        --}}{{----}}{{--                                    <div class="avatar"><img src="#" alt="avatar" width="32" height="32"></div>--}}
+{{--                                        --}}{{--                                    avatar goes here--}}
+{{--                                        --}}{{--                                    <div class="avatar"><img src="#" alt="avatar" width="32" height="32"></div>--}}
 {{--                                    </div>--}}
 {{--                                    <div class="media-body">--}}
 {{--                                        <a href="{{ route('mark-as-read',[encrypt($notification->id), $notification->data['route_name'], encrypt($notification->data['item_id'])??"null"]) }}">--}}
@@ -72,7 +72,7 @@
 {{--                            @endforeach--}}
 {{--                        </li>--}}
 {{--                    <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block"--}}
-{{--                                                        href="#">--}}
+{{--                                                        href="{{ route('notification.index') }}">--}}
 {{--                            {{__('Read all Notifications')}}</a></li>--}}
 {{--                </ul>--}}
 {{--            </li>--}}

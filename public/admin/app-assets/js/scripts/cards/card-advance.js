@@ -2,7 +2,7 @@
     File Name: card-advance.js
     Description: Card Advance page content with Apexchart Examples
     ----------------------------------------------------------------------------------------
-     
+
 ==========================================================================================*/
 
 'use strict';
@@ -24,12 +24,12 @@ $(window).on('load', function () {
   var employeeWarningChart;
   var employeePrimaryChart2;
 
-  var $employeeChartPrimary1 = document.querySelector('.employee-task-chart-primary-1');
-  var $employeeChartDanger = document.querySelector('.employee-task-chart-danger');
-  var $employeeChartSuccess = document.querySelector('.employee-task-chart-success');
-  var $employeeChartSecondary = document.querySelector('.employee-task-chart-secondary');
-  var $employeeChartWarning = document.querySelector('.employee-task-chart-warning');
-  var $employeeChartPrimary2 = document.querySelector('.employee-task-chart-primary-2');
+  var $employeeChartPrimary1 = document.querySelector('.jobSeeker-task-chart-primary-1');
+  var $employeeChartDanger = document.querySelector('.jobSeeker-task-chart-danger');
+  var $employeeChartSuccess = document.querySelector('.jobSeeker-task-chart-success');
+  var $employeeChartSecondary = document.querySelector('.jobSeeker-task-chart-secondary');
+  var $employeeChartWarning = document.querySelector('.jobSeeker-task-chart-warning');
+  var $employeeChartPrimary2 = document.querySelector('.jobSeeker-task-chart-primary-2');
 
   var statePrimaryChartOptions;
   var stateWarningChartOptions;
