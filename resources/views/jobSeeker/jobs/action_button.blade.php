@@ -6,7 +6,7 @@
         @if($job_data->checkApplication())
             <p class="badge badge-glow badge-danger">Already Applied</p>
         @else
-         <a href="{{route('employee.jobs.details',$job_data->id)}}" class="btn btn-sm btn-primary" title="Apply">
+         <a href="{{route('jobSeeker.jobs.details',$job_data->id)}}" class="btn btn-sm btn-primary" title="Apply">
            Apply Now
         </a>
         @endif

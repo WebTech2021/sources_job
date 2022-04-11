@@ -1,11 +1,11 @@
-@extends('layouts.employee')
+@extends('layouts.job_seeker')
 @section('page-title','jobs')
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">{{__('jobs')}}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('employee.home') }}">{{__('Home')}}</a></li>
-            <li class="breadcrumb-item active">{{__('jobs status')}}</li>
+            <li class="breadcrumb-item"><a href="{{ route('jobSeeker.home') }}">{{__('Home')}}</a></li>
+            <li class="breadcrumb-item active">{{__('job application status')}}</li>
         </ol>
     </div>
 @endsection
@@ -45,7 +45,7 @@
                 stateSave: true,
                 serverSide: true,
                 processing: true,
-                ajax: '{!! route('employee.application.status')!!}',
+                ajax: '{!! route('jobSeeker.application.status')!!}',
                 columns: [
                     {data: "DT_RowIndex", title: 'SI', name: "DT_RowIndex", searchable: false, orderable: false, defaultContent: '-'},
                     {data: "nameWithImage", title: 'Company Name', searchable: true, defaultContent: '-'},

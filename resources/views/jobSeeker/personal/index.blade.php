@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="mb-1 col-md-3">
                                         <label class="form-label" for="modern-last-name">Nationality:</label>
-                                        <input type="text" name="nationality" id="nationality" class="form-control" placeholder="nationality" required value="{{old('nationality',$jobSeeker->nationality)}}">
+                                        <input type="text" name="nationality" id="nationality" class="form-control" placeholder="nationality" value="{{old('nationality',$jobSeeker->nationality)}}">
                                     </div>
                                     <div class="mb-1 col-md-3">
                                         <label class="form-label" for="modern-last-name">Religion:</label>
@@ -126,7 +126,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="form-label" for="select2-basic">Languages: </label>
-                                        <select class="js-example-tokenizer" multiple="multiple" name="language[]" id="languages">
+                                        <select class="js-example-tokenizer" multiple="multiple" name="language[]" id="languages" required>
                                             @if ($jobSeeker->language != "")
                                                 @foreach(explode(',', $jobSeeker->language) as $language)
                                                     <option value="{{$language}}" selected >{{$language}}</option>
@@ -153,7 +153,7 @@
                                     </div>
                                     <div class="mb-1 col-md-3">
                                         <label class="form-label" for="modern-last-name">Skills:<span style="color:red">*</span></label>
-                                        <select class="js-example-tokenizer1" multiple="multiple" name="skills[]" id="">
+                                        <select class="js-example-tokenizer1" multiple="multiple" name="skills[]" id="" required>
                                             @if ($jobSeeker->skills != "")
                                                 @foreach(explode(',', $jobSeeker->skills) as $skill)
                                                     <option value="{{$skill}}" selected >{{$skill}}</option>

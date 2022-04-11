@@ -12,10 +12,12 @@ use App\Models\JobSeeker\jsEducation;
 use App\Models\JobSeeker\jsExperience;
 use App\Models\JobSeeker\Reference;
 use App\Models\Upazila;
+use App\Traits\UploadAble;
 use Brian2694\Toastr\Facades\Toastr;
 
 class ProfileController extends Controller
 {
+    use UploadAble;
     public function edit_profile()
     {
         $jobSeeker = JobSeeker::findOrfail(\auth()->user()->id);

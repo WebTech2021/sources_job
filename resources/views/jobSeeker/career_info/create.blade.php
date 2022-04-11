@@ -1,10 +1,10 @@
-@extends('layouts.employee')
-@section('page-title','Employee Career Info')
+@extends('layouts.job_seeker')
+@section('page-title','job Seeker Career Info')
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">{{__('Career Info')}}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('employee.home') }}">{{__('Home')}}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('jobSeeker.home') }}">{{__('Home')}}</a></li>
             <li class="breadcrumb-item active">{{__('Career Info')}}</li>
         </ol>
     </div>
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="card-body table-responsive">
-                        <form action="{{route('employee.info-store')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('jobSeeker.info-store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             {{-- @method('PUT')--}}
                             <div class="row mt-2">

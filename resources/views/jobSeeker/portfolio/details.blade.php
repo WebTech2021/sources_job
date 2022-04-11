@@ -1,10 +1,10 @@
-@extends('layouts.employee')
-@section('page-title','Employee portfolio Details')
+@extends('layouts.job_seeker')
+@section('page-title','job Seeker portfolio Details')
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">{{__('Portfolio')}}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('employee.home') }}">{{__('Home')}}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('jobSeeker.home') }}">{{__('Home')}}</a></li>
             <li class="breadcrumb-item active">{{__('portfolio Details')}}</li>
         </ol>
     </div>
@@ -21,7 +21,7 @@
                         </div>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons d-inline-flex">
-                                <a class="btn btn-primary" href="{{route('employee.portfolio.index')}}">Portfolio List</a>
+                                <a class="btn btn-primary" href="{{route('jobSeeker.portfolio.index')}}">Portfolio List</a>
                             </div>
                         </div>
                     </div>

@@ -4,16 +4,19 @@ namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
 use App\Models\JobSeeker\Portfolio;
+use App\Traits\UploadAble;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+
 class JSPortfolioController extends Controller
 {
-//    use  UploadAble;
+    use  UploadAble;
 
     public function index()
     {
-        $portfolios = JSPortfolioController::where('job_seeker_id', auth('jobSeeker')->user()->id)->get();
+        $portfolios = Portfolio::where('job_seeker_id', auth('jobSeeker')->user()->id)->get();
         return view('jobSeeker.portfolio.index', compact('portfolios'));
     }
 
@@ -49,7 +52,7 @@ class JSPortfolioController extends Controller
     {
         try {
             $portfolio = Portfolio::findOrFail(decrypt($id));
-            return view('employee.portfolio.details', compact('portfolio'));
+            return view('jobSeeker.portfolio.details', compact('portfolio'));
         } catch (DecryptException $e) {
             abort(404);
         }

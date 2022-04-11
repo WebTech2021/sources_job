@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-//    use UploadAble;
+    use UploadAble;
 
     public function index()
     {

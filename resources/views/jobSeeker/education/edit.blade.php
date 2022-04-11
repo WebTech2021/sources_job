@@ -1,5 +1,5 @@
 @extends('layouts.job_seeker')
-@section('page-title','JobSeeker Education  update')
+@section('page-title','JobSeeker Education update')
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">{{__('Update Education')}}</h2>
     <div class="breadcrumb-wrapper">

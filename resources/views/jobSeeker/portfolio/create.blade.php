@@ -1,10 +1,10 @@
-@extends('layouts.employee')
-@section('page-title','Employee portfolio')
+@extends('layouts.job_seeker')
+@section('page-title','job seeker portfolio')
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">{{__('Portfolio')}}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('employee.home') }}">{{__('Home')}}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('jobSeeker.home') }}">{{__('Home')}}</a></li>
             <li class="breadcrumb-item active">{{__('create portfolio')}}</li>
         </ol>
     </div>
@@ -21,17 +21,17 @@
                         </div>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons d-inline-flex">
-                                <a class="btn btn-primary" href="{{route('employee.portfolio.index')}}">Portfolio List</a>
+                                <a class="btn btn-primary" href="{{route('jobSeeker.portfolio.index')}}">Portfolio List</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                            <form action="{{route('employee.portfolio.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('jobSeeker.portfolio.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row col-lg-12 mt-1">
                                     <div class="form-group col-sm-4">
                                         <label for="title">Title:</label><span class="text-danger">*</span>
-                                        <input class="form-control" name="title" type="text" id="title" value="{{old('title')}}" value="{{old('title')}}" required="">
+                                        <input class="form-control" name="title" type="text" id="title" value="{{old('title')}}" placeholder="title" required="">
                                     </div>
                                     <div class="form-group col-sm-4">
                                         <label for="image">Image:</label><span class="text-danger">*</span>
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <label class="form-label" for="modern-last-name">Description:<span style="color:red">*</span></label>
-                                        <textarea class="form-control address-height" rows="3" name="description" cols="50" id="description" style="height: 100px; width: 100%" required=""> {{old('description')}}</textarea>
+                                        <textarea class="form-control address-height" rows="3"  name="description" cols="50" id="description" style="height: 100px; width: 100%" placeholder="write portfolio description....." required="">{{old('description')}}</textarea>
                                     </div>
                                     <div class="form-group col-sm-3">
                                         <label for="portfolio_status">Image Preview:</label>

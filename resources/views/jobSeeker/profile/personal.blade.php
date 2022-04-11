@@ -1,10 +1,10 @@
-@extends('layouts.employee')
-@section('page-title','User Profile')
+@extends('layouts.job_seeker')
+@section('page-title','job Seeker Profile')
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">{{__('Profile')}}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('employee.home') }}">{{__('Home')}}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('jobSeeker.home') }}">{{__('Home')}}</a></li>
             <li class="breadcrumb-item active">{{__('Profile')}}</li>
         </ol>
     </div>
@@ -47,7 +47,7 @@
                                          aria-labelledby="account-pill-general" aria-expanded="true">
                                         <!-- form -->
                                         <form class="validate-form mt-2" novalidate="novalidate" method="post"
-                                              action="{{route('employee.update.general',$data->id)}}"
+                                              action="{{route('jobSeeker.update.general',$data->id)}}"
                                               enctype="multipart/form-data">
                                             @csrf
                                             <div class="media">
@@ -136,7 +136,7 @@
                                         <!-- form -->
                                         <form class="validate-form" novalidate="novalidate" id="change_password"
                                               method="post"
-                                              action="{{route('employee.update.password',$data->id)}}">
+                                              action="{{route('jobSeeker.update.password',$data->id)}}">
                                             @csrf
                                             <div class="form-group col-sm-6">
                                                 <label for="account-old-password">{{__('Old Password')}}</label>

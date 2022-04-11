@@ -11,7 +11,7 @@
                         class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"
                     ></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary"
                             data-feather="disc" data-ticon="disc"
-                    ></i></a></li>
+             ></i></a></li>
         </ul>
     </div>
     <div class="shadow-bottom"></div>
@@ -70,16 +70,13 @@
                                                  data-i18n="Home"
                     >{{__('Info Preview')}}</span></a>
             </li>
-
 {{--            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i class="fas fa-user-shield"--}}
 {{--                    ></i> <span class="menu-title text-truncate" data-i18n="User"--}}
 {{--                    > {{__('Cv Information')}}</span></a>--}}
 {{--                <ul class="menu-content">--}}
-
 {{--                    --}}
 {{--                </ul>--}}
 {{--            </li>--}}
-
             @if(auth('jobSeeker')->user()->status == 'active'|| auth('jobSeeker')->user()->status != 'inactive')
                 <li class="{{ request()->segment(2)=='portfolio' ? 'active' :'' }} nav-item">
                     <a class="d-flex align-items-center" href="{{route('jobSeeker.portfolio.index')}}"><i class="fad fa-file-word"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('My WorkPack')}}</span></a>
@@ -89,11 +86,11 @@
 {{--                            class="menu-title text-truncate" data-i18n="Home"--}}
 {{--                        >{{__('job status')}}</span></a>--}}
 {{--                </li>--}}
-{{--                <li class="{{ request()->segment(2)=='' ? 'active' :'' }} nav-item">--}}
-{{--                    <a class="d-flex align-items-center" href="#"><i class="fab fa-invision"></i><span--}}
-{{--                            class="menu-title text-truncate" data-i18n="Home"--}}
-{{--                        >{{__('Job Invite')}}</span></a>--}}
-{{--                </li>--}}
+                <li class="{{ request()->segment(2)=='' ? 'active' :'' }} nav-item">
+                    <a class="d-flex align-items-center" href="#"><i class="fab fa-invision"></i><span
+                            class="menu-title text-truncate" data-i18n="Home"
+                        >{{__('Job Invite')}}</span></a>
+                </li>
 {{--                <li class="{{ Route::currentRouteName()=='employee.jobs.list' ? 'active':'' }} nav-item">--}}
 {{--                    <a class="d-flex align-items-center" href="{{route('employee.jobs.list')}}">--}}
 {{--                        <i class="fal fa-list-ul"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('Job List')}}</span></a>--}}
@@ -101,4 +98,5 @@
             @endif
         </ul>
     </div>
-</div><!-- END: Main Menu-->
+</div>
+<!-- END: Main Menu-->

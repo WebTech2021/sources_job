@@ -1,10 +1,10 @@
-@extends('layouts.employee')
-@section('page-title','Employee portfolio')
+@extends('layouts.job_seeker')
+@section('page-title','job Seeker portfolio')
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">{{__('Portfolio')}}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('employee.home') }}">{{__('Home')}}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('jobSeeker.home') }}">{{__('Home')}}</a></li>
             <li class="breadcrumb-item active">{{__('Edit portfolio')}}</li>
         </ol>
     </div>
@@ -21,12 +21,12 @@
                         </div>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons d-inline-flex">
-                                <a class="btn btn-primary" href="{{route('employee.portfolio.index')}}">Portfolio List</a>
+                                <a class="btn btn-primary" href="{{route('jobSeeker.portfolio.index')}}">Portfolio List</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('employee.portfolio.update',encrypt($portfolio->id))}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('jobSeeker.portfolio.update',encrypt($portfolio->id))}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row col-lg-12 mt-1">

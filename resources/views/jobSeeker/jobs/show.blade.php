@@ -1,10 +1,10 @@
-@extends('layouts.employee')
+@extends('layouts.job_seeker')
 @section('page-title','job details')
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">{{__('jobs')}}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('employee.home') }}">{{__('Home')}}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('jobSeeker.home') }}">{{__('Home')}}</a></li>
             <li class="breadcrumb-item active">{{__('job details')}}</li>
         </ol>
     </div>
@@ -130,7 +130,7 @@
                                            <p><b>Application Deadline:</b> {{$job_details->expire_date != null ? \Carbon\Carbon::parse($job_details->expire_date)->format('d M Y'):'no deadline issue'}}</p>
                                            <div class="text-center">
                                                @if(!$job_details->checkApplication())
-                                                   <form action="{{route('employee.job.apply',$job_details->id)}}" method="post">
+                                                   <form action="{{route('jobSeeker.job.apply',$job_details->id)}}" method="post">
                                                        @csrf
                                                        <button class="btn btn-success" type="submit">Apply Now</button>
                                                    </form>

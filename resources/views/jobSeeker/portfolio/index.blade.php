@@ -1,5 +1,5 @@
-@extends('layouts.employee')
-@section('page-title','Employee Education')
+@extends('layouts.job_seeker')
+@section('page-title','job Seeker Portfolio')
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css/pages/app-ecommerce.css')}}">
 @endpush
@@ -26,7 +26,7 @@
                         </div>
                         <div class="dt-action-buttons">
                             <div class="dt-buttons">
-                                <a class="btn btn-primary" href="{{route('employee.portfolio.create')}}"><i class="fas fa-plus"></i> Add Portfolio</a>
+                                <a class="btn btn-primary" href="{{route('jobSeeker.portfolio.create')}}"><i class="fas fa-plus"></i> Add Portfolio</a>
                             </div>
                         </div>
                     </div>
@@ -58,16 +58,16 @@
                                                     </p>
                                                 </div>
                                                 <div class="item-options text-center">
-                                                    <a href="{{route('employee.portfolio.edit',encrypt($portfolio->id))}}" class="btn btn-light btn-wishlist">
+                                                    <a href="{{route('jobSeeker.portfolio.edit',encrypt($portfolio->id))}}" class="btn btn-light btn-wishlist">
                                                         <i data-feather="edit"></i>
                                                         <span>Edit</span>
                                                     </a>
-                                                    <a href="{{route('employee.portfolio.show',encrypt($portfolio->id))}}" class="btn btn-primary btn-wishlist">
+                                                    <a href="{{route('jobSeeker.portfolio.show',encrypt($portfolio->id))}}" class="btn btn-primary btn-wishlist">
                                                         <i data-feather="eye"></i>
                                                         <span class="add-to-cart">View Details</span>
                                                     </a>
                                                    <div style="width: 100%" class="btn-light">
-                                                       <form action="{{route('employee.portfolio.destroy',encrypt($portfolio->id))}}" method="post">
+                                                       <form action="{{route('jobSeeker.portfolio.destroy',encrypt($portfolio->id))}}" method="post">
                                                            @csrf
                                                            @method('DELETE')
                                                            <button type="submit" class="btn text-danger">
