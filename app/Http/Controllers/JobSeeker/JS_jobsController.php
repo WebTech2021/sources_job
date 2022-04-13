@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
+use App\Models\Jobs;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class JS_jobsController extends Controller
     {
 //        $data = CareerAndApplicationInformation::where(['employee_id' => \auth('jobSeeker')->user()->id])->first()->pre_job_categories ?? '-';
 //        $categories = explode(',', $data);
-        $info = EmployeeJobs::whereIn('job_categories', explode(',', \auth()->user()->career->pre_job_categories ?? '-'))
+        $info = Jobs::whereIn('job_categories', explode(',', \auth()->user()->career->pre_job_categories ?? '-'))
             ->where('status', '=', 'publish');
 //            if($request->status !== 'all'){
 //                $job_data = $job_data->where('employment_status', $request->status);

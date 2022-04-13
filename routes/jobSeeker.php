@@ -11,8 +11,10 @@ use App\Http\Controllers\JobSeeker\JS_jobsController;
 use App\Http\Controllers\JobSeeker\JSEducationController;
 use App\Http\Controllers\JobSeeker\JSExperienceController;
 use App\Http\Controllers\JobSeeker\JSPortfolioController;
+use App\Http\Controllers\JobSeeker\KeyFeatureController;
 use App\Http\Controllers\JobSeeker\ProfileController;
 use App\Http\Controllers\JobSeeker\ReferenceController;
+use App\Models\JobSeeker\KeyFeatures;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'jobSeeker', 'as' => 'jobSeeker.'], function () {
@@ -67,6 +69,11 @@ Route::group(['prefix' => 'jobSeeker', 'as' => 'jobSeeker.'], function () {
         Route::get('/job/details/{id}', [JS_jobsController::class, 'job_details'])->name('jobs.details');
         Route::post('/job/apply/{id}', [JS_jobsController::class, 'apply'])->name('job.apply');
         Route::get('/get-short-list',[JS_jobsController::class,'getShortlist'])->name('application.status');
+
+        Route::get('/key-features',[KeyFeatureController::class,'KeyFeature'])->name('key.features');
+        Route::post('/key-features/{id?}',[KeyFeatureController::class,'create_KeyFeature'])->name('key_features.create');
+
+
 
     });
 });

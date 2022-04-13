@@ -114,6 +114,16 @@
                                             </div>
                                         </div>
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
+                                            <div class="" style="color: #000; padding: 5px 3px;">Skills:</div>
+                                        </div>
+                                        <div class="mt-1 col-md-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+{{--                                                    {{$carerInfo->special_qualification ?? ''}}--}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Employment History:</div>
                                         </div>
                                         <div class="mt-1  col-12">
@@ -170,6 +180,84 @@
                                                         <td>{{$education->passing_year ?? ''}}</td>
                                                     </tr>
                                                 @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
+                                            <div class="" style="color: #000; padding: 5px 3px;">Accepted Opportunities:</div>
+                                        </div>
+                                        <div class="mt-1 col-md-12">
+                                            <table style="width: 100%">
+                                                <tbody>
+                                                <tr>
+                                                    <th class="name_style">Preferred Job Category</th>
+                                                    <th class="colon_style">:</th>
+                                                    <th>{{  ucfirst($carerInfo->pre_job_categories ?? ' ' )}}</th>
+                                                </tr>
+                                                <tr>
+                                                    <td class="name_style">Looking For</td>
+                                                    <th class="colon_style">:</th>
+                                                    <td>
+                                                        @if($carerInfo->job_level ?? '' == 'entry_level')
+                                                            Entry Level
+                                                        @elseif($carerInfo->job_level??'' == 'mid_level')
+                                                            Mid Level
+                                                        @elseif($carerInfo->job_level??'' == 'top_level')
+                                                            Top Level
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="name_style">Available For</td>
+                                                    <th class="colon_style">:</th>
+                                                    <td>
+                                                        @if($carerInfo->job_nature ?? '' == 'full_time')
+                                                            Full Time
+                                                        @elseif($carerInfo->job_nature ?? '' == 'part_time')
+                                                            Part Time
+                                                        @elseif($carerInfo->job_nature ?? '' == 'contract')
+                                                            Contract
+                                                        @elseif($carerInfo->job_nature ?? '' == 'internship')
+                                                            Internship
+                                                        @elseif($carerInfo->job_nature ?? '' == 'freelance')
+                                                            Freelance
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="name_style">Present Salary</td>
+                                                    <td class="colon_style">:</td>
+                                                    <td>
+                                                        Tk.{{$carerInfo->present_salary ?? ''}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="name_style">Expected Salary</td>
+                                                    <td class="colon_style">:</td>
+                                                    <td width="66%" align="left">
+                                                        Tk. {{$carerInfo->expected_salary ?? ''}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="name_style">Preferred Location</td>
+                                                    <td class="colon_style">:</td>
+                                                    <td>
+                                                        @if($carerInfo->pre_job_location ?? '' == 'inside_dhaka')
+                                                            Inside Dhaka
+                                                        @elseif($carerInfo->pre_job_location ?? '' == 'outside_dhaka')
+                                                            Outside Dhaka
+                                                        @elseif($carerInfo->pre_job_location ?? '' == 'all_bangladesh')
+                                                            All Bangladesh
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="name_style">Preferred Organization Types</td>
+                                                    <td class="colon_style">:</td>
+                                                    <td>
+                                                        {{$carerInfo->pre_organization_type ?? ''}}
+                                                    </td>
+                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -254,82 +342,14 @@
                                         </div>
 
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
-                                            <div class="" style="color: #000; padding: 5px 3px;">Career and Application Information:</div>
+                                            <div class="" style="color: #000; padding: 5px 3px;">Portfolios:</div>
                                         </div>
-                                        <div class="mt-1 col-12">
-                                            <table style="width: 100%">
-                                                <tbody>
-                                                <tr>
-                                                    <th class="name_style">Preferred Job Category</th>
-                                                    <th class="colon_style">:</th>
-                                                    <th>{{  ucfirst($carerInfo->pre_job_categories ?? ' ' )}}</th>
-                                                </tr>
-                                                <tr>
-                                                    <td class="name_style">Looking For</td>
-                                                    <th class="colon_style">:</th>
-                                                    <td>
-                                                        @if($carerInfo->job_level ?? '' == 'entry_level')
-                                                            Entry Level
-                                                        @elseif($carerInfo->job_level??'' == 'mid_level')
-                                                            Mid Level
-                                                        @elseif($carerInfo->job_level??'' == 'top_level')
-                                                            Top Level
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="name_style">Available For</td>
-                                                    <th class="colon_style">:</th>
-                                                    <td>
-                                                        @if($carerInfo->job_nature ?? '' == 'full_time')
-                                                            Full Time
-                                                        @elseif($carerInfo->job_nature ?? '' == 'part_time')
-                                                            Part Time
-                                                        @elseif($carerInfo->job_nature ?? '' == 'contract')
-                                                            Contract
-                                                        @elseif($carerInfo->job_nature ?? '' == 'internship')
-                                                            Internship
-                                                        @elseif($carerInfo->job_nature ?? '' == 'freelance')
-                                                            Freelance
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="name_style">Present Salary</td>
-                                                    <td class="colon_style">:</td>
-                                                    <td>
-                                                        Tk.{{$carerInfo->present_salary ?? ''}}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="name_style">Expected Salary</td>
-                                                    <td class="colon_style">:</td>
-                                                    <td width="66%" align="left">
-                                                        Tk. {{$carerInfo->expected_salary ?? ''}}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="name_style">Preferred Location</td>
-                                                    <td class="colon_style">:</td>
-                                                    <td>
-                                                        @if($carerInfo->pre_job_location ?? '' == 'inside_dhaka')
-                                                            Inside Dhaka
-                                                        @elseif($carerInfo->pre_job_location ?? '' == 'outside_dhaka')
-                                                            Outside Dhaka
-                                                        @elseif($carerInfo->pre_job_location ?? '' == 'all_bangladesh')
-                                                            All Bangladesh
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="name_style">Preferred Organization Types</td>
-                                                    <td class="colon_style">:</td>
-                                                    <td>
-                                                        {{$carerInfo->pre_organization_type ?? ''}}
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
+                                        <div class="mt-1 col-md-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                 {{--{{$carerInfo->objective ?? ''}}--}}
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">References:</div>

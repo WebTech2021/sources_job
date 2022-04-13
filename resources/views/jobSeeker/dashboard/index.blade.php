@@ -17,19 +17,19 @@
 @section('content')
     <section id="basic-datatable">
         <div class="row">
-            <div class="col-12">
+            <!--Bar Chart Start -->
+            <div class="col-xl-6 col-12">
                 <div class="card">
-                    <div class="card-header border-bottom p-1">
-                        <div class="head-label">
-                            <h4 class="mb-0">{{__('My Dashboard')}}</h4>
+                    <div class="card-header d-flex justify-content-between align-items-sm-center align-items-start flex-sm-row flex-column">
+                        <div class="header-left">
+                            <h4 class="card-title">My Profile</h4>
                         </div>
-                        <div class="dt-action-buttons text-right">
-                            <div class="dt-buttons d-inline-flex">
-
-                            </div>
-                        </div>
+                        {{--                        <div class="header-right d-flex align-items-center mt-sm-0 mt-1">--}}
+                        {{--                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>--}}
+                        {{--                            <input type="text" class="form-control flat-picker border-0 shadow-none bg-transparent pr-0 flatpickr-input" placeholder="YYYY-MM-DD" readonly="readonly">--}}
+                        {{--                        </div>--}}
                     </div>
-                    <div class="card-body table-responsive">
+                    <div class="card-body">
                         <div class="col-lg-12 col-sm-12 col-12">
                             <div class="row" style="display: flex; justify-content: center;align-items: center">
                                 <div class="">
@@ -86,8 +86,8 @@
                                         <div class="card" style="border:1px solid grey">
                                             <div class="card-header align-items-start pb-0">
                                                 <div>
-                                                    <h2 class="fw-bolder">200</h2>
-                                                    <p class="card-text">Following</p>
+                                                    <h2 class="fw-bolder">12</h2>
+                                                    <p class="card-text">CV Download</p>
                                                 </div>
                                                 <div class="avatar bg-light-success p-50">
                                                     <div class="avatar-content">
@@ -102,7 +102,7 @@
                                             <div class="card-header align-items-start pb-0">
                                                 <div>
                                                     <h2 class="fw-bolder">50</h2>
-                                                    <p class="card-text">Resume Submit</p>
+                                                    <p class="card-text">Invitation</p>
                                                 </div>
                                                 <div class="avatar bg-light-warning p-50">
                                                     <div class="avatar-content">
@@ -118,6 +118,22 @@
                     </div>
                 </div>
             </div>
+            <!-- Bar Chart End -->
+
+            <!-- Horizontal Bar Chart Start -->
+            <div class="col-xl-6 col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-sm-center align-items-start flex-sm-row flex-column">
+                        <div class="header-left">
+                            <h4 class="card-title">Profile Setup Guidelines</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="height:400px"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><canvas class="horizontal-bar-chart-ex chartjs chartjs-render-monitor" data-height="400" width="664" height="400" style="display: block; width: 664px; height: 400px;"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Horizontal Bar Chart End -->
         </div>
     </section>
 @endsection
