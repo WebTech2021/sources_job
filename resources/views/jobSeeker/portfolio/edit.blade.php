@@ -26,39 +26,25 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('jobSeeker.portfolio.update',encrypt($portfolio->id))}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('jobSeeker.portfolio.update',encrypt($portfolio->id))}}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="row col-lg-12 mt-1">
                                 <div class="form-group col-sm-4">
-                                    <label for="portfolio_title">Title:</label><span class="text-danger">*</span>
-                                    <input class="form-control" name="title" type="text" id="title" value="{{old('title',$portfolio->title)}}">
+                                    <label for="title">Project Name:</label><span class="text-danger">*</span>
+                                    <input class="form-control" name="title" type="text" id="title" value="{{old('title',$portfolio->title)}}" placeholder="title" required="">
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for="image">Image:</label><span class="text-danger">*</span>
-                                    <input class="form-control imgInp" name="image" id="change-picture" type="file"  value="">
+                                    <label for="title">Project Link:</label>
+                                    <input class="form-control" name="link" type="text" id="link" value="{{old('link',$portfolio->link)}}" placeholder="project link">
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for="portfolio_status">Status:</label><span class="text-danger">*</span>
-                                    <select class="form-control"  tabindex="-1" aria-hidden="true" name="status">
-                                        <option value="" data-select2-id="2" selected disabled>Select Option</option>
-                                        <option value="active" {{old('active',$portfolio->status == 'active')? 'selected' : ''}}>Active</option>
-                                        <option value="inactive" {{old('inactive',$portfolio->status == 'inactive')? 'selected' : ''}}>InActive</option>
-                                    </select>
+                                    <label for="Role">My Role:</label><span class="text-danger">*</span>
+                                    <input class="form-control" name="role" type="text" id="role" value="{{old('role',$portfolio->role)}}" placeholder="my role" required="">
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label class="form-label" for="modern-last-name">Description:<span style="color:red">*</span></label>
-                                    <textarea class="form-control address-height" rows="3" name="description" cols="50" style="height: 100px; width: 100%">{{old('description',$portfolio->description)}}</textarea>
-                                </div>
-                                <div class="form-group col-sm-3">
-                                    <label for="portfolio_status">Image Preview:</label>
-                                    <div>
-                                        @if($portfolio ->image)
-                                            <img src="{{asset(config('imagepath.portfolio').$portfolio->image)}}" id="blah" class="user-avatar users-avatar-shadow rounded mr-2 my-25 cursor-pointer" height="90" width="90">
-                                        @else
-                                            <img src="{{asset('images/default.png')}}" id="blah" class="user-avatar users-avatar-shadow rounded mr-2 my-25 cursor-pointer" height="90" width="90">
-                                        @endif
-                                    </div>
+                                    <label class="form-label" for="modern-last-name">Project Info:<span style="color:red">*</span></label>
+                                    <textarea class="form-control address-height" rows="3"  name="short_info" maxlength="200" cols="50" id="short_info" style="height: 100px; width: 100%" placeholder="write project info....." required="">{{old('short_info',$portfolio->short_info)}}</textarea>
                                 </div>
                             </div>
                             <div class="text-right mt-2">
@@ -71,25 +57,7 @@
         </div>
     </section>
 @endsection
-@push('scripts')
-    <script>
-        //image preview
-        $("#change-picture").change(function () {
-            readURL(this);
-        });
 
-        //image input
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#blah').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]); // convert to base64 string
-            }
-        }
-    </script>
-@endpush
 
 
 

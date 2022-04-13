@@ -28,32 +28,22 @@
                     <div class="card-body">
                             <form action="{{route('jobSeeker.portfolio.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="row col-lg-12 mt-1">
+                              <div class="row col-lg-12 mt-1">
                                     <div class="form-group col-sm-4">
-                                        <label for="title">Title:</label><span class="text-danger">*</span>
+                                        <label for="title">Project Name:</label><span class="text-danger">*</span>
                                         <input class="form-control" name="title" type="text" id="title" value="{{old('title')}}" placeholder="title" required="">
                                     </div>
                                     <div class="form-group col-sm-4">
-                                        <label for="image">Image:</label><span class="text-danger">*</span>
-                                        <input class="form-control imgInp" name="image" id="change-picture" type="file"  value="{{old('image')}}" required="">
+                                        <label for="title">Project Link:</label>
+                                        <input class="form-control" name="link" type="text" id="link" value="{{old('link')}}" placeholder="project link">
                                     </div>
-                                    <div class="form-group col-sm-4">
-                                        <label for="portfolio_status">Status:</label><span class="text-danger">*</span>
-                                        <select class="form-control"  tabindex="-1" aria-hidden="true" name="status" required>
-                                            <option value="" data-select2-id="2" selected disabled>Select Option</option>
-                                            <option value="active" {{'active'==old('status')?'selected':''}}>Active</option>
-                                            <option value="inactive" {{'inactive'==old('status')?'selected':''}}>InActive</option>
-                                        </select>
-                                    </div>
+                                      <div class="form-group col-sm-4">
+                                          <label for="Role">My Role:</label><span class="text-danger">*</span>
+                                          <input class="form-control" name="role" type="text" id="role" value="{{old('role')}}" placeholder="my role" required="">
+                                      </div>
                                     <div class="form-group col-sm-6">
-                                        <label class="form-label" for="modern-last-name">Description:<span style="color:red">*</span></label>
-                                        <textarea class="form-control address-height" rows="3"  name="description" cols="50" id="description" style="height: 100px; width: 100%" placeholder="write portfolio description....." required="">{{old('description')}}</textarea>
-                                    </div>
-                                    <div class="form-group col-sm-3">
-                                        <label for="portfolio_status">Image Preview:</label>
-                                        <div>
-                                            <img src="{{asset('images/dummy.jpg')}}" id="blah" class="user-avatar users-avatar-shadow rounded mr-2 my-25 cursor-pointer" height="90" width="90">
-                                        </div>
+                                        <label class="form-label" for="modern-last-name">Project Info:<span style="color:red">*</span></label>
+                                        <textarea class="form-control address-height" rows="3"  name="short_info" maxlength="200" cols="50" id="short_info" style="height: 100px; width: 100%" placeholder="write project info....." required="">{{old('short_info')}}</textarea>
                                     </div>
                                 </div>
                                 <div class="text-right mt-2">
@@ -66,24 +56,6 @@
         </div>
     </section>
 @endsection
-@push('scripts')
-    <script>
-        //image preview
-        $("#change-picture").change(function () {
-            readURL(this);
-        });
 
-        //image input
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#blah').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]); // convert to base64 string
-            }
-        }
-    </script>
-@endpush
 
 

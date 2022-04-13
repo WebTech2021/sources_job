@@ -12,8 +12,8 @@ class Portfolio extends Model
     protected $fillable =[
        'job_seeker_id',
        'title',
-       'image',
-       'description',
-       'status'
+       'link',
+       'short_info',
+       'role'
     ];
 }

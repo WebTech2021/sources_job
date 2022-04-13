@@ -30,17 +30,17 @@ class JSPortfolioController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
-            'status' => 'required',
-            'image' => 'required|image|mimes:jpg,png',
+            'short_info' => 'required|max:210',
+            'role' => 'required',
+            'link' => 'url',
         ]);
         $portfolio = new Portfolio;
         $portfolio->job_seeker_id = Auth::user()->id;
         $portfolio->fill($request->all());
-        if ($request->hasFile('image')) {
-            $filename = $this->uploadOne($request->image, 350, 250, config('imagepath.portfolio'));
-            $portfolio->image = $filename;
-        }
+//        if ($request->hasFile('image')) {
+//            $filename = $this->uploadOne($request->image, 350, 250, config('imagepath.portfolio'));
+//            $portfolio->image = $filename;
+//        }
 //        return $portfolio;
         $portfolio->save();
         Toastr::success('Information Added Successfully!', 'Success');
@@ -76,18 +76,18 @@ class JSPortfolioController extends Controller
 //        return $request->all();
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
-            'status' => 'required',
-            'image' => 'image|mimes:jpg,png',
+            'short_info' => 'required|max:210',
+            'role' => 'required',
+            'link' => 'url',
         ]);
         try {
             $portfolio = Portfolio::find(decrypt($id));
-            if ($request->hasFile('image')) {
-                $filename = $this->uploadOne($request->image, 350, 250, config('imagepath.portfolio'));
-                $this->deleteOne(config('imagepath.portfolio'), $portfolio->image);
-                $portfolio->update(['image' => $filename]);
-            }
-            $portfolio->update($request->except(['token', 'image']));
+//            if ($request->hasFile('image')) {
+//                $filename = $this->uploadOne($request->image, 350, 250, config('imagepath.portfolio'));
+//                $this->deleteOne(config('imagepath.portfolio'), $portfolio->image);
+//                $portfolio->update(['image' => $filename]);
+//            }
+            $portfolio->update($request->except(['token']));
             Toastr::success('Information Update Successfully!', 'Updated');
             return redirect()->route('jobSeeker.portfolio.index');
 

@@ -17,9 +17,9 @@ class CreatePortfoliosTable extends Migration
             $table->id();
             $table->foreignId('job_seeker_id')->constrained('job_seekers')->onDelete('cascade');
             $table->string('title')->nullable();
-            $table->string('image')->nullable();
-            $table->text('description')->nullable();
-            $table->enum('status',['active','inactive'])->nullable();
+            $table->string('link')->nullable();
+            $table->text('short_info')->nullable();
+            $table->string('role')->nullable();
             $table->timestamps();
         });
     }

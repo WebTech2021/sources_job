@@ -17,13 +17,6 @@ class CreateCareerAndApplicationInformationTable extends Migration
             $table->id();
             $table->foreignId('job_seeker_id')->constrained('job_seekers')->onDelete('cascade');
             $table->text('objective')->nullable();
-            $table->string('present_salary')->nullable();
-            $table->string('expected_salary')->nullable();
-            $table->string('job_level')->nullable();
-            $table->string('job_nature')->nullable();
-            $table->string('pre_job_categories')->nullable();
-            $table->string('pre_job_location')->nullable();
-            $table->string('pre_organization_type')->nullable();
             $table->text('career_summary')->nullable();
             $table->text('special_qualification')->nullable();
             $table->timestamps();

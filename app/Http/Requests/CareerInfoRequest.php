@@ -24,15 +24,9 @@ class CareerInfoRequest extends FormRequest
     public function rules()
     {
         return [
-            'job_level'=>'required',
-            'job_nature'=>'required',
-            'present_salary' => 'required|integer|digits_between:2,10',
-            'expected_salary' => 'required|integer|digits_between:2,10',
-            'objective'=>'required',
-            'pre_job_categories'=>'required',
-            'pre_organization_type'=>'required',
-            'pre_job_location'=>'required',
-            'career_summary'=>'required',
+            'objective'=>'required|max:760',
+            'career_summary'=>'required|max:760',
+            'special_qualification'=>'required|max:760',
         ];
     }
 }
