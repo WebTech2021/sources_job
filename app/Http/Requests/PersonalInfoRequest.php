@@ -31,8 +31,6 @@ class PersonalInfoRequest extends FormRequest
             'nid' => ['numeric','digits_between:10,17','unique:job_seekers,nid,'.$this->id],
             'father_name'=>['required','regex:/^[\pL\s\-]+$/u','max:255'],
             'mother_name'=>['required','regex:/^[\pL\s\-]+$/u','max:255'],
-            'skills'=>['required'],
-            'language'=>['required'],
         ];
     }
 

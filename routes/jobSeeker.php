@@ -14,6 +14,7 @@ use App\Http\Controllers\JobSeeker\JSPortfolioController;
 use App\Http\Controllers\JobSeeker\KeyFeatureController;
 use App\Http\Controllers\JobSeeker\ProfileController;
 use App\Http\Controllers\JobSeeker\ReferenceController;
+use App\Http\Controllers\JobSeeker\skillController;
 use App\Models\JobSeeker\KeyFeatures;
 use Illuminate\Support\Facades\Route;
 
@@ -73,7 +74,9 @@ Route::group(['prefix' => 'jobSeeker', 'as' => 'jobSeeker.'], function () {
         Route::get('/key-features',[KeyFeatureController::class,'KeyFeature'])->name('key.features');
         Route::post('/key-features/{id?}',[KeyFeatureController::class,'create_KeyFeature'])->name('key_features.create');
 
-
+        Route::get('/skill',[skillController::class,'createSkill'])->name('skill.create');
+        Route::post('/skill/store',[skillController::class,'storeSkill'])->name('skill.store');
+        Route::delete('/skill/delete{id}',[skillController::class,'destroy'])->name('skill.destroy');
 
     });
 });

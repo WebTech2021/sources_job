@@ -65,6 +65,12 @@
                                                               data-i18n="Home"
                             >{{__('Experience')}}</span></a>
                     </li>
+                    <li class="{{ Route::currentRouteName()=='jobSeeker.skill.create' ? 'active':'' }} nav-item"><a
+                            class="d-flex align-items-center" href="{{route('jobSeeker.skill.create')}}"
+                        ><i class="fas fa-user-tie"></i><span class="menu-title text-truncate"
+                                                              data-i18n="Home"
+                            >{{__('Skills')}}</span></a>
+                    </li>
 
                     <li class="{{ Route::currentRouteName()=='jobSeeker.reference.index' ? 'active':'' }} nav-item">
                         <a

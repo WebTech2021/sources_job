@@ -147,20 +147,20 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="mb-1 col-md-3">
-                                        <label class="form-label" for="modern-last-name">Experience: (In Years) <span style="color:red">*</span></label>
-                                        <input type="number" id="modern-last-name" name="experience" class="form-control" placeholder="experience years" value="{{old('experience',$jobSeeker->experience)}}">
-                                    </div>
-                                    <div class="mb-1 col-md-3">
-                                        <label class="form-label" for="modern-last-name">Skills:<span style="color:red">*</span></label>
-                                        <select class="js-example-tokenizer1" multiple="multiple" name="skills[]" id="" required>
-                                            @if ($jobSeeker->skills != "")
-                                                @foreach(explode(',', $jobSeeker->skills) as $skill)
-                                                    <option value="{{$skill}}" selected >{{$skill}}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
+{{--                                    <div class="mb-1 col-md-3">--}}
+{{--                                        <label class="form-label" for="modern-last-name">Experience: (In Years) <span style="color:red">*</span></label>--}}
+{{--                                        <input type="number" id="modern-last-name" name="experience" class="form-control" placeholder="experience years" value="{{old('experience',$jobSeeker->experience)}}">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="mb-1 col-md-3">--}}
+{{--                                        <label class="form-label" for="modern-last-name">Skills:<span style="color:red">*</span></label>--}}
+{{--                                        <select class="js-example-tokenizer1" multiple="multiple" name="skills[]" id="" required>--}}
+{{--                                            @if ($jobSeeker->skills != "")--}}
+{{--                                                @foreach(explode(',', $jobSeeker->skills) as $skill)--}}
+{{--                                                    <option value="{{$skill}}" selected >{{$skill}}</option>--}}
+{{--                                                @endforeach--}}
+{{--                                            @endif--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
                                     <div class="mb-1 col-md-3">
                                         <label for="email">{{__('Division')}}<span style="color: red;">*</span></label>
                                         <select class="form-control select2" id="select_division" aria-invalid="false" name="division_id">
@@ -217,6 +217,9 @@
                                         <textarea class="form-control address-height" rows="1" name="c_location" cols="40" id="c_location" style="height: 60px;">{{ old('c_location',$jobSeeker->c_location) }}</textarea>
                                     </div>
                                 </div>
+                            <div>
+                                <hr>
+                            </div>
                                 <div class="row">
                                     <div class="mb-1 col-md-3">
                                         <label class="form-label" for="modern-last-name">facebook link:</label>

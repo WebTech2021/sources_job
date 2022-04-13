@@ -23,6 +23,15 @@ class KeyFeatureController extends Controller
     }
 
     public function create_KeyFeature(Request $request, $id = null){
+        $request->validate([
+            'profession'=>'required',
+            'education'=>'required',
+            'experience'=>'required',
+            'salary'=>'required',
+            'job_type'=>'required',
+            'location'=>'required',
+            'available_status'=>'required'
+        ]);
         if($id)
         {
             $keyFeature = KeyFeatures::find($id);
