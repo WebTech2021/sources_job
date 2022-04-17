@@ -16,8 +16,8 @@ class JS_jobsController extends Controller
     {
 //        $data = CareerAndApplicationInformation::where(['employee_id' => \auth('jobSeeker')->user()->id])->first()->pre_job_categories ?? '-';
 //        $categories = explode(',', $data);
-        $info = Jobs::whereIn('job_categories', explode(',', \auth()->user()->career->pre_job_categories ?? '-'))
-            ->where('status', '=', 'publish');
+      return  $info = Jobs::whereIn('job_categories', explode(',', \auth()->user()->career->profession ?? '-'))
+            ->where('status', '=', 'publish')->get();
 //            if($request->status !== 'all'){
 //                $job_data = $job_data->where('employment_status', $request->status);
 //            }

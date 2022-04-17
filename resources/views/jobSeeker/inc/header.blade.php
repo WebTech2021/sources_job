@@ -18,13 +18,13 @@
                 </div>
             @endif
 
-            @if(auth('jobSeeker')->user()->status == 'active')
-                <div style="padding-right: 10px;">Account Status: <span class="badge badge-light-success">Active</span></div>
-            @elseif(auth('jobSeeker')->user()->status == 'inactive')
-                <div style="padding-right: 10px;">Account Status: <span class="badge badge-light-secondary">In-Active</span></div>
-            @else
-                <div style="padding-right: 10px;">Account Status: <span class="badge badge-light-danger">Blocked</span></div>
-            @endif
+{{--            @if(auth('jobSeeker')->user()->status == 'active')--}}
+{{--                <div style="padding-right: 10px;">Account Status: <span class="badge badge-light-success">Active</span></div>--}}
+{{--            @elseif(auth('jobSeeker')->user()->status == 'inactive')--}}
+{{--                <div style="padding-right: 10px;">Account Status: <span class="badge badge-light-secondary">In-Active</span></div>--}}
+{{--            @else--}}
+{{--                <div style="padding-right: 10px;">Account Status: <span class="badge badge-light-danger">Blocked</span></div>--}}
+{{--            @endif--}}
 
 			<li class="nav-item dropdown dropdown-language">
 				<a class="nav-link dropdown-toggle" id="dropdown-flag" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

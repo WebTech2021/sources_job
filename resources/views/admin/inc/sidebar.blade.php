@@ -19,13 +19,26 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-
             <li class="{{ Route::currentRouteName()=='jobSeeker.list'?'active':'' }} nav-item"><a
                     class="d-flex align-items-center" href="{{route('jobSeeker.list')}}"
                 ><i class="fas fa-user-tag"></i><span class="menu-title text-truncate" data-i18n="Home"
                     >{{__('Job Seeker')}}</span></a>
             </li>
-
+            <li class="{{ Route::currentRouteName()=='job.list'?'active':'' }} nav-item"><a
+                    class="d-flex align-items-center" href="{{route('job.list')}}"
+                ><i class="fas fa-list"></i><span class="menu-title text-truncate" data-i18n="Home"
+                    >{{__('Job List')}}</span></a>
+            </li>
+            <li class="{{ Route::currentRouteName()=='category.index'?'active':'' }} nav-item"><a
+                    class="d-flex align-items-center" href="{{route('category.index')}}"
+                ><i class="fas fa-list"></i><span class="menu-title text-truncate" data-i18n="Home"
+                    >{{__(' Job Category')}}</span></a>
+            </li>
+            <li class="{{ Route::currentRouteName()=='education.index'?'active':'' }} nav-item"><a
+                    class="d-flex align-items-center" href="{{route('education.index')}}"
+                ><i class="fas fa-list"></i><span class="menu-title text-truncate" data-i18n="Home"
+                    >{{__(' Job Education')}}</span></a>
+            </li>
         </ul>
     </div>
 </div><!-- END: Main Menu-->

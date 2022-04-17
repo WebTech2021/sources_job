@@ -16,4 +16,6 @@ class Jobs extends Model
     ];
 
 
+
+
 }

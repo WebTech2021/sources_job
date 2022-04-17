@@ -89,6 +89,6 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
     }
     public function career()
     {
-        return $this->hasOne(CareerAndApplicationInformation::class, 'employee_id','id');
+        return $this->hasOne(KeyFeatures::class, 'job_seeker_id','id');
     }
 }

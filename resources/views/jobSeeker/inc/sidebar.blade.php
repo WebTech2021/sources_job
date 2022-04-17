@@ -93,7 +93,7 @@
 
                 </ul>
             </li>
-            @if(auth('jobSeeker')->user()->status == 'active'|| auth('jobSeeker')->user()->status != 'inactive')
+{{--            @if(auth('jobSeeker')->user()->status == 'active'|| auth('jobSeeker')->user()->status != 'inactive')--}}
 {{--                <li class="{{ Route::currentRouteName()=='jobSeeker.application.status' ? 'active':'' }} nav-item">--}}
 {{--                    <a class="d-flex align-items-center" href="{{route('jobSeeker.application.status')}}"><i class="fad fa-badge-check"></i> <span--}}
 {{--                            class="menu-title text-truncate" data-i18n="Home"--}}
@@ -108,7 +108,7 @@
                     <a class="d-flex align-items-center" href="{{route('jobSeeker.jobs.list')}}">
                         <i class="fal fa-list-ul"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('Job offer')}}</span></a>
                 </li>
-            @endif
+{{--            @endif--}}
         </ul>
     </div>
 </div>

@@ -20,7 +20,14 @@ class ReferenceController extends Controller
                 ->addColumn('action', function ($ref_data) {
                     return view('jobSeeker.reference.action_button',compact('ref_data'));
                 })
-                ->rawColumns(['action'])->tojson();
+                ->addColumn('status', function ($ref_data) {
+                    if ($ref_data->status == 'active'){
+                        return '<div class="badge badge-success">Active</div>';
+                    }else{
+                        return '<div class="badge badge-danger">Inactive</div>';
+                    }
+                })
+                ->rawColumns(['action','status'])->tojson();
         }
         return view('jobSeeker.reference.index');
     }

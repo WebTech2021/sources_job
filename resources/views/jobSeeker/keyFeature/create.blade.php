@@ -68,13 +68,16 @@
                                     <label class="form-label" for="modern-last-name">Education:<span style="color:red">*</span></label>
                                     <select class="select2 form-control" id="" name="education" required="">
                                         <option disabled selected>Select Option</option>
-                                        <option value="cse" {{old('education',$keyFeatures->education?? '') == 'cse'? 'selected':'' }}>CSE</option>
-                                        <option value="msc" {{old('education',$keyFeatures->education?? '') == 'msc'? 'selected':'' }}>MSC</option>
-                                        <option value="bba" {{old('education',$keyFeatures->education?? '') == 'bba'? 'selected':'' }}>BBA</option>
-                                        <option value="mba" {{old('education',$keyFeatures->education?? '') == 'mba'? 'selected':'' }}>MBA</option>
-                                        <option value="bsc" {{old('education',$keyFeatures->education?? '') == 'bsc'? 'selected':'' }}>BSC</option>
-                                        <option value="hsc" {{old('education',$keyFeatures->education?? '') == 'hsc'? 'selected':'' }}>HSC</option>
-                                        <option value="ssc" {{old('education',$keyFeatures->education?? '') == 'ssc'? 'selected':'' }}>SSC</option>
+                                        @foreach($educations as $education)
+                                            <option value="{{$education->name}}" {{$education->name== old('education',$keyFeatures->education ?? '')? 'selected' : ''}}>{{$education->name}}</option>
+                                        @endforeach
+{{--                                        <option value="cse" {{old('education',$keyFeatures->education?? '') == 'cse'? 'selected':'' }}>CSE</option>--}}
+{{--                                        <option value="msc" {{old('education',$keyFeatures->education?? '') == 'msc'? 'selected':'' }}>MSC</option>--}}
+{{--                                        <option value="bba" {{old('education',$keyFeatures->education?? '') == 'bba'? 'selected':'' }}>BBA</option>--}}
+{{--                                        <option value="mba" {{old('education',$keyFeatures->education?? '') == 'mba'? 'selected':'' }}>MBA</option>--}}
+{{--                                        <option value="bsc" {{old('education',$keyFeatures->education?? '') == 'bsc'? 'selected':'' }}>BSC</option>--}}
+{{--                                        <option value="hsc" {{old('education',$keyFeatures->education?? '') == 'hsc'? 'selected':'' }}>HSC</option>--}}
+{{--                                        <option value="ssc" {{old('education',$keyFeatures->education?? '') == 'ssc'? 'selected':'' }}>SSC</option>--}}
                                     </select>
                                 </div>
                                 <div class="mb-1 col-md-3">

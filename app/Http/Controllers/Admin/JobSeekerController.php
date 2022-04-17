@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\JobSeekerExport;
 use App\Http\Controllers\Controller;
 use App\Mail\JobSeekerBlocked;
+use App\Models\Jobs;
 use App\Models\JobSeeker\JobSeeker;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class JobSeekerController extends Controller
@@ -89,11 +92,36 @@ class JobSeekerController extends Controller
         return Excel::download(new JobSeekerExport(), 'jobSeeker.xlsx');
     }
 
-
     public function  loginAsJobSeeker(Request $request){
         Auth::guard('jobSeeker')->loginUsingId($request->id);
         session(['loggedIn-from-admin' => true]);
         return redirect()->route('jobSeeker.login');
 
     }
+
+  public function getJobList(){
+//      return  $job_list = Jobs::all();
+      if (\request()->ajax()) {
+          $job_list = Jobs::all();
+          return DataTables::of($job_list)
+              ->addIndexColumn()
+              ->addColumn('organization_name', function ($job_list) {
+                   return $job_list->organization->name ?? ' ';
+              })
+              ->addColumn('status', function ($job_list) {
+                  if ($job_list->status == 'publish'){
+                      return '<div class="badge badge-light-success">Publish</div>';
+                  }elseif ($job_list->status == 'draft'){
+                      return '<div class="badge badge-light-warning">Draft</div>';
+                  }else{
+                      return '<div class="badge badge-light-danger">Expired</div>';
+                  }
+              })
+
+              ->rawColumns(['status'])
+              ->tojson();
+      }
+      return view('admin.jobs.index');
+  }
+
 }

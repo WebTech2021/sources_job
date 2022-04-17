@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Education;
 use App\Models\District;
 use App\Models\JobCategory;
 use App\Models\JobSeeker\JobSeeker;
@@ -19,7 +20,8 @@ class KeyFeatureController extends Controller
         $jobSeeker = JobSeeker::findOrfail(\auth()->user()->id);
         $districts = District::orderBy('name', 'asc')->get();
         $jobCategories = JobCategory::select('name')->orderBy('name', 'asc')->get();
-        return view('jobSeeker.keyFeature.create',compact('jobSeeker','districts','jobCategories','keyFeatures'));
+        $educations = Education::select('name')->orderBy('name', 'asc')->get();
+        return view('jobSeeker.keyFeature.create',compact('jobSeeker','districts','jobCategories','keyFeatures','educations'));
     }
 
     public function create_KeyFeature(Request $request, $id = null){

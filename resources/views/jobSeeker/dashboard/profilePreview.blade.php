@@ -347,7 +347,14 @@
                                         <div class="mt-1 col-md-12">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                 {{--{{$carerInfo->objective ?? ''}}--}}
+                                                    @foreach($portfolios as $portfolio)
+                                                       <ul>
+                                                           <li>{{$portfolio->title}}</li>
+                                                           <span>{{$portfolio->short_info}}</span><br>
+                                                           <span>{{$portfolio->role}}</span><br>
+                                                           <span>{{$portfolio->link}}</span>
+                                                       </ul>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
