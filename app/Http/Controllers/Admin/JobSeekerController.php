@@ -11,6 +11,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
@@ -106,7 +107,8 @@ class JobSeekerController extends Controller
           return DataTables::of($job_list)
               ->addIndexColumn()
               ->addColumn('organization_name', function ($job_list) {
-                   return $job_list->organization->name ?? ' ';
+                  $id =  $job_list->organization_id;
+                 return DB::table('sources.organizations')->where('id','=',$id)->first()->name;
               })
               ->addColumn('status', function ($job_list) {
                   if ($job_list->status == 'publish'){
