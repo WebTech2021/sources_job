@@ -53,10 +53,10 @@
                         </div>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons d-inline-flex">
-                                <a href="#" class="dt-button create-new btn btn-primary ml-1 mr-1" tabindex="0"
-                                   aria-controls="DataTables_Table_0" type="button" data-toggle="modal" data-target="#default2">
-                                    <span><i class="fas fa-download"></i> {{__('Download')}} </span>
-                                </a>
+{{--                                <a href="#" class="dt-button create-new btn btn-primary ml-1 mr-1" tabindex="0"--}}
+{{--                                   aria-controls="DataTables_Table_0" type="button" data-toggle="modal" data-target="#default2">--}}
+{{--                                    <span><i class="fas fa-download"></i> {{__('Download')}} </span>--}}
+{{--                                </a>--}}
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,9 @@
                                         <div class="mt-1 col-md-12">
                                             <div class="row">
                                                 <div class="col-lg-12">
-{{--                                                    {{$carerInfo->special_qualification ?? ''}}--}}
+                                                    @foreach($skills as $data)
+                                                        <span>{{$data->skill}}</span>,
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>

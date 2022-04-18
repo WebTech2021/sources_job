@@ -12,6 +12,7 @@ use App\Models\JobSeeker\jsEducation;
 use App\Models\JobSeeker\jsExperience;
 use App\Models\JobSeeker\Portfolio;
 use App\Models\JobSeeker\Reference;
+use App\Models\JobSeeker\Skills;
 use App\Models\Upazila;
 use App\Traits\UploadAble;
 use Brian2694\Toastr\Facades\Toastr;
@@ -44,15 +45,13 @@ class ProfileController extends Controller
 
     public function  cv_preview(){
         $jobSeeker = JobSeeker::findOrfail(\auth()->user()->id);
-        $divisions = Division::orderBy('name', 'asc')->get();
-        $districts = District::orderBy('name', 'asc')->get();
-        $upazilas = Upazila::orderBy('name', 'asc')->get();
         $experiences = jsExperience::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
         $educations = jsEducation::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
         $carerInfo = CareerAndApplicationInformation::where('job_seeker_id',auth('jobSeeker')->user()->id)->first();
         $reference = Reference::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
         $portfolios = Portfolio::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
-        return view('jobSeeker.dashboard.profilePreview',compact('portfolios','reference','divisions','districts','upazilas','jobSeeker','experiences','educations','carerInfo'));
+        $skills = Skills::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
+        return view('jobSeeker.dashboard.profilePreview',compact('skills','portfolios','reference','jobSeeker','experiences','educations','carerInfo'));
     }
 
 

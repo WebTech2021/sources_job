@@ -24,9 +24,6 @@ class JobSeekerController extends Controller
             $job_seeker = JobSeeker::latest('last_seen_at');
             return DataTables::of($job_seeker)
                 ->addIndexColumn()
-//                ->addColumn('name', function ($job_seeker) {
-//                    return $job_seeker->first_name.' '.$job_seeker->last_name;
-//                })
                 ->addColumn('nameWithImage', function ($job_seeker) {
                     $now = Carbon::now()->subMinutes(1)->format('Y-m-d H:i:s');
                     if ($job_seeker->last_seen_at >= $now) {
@@ -97,13 +94,11 @@ class JobSeekerController extends Controller
         Auth::guard('jobSeeker')->loginUsingId($request->id);
         session(['loggedIn-from-admin' => true]);
         return redirect()->route('jobSeeker.login');
-
     }
 
   public function getJobList(){
-//      return  $job_list = Jobs::all();
       if (\request()->ajax()) {
-          $job_list = Jobs::all();
+          $job_list = Jobs::latest();
           return DataTables::of($job_list)
               ->addIndexColumn()
               ->addColumn('organization_name', function ($job_list) {
