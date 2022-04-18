@@ -33,8 +33,8 @@ class CreateJobsTable extends Migration
             $table->text('other_benefits')->nullable();
             $table->text('job_context')->nullable();
             $table->text('job_notes')->nullable();
-            $table->date('publish_at')->nullable();
-            $table->date('expire_date')->nullable();
+            $table->dateTime('from_date')->nullable();
+            $table->dateTime('to_date')->nullable();
             $table->enum('status',['draft','publish','expired'])->default('draft');
             $table->timestamps();
         });

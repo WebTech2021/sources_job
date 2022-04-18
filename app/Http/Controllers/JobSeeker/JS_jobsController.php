@@ -3,25 +3,26 @@
 namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobApplication;
 use App\Models\Jobs;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Queue\Jobs\Job;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class JS_jobsController extends Controller
 {
     public function get_job_list(Request $request)
     {
-//        $data = CareerAndApplicationInformation::where(['employee_id' => \auth('jobSeeker')->user()->id])->first()->pre_job_categories ?? '-';
-//        $categories = explode(',', $data);
-      return  $info = Jobs::whereIn('job_categories', explode(',', \auth()->user()->career->profession ?? '-'))
-            ->where('status', '=', 'publish')->get();
+//        return \auth()->user()->career->category->activeJobs;
+         $info = \auth()->user()->career->category->activeJobs();
 //            if($request->status !== 'all'){
 //                $job_data = $job_data->where('employment_status', $request->status);
 //            }
-        $job_data = $this->jobCount(request()->employment_status, $info);
+        $job_data = jobCount(request()->employment_status, $info);
         if (\request()->ajax()) {
             return DataTables::of($job_data)
                 ->addIndexColumn()
@@ -38,9 +39,11 @@ class JS_jobsController extends Controller
 ////                    return '<a href="' . route('organization.show', encrypt($job_data->id)) . '">' .$job_data->organization->name . '</a>';
 //                })
                 ->addColumn('nameWithImage', function ($job_data) {
-                    $route = url('', ($job_data->organization->slug));
-                    return nameWithImage($job_data->organization->name, $job_data->organization->logo, 'imagepath.companyLogo',
-                        'images/company-logo/default-logo.png', $route);
+                    $id =  $job_data->organization_id;
+                    $logo =  DB::table('sources.organizations')->where('id','=',$id)->first()->logo;
+                    $name = DB::table('sources.organizations')->where('id','=',$id)->first()->name;
+                    return nameWithImage1($name, $logo, 'imagepath.companyLogo',
+                        'images/company-logo/default-logo.png');
                 })
                 ->addColumn('employment_status', function ($job_data) {
                     if ($job_data->employment_status == 'full_time') {
@@ -64,7 +67,7 @@ class JS_jobsController extends Controller
                     }
                 })
                 ->addColumn('expire_date', function ($job_data) {
-                    return \Carbon\Carbon::parse($job_data->expire_date)->format('D, d M Y');
+                    return \Carbon\Carbon::parse($job_data->to_date)->format('D, d M Y');
                 })
                 ->rawColumns(['nameWithImage', 'expire_date', 'salary', 'action', 'employment_status'])
                 ->tojson();
@@ -77,18 +80,13 @@ class JS_jobsController extends Controller
 
     public function job_details($id)
     {
-        $job_details = EmployeeJobs::find($id);
+        $job_details = Jobs::find($id);
         return view('jobSeeker.jobs.show', compact('job_details'));
     }
 
     public function apply(Request $request, $id)
     {
-        $apply_data = EmployeeJobs::find($id);
-//        $application = new JobApplication();
-//        $application->employee_id = Auth::user()->id;
-//        $application->job_id = $apply_data->id ;
-//        $application->organization_id =$apply_data->organization_id;
-//        return $application;
+        $apply_data = Jobs::find($id);
         JobApplication::create([
             'job_seeker_id' => Auth::guard('jobSeeker')->user()->id,
             'job_id' => $apply_data->id,

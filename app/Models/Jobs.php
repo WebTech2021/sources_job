@@ -12,10 +12,11 @@ class Jobs extends Model
         'organization_id','job_title','vacancy','employment_status','gander',
         'workplace','job_location','min_experience','job_categories',
         'salary','salary_type','job_responsibilities','educational_requirements',
-        'additional_requirements','other_benefits','job_context','expire_date','job_notes','status','slug'
+        'additional_requirements','other_benefits','job_context','to_date','job_notes','status','slug','from_date'
     ];
 
-
-
+    public function checkApplication(){
+        return JobApplication::where('job_seeker_id', auth()->user()->id)->where('job_id',$this->id)->exists();
+    }
 
 }

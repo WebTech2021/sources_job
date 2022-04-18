@@ -96,7 +96,7 @@
                                          <h5>Job Source:</h5>
                                          <p class="ml-2">sources.com.bd Online Job Posting.</p>
                                          <h5>Application Deadline:</h5>
-                                         <p class="ml-2">{{$job_details->expire_date != null ? \Carbon\Carbon::parse($job_details->expire_date)->format('d M Y'):'no deadline issue'}}</p>
+                                         <p class="ml-2">{{$job_details->to_date != null ? \Carbon\Carbon::parse($job_details->to_date)->format('d M Y'):'no deadline issue'}}</p>
                                      </div>
                                  </div>
                             </div>
@@ -127,7 +127,7 @@
                                                 Anywhere in Bangladesh
                                             @endif
                                             </p>
-                                           <p><b>Application Deadline:</b> {{$job_details->expire_date != null ? \Carbon\Carbon::parse($job_details->expire_date)->format('d M Y'):'no deadline issue'}}</p>
+                                           <p><b>Application Deadline:</b> {{$job_details->to_date != null ? \Carbon\Carbon::parse($job_details->to_date)->format('d M Y'):'no deadline issue'}}</p>
                                            <div class="text-center">
                                                @if(!$job_details->checkApplication())
                                                    <form action="{{route('jobSeeker.job.apply',$job_details->id)}}" method="post">

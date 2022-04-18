@@ -11,4 +11,13 @@ class JobCategory extends Model
     protected $fillable=[
        'name','slug'
     ];
+
+    public function jobs(){
+        return $this->hasMany(Jobs::class,'job_categories');
+    }
+
+    public function activeJobs()
+    {
+        return $this->hasMany(Jobs::class,'job_categories')->where('status', '=', 'publish');
+    }
 }

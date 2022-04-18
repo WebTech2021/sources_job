@@ -254,6 +254,11 @@ function nameWithImage($name, $image, $imagePath, $defaultImagePath = '', $route
 {
     return view('components.nameWithImage', ['name' => $name, 'image' => $image ? asset(config($imagePath)) . $image : asset($defaultImagePath), 'route' => $route, 'is_user' => $is_user]);
 }
+function nameWithImage1($name, $image, $imagePath, $defaultImagePath = '', bool $is_user = false)
+{
+    return view('components.nameWithImage1', ['name' => $name, 'image' => $image ? asset(config($imagePath)) . $image : asset($defaultImagePath), 'is_user' => $is_user]);
+}
+
 
 /**
  * @param $icon
