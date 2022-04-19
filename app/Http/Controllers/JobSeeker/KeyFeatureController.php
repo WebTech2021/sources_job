@@ -19,7 +19,7 @@ class KeyFeatureController extends Controller
         $keyFeatures = KeyFeatures::where('job_seeker_id',\auth()->user()->id)->first();
         $jobSeeker = JobSeeker::findOrfail(\auth()->user()->id);
         $districts = District::orderBy('name', 'asc')->get();
-        $jobCategories = JobCategory::select('name')->orderBy('name', 'asc')->get();
+        $jobCategories = JobCategory::select('id','name')->orderBy('name', 'asc')->get();
         $educations = Education::select('name')->orderBy('name', 'asc')->get();
         return view('jobSeeker.keyFeature.create',compact('jobSeeker','districts','jobCategories','keyFeatures','educations'));
     }
