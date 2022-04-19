@@ -19,6 +19,6 @@ require('jobSeeker.php');
 //    return view('welcome');
 //});
 
-Auth::routes();
+//Auth::routes();
 
 //Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

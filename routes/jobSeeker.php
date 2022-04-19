@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'jobSeeker', 'as' => 'jobSeeker.'], function () {
 //agent authentication system
+    Route::get('login', [jsLoginController::class, 'showLoginForm'])->name('login');
     Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('register', [RegisterController::class, 'register']);
-    Route::get('login', [jsLoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [jsLoginController::class, 'login']);
     Route::post('logout', [jsLoginController::class, 'logout'])->name('logout');
     Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
