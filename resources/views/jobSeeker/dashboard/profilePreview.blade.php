@@ -186,7 +186,7 @@
                                             </table>
                                         </div>
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
-                                            <div class="" style="color: #000; padding: 5px 3px;">Accepted Opportunities:</div>
+                                            <div class="" style="color: #000; padding: 5px 3px;">My Expectation:</div>
                                         </div>
                                         <div class="mt-1 col-md-12">
                                             <table style="width: 100%">

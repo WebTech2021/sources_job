@@ -18,7 +18,7 @@ use App\Http\Controllers\JobSeeker\skillController;
 use App\Models\JobSeeker\KeyFeatures;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'jobSeeker', 'as' => 'jobSeeker.'], function () {
+Route::group(['as' => 'jobSeeker.'], function () {
 //agent authentication system
     Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('register', [RegisterController::class, 'register']);
@@ -29,13 +29,14 @@ Route::group(['prefix' => 'jobSeeker', 'as' => 'jobSeeker.'], function () {
     Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
 //email verification
     Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
     Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
     Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
     Route::group(['middleware' => ['auth:jobSeeker', 'prevent-back-history', 'OnlineActiveJobSeeker']], function () {
-        Route::get('/home', [jsHomeController::class, 'index'])->name('home');
+        Route::get('/', [jsHomeController::class, 'index'])->name('home');
   //Job seeker profile manage routes
         Route::get('/profile', [jsHomeController::class, 'view_jobSeeker_profile'])->name('view.profile');
         Route::post('/profile/general/{id}', [jsHomeController::class, 'update_general_info'])->name('update.general');

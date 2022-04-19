@@ -17,7 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class JobSeeker extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable;
 
     protected $fillable=[
         'first_name',

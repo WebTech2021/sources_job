@@ -79,9 +79,12 @@
                                                            data-i18n="Home"
                             >{{__('Reference')}}</span></a>
                     </li>
-                    <li class="{{ request()->segment(2)=='portfolio' ? 'active' :'' }} nav-item">
-                        <a class="d-flex align-items-center" href="{{route('jobSeeker.portfolio.index')}}"><i class="fad fa-file-word"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('Portfolio')}}</span></a>
+                    <li class="{{ Route::currentRouteName()=='jobSeeker.portfolio.index' ? 'active':'' }} nav-item">
+                        <a class="d-flex align-items-center" href="{{route('jobSeeker.portfolio.index')}}"><i class="fad fa-file-word"></i>
+                            <span class="menu-title text-truncate" data-i18n="Home">{{__('Portfolio')}}</span></a>
                     </li>
+
+
                     <li class="{{ Route::currentRouteName()=='jobSeeker.profileInfo.preview' ? 'active':'' }} nav-item">
                         <a
                             class="d-flex align-items-center" href="{{route('jobSeeker.profileInfo.preview')}}"
@@ -99,15 +102,19 @@
 {{--                            class="menu-title text-truncate" data-i18n="Home"--}}
 {{--                        >{{__('job status')}}</span></a>--}}
 {{--                </li>--}}
-                <li class="{{ request()->segment(2)=='' ? 'active' :'' }} nav-item">
-                    <a class="d-flex align-items-center" href="#"><i class="fab fa-invision"></i><span
-                            class="menu-title text-truncate" data-i18n="Home"
-                        >{{__('Job Invitation')}}</span></a>
-                </li>
+{{--                <li class="{{ request()->segment(2)=='' ? 'active' :'' }} nav-item">--}}
+{{--                    <a class="d-flex align-items-center" href="#"><i class="fab fa-invision"></i><span--}}
+{{--                            class="menu-title text-truncate" data-i18n="Home"--}}
+{{--                        >{{__('Job Invitation')}}</span></a>--}}
+{{--                </li>--}}
                 <li class="{{ Route::currentRouteName()=='jobSeeker.jobs.list' ? 'active':'' }} nav-item">
                     <a class="d-flex align-items-center" href="{{route('jobSeeker.jobs.list')}}">
                         <i class="fal fa-list-ul"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('Job offer')}}</span></a>
                 </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="#">
+                    <i class="fal fa-list-ul"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('Promote CV')}}</span></a>
+            </li>
 {{--            @endif--}}
         </ul>
     </div>
