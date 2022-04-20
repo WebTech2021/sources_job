@@ -18,6 +18,7 @@ class CreateReferencesTable extends Migration
             $table->foreignId('job_seeker_id')->constrained('job_seekers')->onDelete('cascade');
             $table->string('name');
             $table->string('phone_number');
+            $table->string('institute')->nullable();
             $table->string('profession')->nullable();
             $table->string('email')->nullable();
             $table->text('address')->nullable();

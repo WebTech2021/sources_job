@@ -48,6 +48,7 @@
                 columns: [
                     {data: "DT_RowIndex", title: 'SI', name: "DT_RowIndex", searchable: false, orderable: false, defaultContent: 'null'},
                     {data: "name", title: 'name', searchable: true, defaultContent: 'null'},
+                    {data: "institute", title: 'institute name', searchable: true, defaultContent: 'null'},
                     {data: "profession", title:'Profession', searchable: true, defaultContent: 'null'},
                     {data: "phone_number", title: 'phone number', searchable: true, defaultContent: 'null'},
                     {data: "email", title: 'email', searchable: true, defaultContent: 'null'},
