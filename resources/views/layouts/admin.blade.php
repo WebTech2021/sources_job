@@ -11,33 +11,13 @@
     <meta name="sources-verification" content="MTI3LjAuMC4x">
     <title>@yield('page-title','Sources') | {{config('app.name')}}</title>
 	<script src="{{asset('admin/app-assets/js/pusher.js')}}"></script>
-	<script>
-
-        // Enable pusher logging - don't include this in production
-        // Pusher.logToConsole = true;
-		//
-        // var pusher = new Pusher('daa59507e1b2b4af833d', {
-        //     cluster: 'ap2'
-        // });
-        // var channel = pusher.subscribe('my-channel');
-        // channel.bind('my-event', function(data) {
-        //     toastr.info(data.message)
-        // });
-	</script>
-{{--    <title>Sources | Best B2B Wholesale Market in Bangladesh</title>--}}
     <link rel="apple-touch-icon" href="{{ asset('admin/app-assets/images/ico/webtech.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/app-assets/images/ico/webtech.png') }}">
-{{--    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">--}}
-    {{--    <link rel="stylesheet" type="text/css" href="{{ asset('admin/app-assets/vendors/css/extensions/toastr.m Vin.css') }}">--}}
-    {{--    <link rel="stylesheet" type="text/css" href="{{ asset('admin/app-assets/css/plugins/extensions/ext-component-toastr.css') }}">--}}
-    <link rel="stylesheet" type="text/css" href="{{ asset(mix('css/admin.css')) }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset(mix('css/jobseeker.css')) }}">
     {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">--}}
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css/plugins/extensions/ext-component-sweet-alerts.css')}}">
-
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/fonts/flag-icon-css/css/flag-icon.css')}}">
-
     <link rel="stylesheet" href="{{ asset('admin/plugins/fontawesome-free-5.15.1-web/css/all.css') }}"/>
-
     @stack('styles')
     <script>
         document.getElementById('mainHtml').classList.add(localStorage.getItem('light-layout-current-skin'))
@@ -74,9 +54,7 @@
 <div class="drag-target"></div>
 
 @include('admin.inc.footer')
-{{--<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>--}}
-{{--    <script src="{{ asset('admin/app-assets/vendors/js/extensions/toastr.min.js') }}"></script>--}}
-<script src="{{ asset(mix('js/admin.js')) }}"></script>
+<script src="{{ asset(mix('js/jobseeker.js')) }}"></script>
 <script src="{{asset('admin/app-assets/js/scripts/components/components-dropdowns.js')}}"></script>
 <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
 

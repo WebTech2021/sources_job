@@ -1,4 +1,9 @@
 {
-    "/css/admin.css": "/css/admin.css?id=f021a358cd54e0f428b4a38e775c4668",
-    "/js/admin.js": "/js/admin.js?id=4045cd9d0e42b3a8b5d5a4e4d0368ac6"
+    "/js/app.js": "/js/app.js?id=c0eb4d874c4dca3d6d36",
+    "/css/app.css": "/css/app.css?id=083d88f8db44ef980b8f",
+    "/js/app.js.map": "/js/app.js.map?id=b9fdb9f598dadb4ee8d3",
+    "/css/app.css.map": "/css/app.css.map?id=ea4f81300bac91501c71",
+    "/css/jobseeker.css": "/css/jobseeker.css?id=f021a358cd54e0f428b4",
+    "/js/jobseeker.js": "/js/jobseeker.js?id=4045cd9d0e42b3a8b5d5",
+    "/css/loader.css": "/css/loader.css?id=4f39b56a667dc447a5fe"
 }

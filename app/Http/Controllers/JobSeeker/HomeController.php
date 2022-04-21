@@ -15,9 +15,10 @@ class HomeController extends Controller
 
     public function index()
     {
-        $jobSeeker = JobSeeker::findOrfail(\auth()->user()->id);
-        return view('jobSeeker.dashboard.index',compact('jobSeeker'));
+        $jobSeeker = auth('jobSeeker')->user();
+        return view('jobSeeker.dashboard.index', compact('jobSeeker'));
     }
+
     public function login()
     {
         return view('jobSeeker.auth.login');
@@ -29,13 +30,13 @@ class HomeController extends Controller
         return view('jobSeeker.profile.personal', compact('data'));
     }
 
-    public function update_general_info(Request $request,$id)
+    public function update_general_info(Request $request, $id)
     {
 //        dd ($request->all());
         $employee = JobSeeker::find($id);
         if ($request->has('image')) {
-            $filename = $this->uploadOne($request->image,300,300, config('imagepath.profile'));
-            $this->deleteOne(config('imagepath.profile'),$employee->image);
+            $filename = $this->uploadOne($request->image, 300, 300, config('imagepath.profile'));
+            $this->deleteOne(config('imagepath.profile'), $employee->image);
             $employee->update(['image' => $filename]);
         }
         $employee->update([
@@ -43,10 +44,11 @@ class HomeController extends Controller
             'last_name' => $request->last_name,
             'phone' => $request->phone,
         ]);
-        Toastr::success('Information changed Successfully!','Success');
+        Toastr::success('Information changed Successfully!', 'Success');
         return redirect()->back();
     }
-    public function update_password_info(Request $request,$id)
+
+    public function update_password_info(Request $request, $id)
     {
         $request->validate([
             'password' => 'required',
@@ -55,13 +57,13 @@ class HomeController extends Controller
         ]);
         $employee = JobSeeker::find($id);
         if (!\Hash::check($request->password, $employee->password)) {
-            Toastr::error('Fill password filed correctly!','Error');
+            Toastr::error('Fill password filed correctly!', 'Error');
             return back();
         } else {
             $employee = JobSeeker::find($id);
             $employee->password = bcrypt($request->new_password);
             $employee->save();
-            Toastr::success('Password changed Successfully!','Success');
+            Toastr::success('Password changed Successfully!', 'Success');
             return redirect()->back();
         }
     }

@@ -41,8 +41,9 @@ return [
             'provider' => 'users',
         ],
         'admin' => [
-            'driver' => 'session',
+            'driver' => 'sanctum',
             'provider' => 'admins',
+            'hash' => false,
         ],
         'jobSeeker' => [
             'driver' => 'session',
