@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invite;
 use App\Models\JobApplication;
 use App\Models\Jobs;
 use Brian2694\Toastr\Facades\Toastr;
@@ -17,12 +18,12 @@ class JS_jobsController extends Controller
 {
     public function get_job_list(Request $request)
     {
-//        return \auth()->user()->career->category->activeJobs;
-         $info = \auth()->user()->career->category->activeJobs();
-//            if($request->status !== 'all'){
-//                $job_data = $job_data->where('employment_status', $request->status);
-//            }
-        $job_data = jobCount(request()->employment_status, $info);
+        if (! \auth()->user()->career){
+            $job_data = [];
+        }else{
+            $info = \auth()->user()->career->category->activeJobs();
+            $job_data = jobCount(request()->employment_status, $info);
+        }
         if (\request()->ajax()) {
             return DataTables::of($job_data)
                 ->addIndexColumn()
@@ -34,10 +35,6 @@ class JS_jobsController extends Controller
                         return view('jobSeeker.jobs.action_button', compact('job_data'));
                     }
                 })
-//                ->addColumn('organization_name', function ($job_data) {
-//                    return $job_data->organization->name;
-////                    return '<a href="' . route('organization.show', encrypt($job_data->id)) . '">' .$job_data->organization->name . '</a>';
-//                })
                 ->addColumn('nameWithImage', function ($job_data) {
                     $id =  $job_data->organization_id;
                     $logo =  DB::table('sources.organizations')->where('id','=',$id)->first()->logo;
@@ -97,30 +94,33 @@ class JS_jobsController extends Controller
     }
 
 
-    public function getShortlist(){
-        if (\request()->ajax()) {
-            $list_data = JobApplication::where(['job_seeker_id'=> auth('jobSeeker')->user()->id,'status'=>'shortlisted'])->get();
-            return DataTables::of($list_data)
-                ->addIndexColumn()
-                ->addColumn('nameWithImage', function ($list_data) {
-                    $route = url('', ($list_data->organization->slug));
-                    return nameWithImage($list_data->organization->name, $list_data->organization->logo, 'imagepath.companyLogo',
-                        'images/company-logo/default-logo.png', $route);
-                })
-                ->addColumn('job_title', function ($list_data) {
-//                    return $list_data->job->job_title;
-                    return $list_data->job->job_title ?? "";
-                })
-                ->addColumn('status', function ($list_data) {
-                    if ($list_data->status == 'shortlisted'){
-                        return  '<div class="badge badge-light-success">'.'you are short listed'.'</div>';
-                    }
-                })
-                ->rawColumns(['nameWithImage','job_title','status'])
-                ->tojson();
-        }
-        return view('jobSeeker.applicationStatus.index');
-    }
+//    public function getShortlist(){
+//        if (\request()->ajax()) {
+//            $list_data = JobApplication::where(['job_seeker_id'=> auth('jobSeeker')->user()->id,'status'=>'shortlisted'])->get();
+//            return DataTables::of($list_data)
+//                ->addIndexColumn()
+//                ->addColumn('nameWithImage', function ($list_data) {
+//                    $route = url('', ($list_data->organization->slug));
+//                    return nameWithImage($list_data->organization->name, $list_data->organization->logo, 'imagepath.companyLogo',
+//                        'images/company-logo/default-logo.png', $route);
+//                })
+//                ->addColumn('job_title', function ($list_data) {
+////                    return $list_data->job->job_title;
+//                    return $list_data->job->job_title ?? "";
+//                })
+//                ->addColumn('status', function ($list_data) {
+//                    if ($list_data->status == 'shortlisted'){
+//                        return  '<div class="badge badge-light-success">'.'you are short listed'.'</div>';
+//                    }
+//                })
+//                ->rawColumns(['nameWithImage','job_title','status'])
+//                ->tojson();
+//        }
+//        return view('jobSeeker.applicationStatus.index');
+//    }
+
+
+
 
 
 

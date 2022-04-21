@@ -5,6 +5,7 @@ namespace App\Models\JobSeeker;
 use App\Models\Country;
 use App\Models\District;
 use App\Models\Division;
+use App\Models\Invite;
 use App\Models\Upazila;
 use App\Notifications\JobSeeker\jsEmailVerifyNotification;
 use App\Notifications\JobSeeker\ResetPasswordNotification;
@@ -91,4 +92,5 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(KeyFeatures::class, 'job_seeker_id','id');
     }
+
 }

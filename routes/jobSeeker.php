@@ -78,6 +78,7 @@ Route::group(['as' => 'jobSeeker.'], function () {
         Route::get('/skill',[skillController::class,'createSkill'])->name('skill.create');
         Route::post('/skill/store',[skillController::class,'storeSkill'])->name('skill.store');
         Route::delete('/skill/delete{id}',[skillController::class,'destroy'])->name('skill.destroy');
+        Route::get('invite/list',[JS_jobsController::class,'inviteList'])->name('invite.list');
 
     });
 });

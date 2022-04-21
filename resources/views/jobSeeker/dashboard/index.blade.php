@@ -37,7 +37,7 @@
                                         <div class="row mx-12">
                                             <div class="ticket-sender-picture user-profile col-md-4 col-xl-4 col-sm-12 ">
                                                 @if($jobSeeker->image)
-                                                    <img src="{{asset(config('imagepath.profile').$jobSeeker->image ?? '')}}" style="height: 196px; width:185px; padding: 22px 2px;">
+                                                    <img src="{{asset(config('imagepath.profile').$jobSeeker->image ?? '')}}" style="height: 231px; width:185px; padding: 22px 2px;">
                                                 @else
                                                     <img src="{{asset('images/default.png')}}" style="height: 196px; width:185px; padding: 22px 2px;">
                                                 @endif

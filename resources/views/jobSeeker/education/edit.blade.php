@@ -43,7 +43,7 @@
                                             <option value="diploma" {{old('diploma',$education->education_level == 'diploma') ? 'selected':''}}>Diploma</option>
                                             <option value="bachelor/honors" {{old('bachelor/honors',$education->education_level == 'bachelor/honors') ? 'selected':''}}>Bachelor/Honors</option>
                                             <option value="masters" {{old('masters',$education->education_level == 'masters') ? 'selected':''}}>Masters</option>
-                                            <option value="phd" {{old('phd',$education->education_level == 'phd') ? 'selected':''}}>PhD (Doctor of Philosophy)</option>
+{{--                                            <option value="phd" {{old('phd',$education->education_level == 'phd') ? 'selected':''}}>PhD (Doctor of Philosophy)</option>--}}
                                         </select>
                                     </div>
                                 </div>
@@ -68,6 +68,8 @@
                                             <option value="madrasah" {{old('madrasah',$education->education_board == 'madrasah') ? 'selected':''}}>Madrasah</option>
                                             <option value="technical" {{old('technical',$education->education_board == 'technical') ? 'selected':''}}>Technical</option>
                                             <option value="bou" {{old('bou',$education->education_board == 'bou') ? 'selected':''}}>BOU</option>
+                                            <option value="foreign_institute" {{old('foreign_institute',$education->education_board == 'foreign_institute') ? 'selected':''}}>Foreign Institute</option>
+                                            <option value="other" {{old('other',$education->education_board == 'other') ? 'selected':''}}>Other</option>
                                         </select>
                                     </div>
                                 </div>

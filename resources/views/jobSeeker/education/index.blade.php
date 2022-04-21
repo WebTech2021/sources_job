@@ -152,7 +152,7 @@
                                         <option value="diploma">Diploma</option>
                                         <option value="bachelor/honors">Bachelor/Honors</option>
                                         <option value="masters">Masters</option>
-                                        <option value="phd">PhD (Doctor of Philosophy)</option>
+{{--                                        <option value="phd">PhD (Doctor of Philosophy)</option>--}}
                                     </select>
                                 </div>
                             </div>
@@ -177,6 +177,8 @@
                                         <option value="madrasah">Madrasah</option>
                                         <option value="technical">Technical</option>
                                         <option value="bou">BOU(Bangladesh Open University)</option>
+                                        <option value="foreign_institute">Foreign Institute</option>
+                                        <option value="other">Other</option>
                                     </select>
                                 </div>
                             </div>

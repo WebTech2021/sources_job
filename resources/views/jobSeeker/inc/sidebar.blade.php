@@ -92,8 +92,6 @@
                                                          data-i18n="Home"
                             >{{__('CV Download')}}</span></a>
                     </li>
-
-
                 </ul>
             </li>
 {{--            @if(auth('jobSeeker')->user()->status == 'active'|| auth('jobSeeker')->user()->status != 'inactive')--}}
@@ -102,11 +100,11 @@
 {{--                            class="menu-title text-truncate" data-i18n="Home"--}}
 {{--                        >{{__('job status')}}</span></a>--}}
 {{--                </li>--}}
-{{--                <li class="{{ request()->segment(2)=='' ? 'active' :'' }} nav-item">--}}
-{{--                    <a class="d-flex align-items-center" href="#"><i class="fab fa-invision"></i><span--}}
-{{--                            class="menu-title text-truncate" data-i18n="Home"--}}
-{{--                        >{{__('Job Invitation')}}</span></a>--}}
-{{--                </li>--}}
+                <li class="class="{{ Route::currentRouteName()=='jobSeeker.invite.list' ? 'active':'' }} nav-item">
+                    <a class="d-flex align-items-center" href="{{route('jobSeeker.invite.list')}}"><i class="fab fa-invision"></i><span
+                            class="menu-title text-truncate" data-i18n="Home"
+                        >{{__('Job Invitation')}}</span></a>
+                </li>
                 <li class="{{ Route::currentRouteName()=='jobSeeker.jobs.list' ? 'active':'' }} nav-item">
                     <a class="d-flex align-items-center" href="{{route('jobSeeker.jobs.list')}}">
                         <i class="fal fa-list-ul"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('Job offer')}}</span></a>
