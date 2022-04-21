@@ -36,6 +36,10 @@
                                     <input type="text" id="modern-full-name" name="name" class="form-control" placeholder="full name" value="{{old('name')}}" required="">
                                 </div>
                                 <div class="mb-1 col-md-3">
+                                    <label class="form-label" for="modern-">Institute Name: </label>
+                                    <input type="text" id="modern-institute" name="institute" class="form-control" placeholder="institute" value="{{old('institute')}}">
+                                </div>
+                                <div class="mb-1 col-md-3">
                                     <label class="form-label" for="modern-">Profession: </label>
                                     <input type="text" id="modern-profession" name="profession" class="form-control" placeholder="profession" value="{{old('profession')}}">
                                 </div>

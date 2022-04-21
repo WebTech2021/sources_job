@@ -16,7 +16,7 @@ class CreateKeyFeaturesTable extends Migration
         Schema::create('key_features', function (Blueprint $table) {
             $table->id();
             $table->foreignId('job_seeker_id')->constrained('job_seekers')->onDelete('cascade');
-            $table->string('profession');
+            $table->foreignId('profession')->constrained('job_categories')->onDelete('cascade');
             $table->string('education');
             $table->string('experience');
             $table->string('salary');

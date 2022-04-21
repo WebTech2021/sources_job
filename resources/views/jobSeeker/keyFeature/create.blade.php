@@ -71,18 +71,11 @@
                                         @foreach($educations as $education)
                                             <option value="{{$education->name}}" {{$education->name== old('education',$keyFeatures->education ?? '')? 'selected' : ''}}>{{$education->name}}</option>
                                         @endforeach
-{{--                                        <option value="cse" {{old('education',$keyFeatures->education?? '') == 'cse'? 'selected':'' }}>CSE</option>--}}
-{{--                                        <option value="msc" {{old('education',$keyFeatures->education?? '') == 'msc'? 'selected':'' }}>MSC</option>--}}
-{{--                                        <option value="bba" {{old('education',$keyFeatures->education?? '') == 'bba'? 'selected':'' }}>BBA</option>--}}
-{{--                                        <option value="mba" {{old('education',$keyFeatures->education?? '') == 'mba'? 'selected':'' }}>MBA</option>--}}
-{{--                                        <option value="bsc" {{old('education',$keyFeatures->education?? '') == 'bsc'? 'selected':'' }}>BSC</option>--}}
-{{--                                        <option value="hsc" {{old('education',$keyFeatures->education?? '') == 'hsc'? 'selected':'' }}>HSC</option>--}}
-{{--                                        <option value="ssc" {{old('education',$keyFeatures->education?? '') == 'ssc'? 'selected':'' }}>SSC</option>--}}
                                     </select>
                                 </div>
                                 <div class="mb-1 col-md-3">
                                     <label class="form-label" for="modern-last-name">Salary: <span style="color:red">*</span></label>
-                                    <input type="number" id="modern-last-name" name="salary" class="form-control" placeholder="accepted salary" value="{{old('salary',$keyFeatures->salary ??' ')}}">
+                                    <input type="number" id="modern-last-name" name="salary" class="form-control" placeholder="excepted salary" value="{{old('salary',$keyFeatures->salary ??' ')}}">
                                 </div>
                                 <div class="col-md-3 mb-1">
                                     <label for="employment_status">{{__('Experience')}} (years)</label>
@@ -100,7 +93,7 @@
                                                 name="profession" required>
                                         <option selected disabled>Select profession</option>
                                         @foreach($jobCategories as $jobCategory)
-                                            <option value="{{$jobCategory->name}}" {{$jobCategory->name== old('profession',$keyFeatures->profession ?? '')? 'selected' : ''}}>{{$jobCategory->name}}</option>
+                                            <option value="{{$jobCategory->id}}" {{$jobCategory->id== old('profession',$keyFeatures->profession ?? '')? 'selected' : ''}}>{{$jobCategory->name}}</option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback" id="districtError"></div>
@@ -121,9 +114,9 @@
                                     <div class="position-relative" data-select2-id="64">
                                         <select class="select2 form-select select2-hidden-accessible form-control"  tabindex="-1"  name="available_status" required="">
                                             <option value="" data-select2-id="2" selected disabled>Select Option</option>
-                                            <option value="this_month" {{old('available_from',$keyFeatures->available_status?? ' ') == 'this_month' ? 'selected':''}}>This Month</option>
-                                            <option value="next_month" {{old('available_from',$keyFeatures->available_status?? ' ') == 'next_month' ? 'selected':''}}>Next Month</option>
-                                            <option value="after_next_month" {{old('available_from',$keyFeatures->available_status?? ' ') == 'after_next_month' ? 'selected':''}}>After Next Month</option>
+                                            <option value="this_month" {{old('available_status',$keyFeatures->available_status?? ' ') == 'this_month' ? 'selected':''}}>This Month</option>
+                                            <option value="next_month" {{old('available_status',$keyFeatures->available_status?? ' ') == 'next_month' ? 'selected':''}}>Next Month</option>
+                                            <option value="after_next_month" {{old('available_status',$keyFeatures->available_status?? ' ') == 'after_next_month' ? 'selected':''}}>After Next Month</option>
                                         </select>
                                     </div>
                                 </div>

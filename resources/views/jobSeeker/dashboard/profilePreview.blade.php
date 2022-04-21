@@ -346,35 +346,52 @@
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Portfolios:</div>
                                         </div>
-                                        <div class="mt-1 col-md-12">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    @foreach($portfolios as $portfolio)
-                                                       <ul>
-                                                           <li>{{$portfolio->title}}</li>
-                                                           <span>{{$portfolio->short_info}}</span><br>
-                                                           <span>{{$portfolio->role}}</span><br>
-                                                           <span>{{$portfolio->link}}</span>
-                                                       </ul>
-                                                    @endforeach
-                                                </div>
-                                            </div>
+                                        <div class="mt-1  col-12">
+                                            <table style="padding-top:3px;border:1px solid #666666; word-break: break-word; width: 100%">
+                                                <tbody>
+                                                <tr class="tr-style">
+                                                    <th><strong>Project Title</strong></th>
+                                                    <th><strong>Project Info</strong></th>
+                                                    <th><strong>My Role</strong></th>
+                                                    <th><strong>Project Link</strong></th>
+                                                </tr>
+                                                @foreach($portfolios as $portfolio)
+                                                    <tr class="td_style">
+                                                        <td>{{$portfolio->title ?? ''}}</td>
+                                                        <td>{{$portfolio->short_info ?? ''}}</td>
+                                                        <td>{{$portfolio->role ?? ''}}</td>
+                                                        <td>{{$portfolio->link ?? ''}}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
                                         </div>
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">References:</div>
                                         </div>
-                                        <div class="col-12 mt-2">
-                                            <div class="row">
+                                        <div class="mt-1  col-12">
+                                            <table style="padding-top:3px;border:1px solid #666666; word-break: break-word; width: 100%">
+                                                <tbody>
+                                                <tr class="tr-style">
+                                                    <th><strong>Name</strong></th>
+                                                    <th><strong>Phone Number</strong></th>
+                                                    <th><strong>Institute</strong></th>
+                                                    <th><strong>Profession</strong></th>
+                                                    <th><strong>Email</strong></th>
+                                                    <th><strong>Address</strong></th>
+                                                </tr>
                                                 @foreach($reference as $ref)
-                                                <div class="col-md-4 mb-2">
-                                                    <P>Name: <strong style="font-size:15px">{{$ref->name ?? ''}}</strong></P>
-                                                    <P>Phone Number: {{$ref->phone_number ??''}}</P>
-                                                    <P>profession: {{$ref->profession ??' '}}</P>
-                                                    <P>Email: {{$ref->email ?? ' '}}</P>
-                                                    <P>Address: {{$ref->address ?? ' '}}</P>
-                                                </div>
+                                                    <tr class="td_style">
+                                                        <td>{{$ref->name ?? ''}}</td>
+                                                        <td>{{$ref->phone_number ?? ''}}</td>
+                                                        <td>{{$ref->institute ?? ''}}</td>
+                                                        <td>{{$ref->profession ?? ''}}</td>
+                                                        <td>{{$ref->email ?? ''}}</td>
+                                                        <td>{{$ref->address ?? ''}}</td>
+                                                    </tr>
                                                 @endforeach
-                                            </div>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

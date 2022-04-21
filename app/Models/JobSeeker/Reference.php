@@ -9,6 +9,6 @@ class Reference extends Model
 {
     use HasFactory;
     protected $fillable=[
-      'job_seeker_id','name','profession','phone_number','email','address','status'
+      'job_seeker_id','name','profession','phone_number','email','address','status','institute'
     ];
 }
