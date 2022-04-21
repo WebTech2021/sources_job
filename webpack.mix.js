@@ -1,7 +1,7 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
 const path = require('path')
 
-// admin & job-seeker dashboard styles
+// job-seeker dashboard styles
 let styles = [
     "public/admin/app-assets/vendors/css/vendors.min.css",
     "public/admin/app-assets/vendors/css/forms/select/select2.min.css",
@@ -20,7 +20,7 @@ let styles = [
     "public/admin/app-assets/css/plugins/extensions/ext-component-toastr.css",
     "public/admin/app-assets/css/themes/bordered-layout.css",
 ]
-// admin & job_seeker dashboard scripts
+// job_seeker dashboard scripts
 let scripts = [
     "public/admin/app-assets/vendors/js/vendors.min.js",
     "public/admin/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js",
@@ -34,10 +34,61 @@ let scripts = [
     "public/admin/app-assets/js/scripts/pages/app-email.js",
 ]
 
-mix.styles(styles, 'public/css/admin.css')
-    .babel(scripts, 'public/js/admin.js')
-    .sourceMaps(false)
-    .version()
+mix.styles(styles, 'public/css/jobseeker.css')
+    .babel(scripts, 'public/js/jobseeker.js')
+
+mix
+    .js('resources/js/app.js', 'public/js')
+    .webpackConfig({
+        resolve: {
+            alias: {
+                '@': path.resolve(__dirname, 'resources/js/src/'),
+                '@themeConfig': path.resolve(__dirname, 'resources/js/themeConfig.js'),
+                '@core': path.resolve(__dirname, 'resources/js/src/@core'),
+                '@validations': path.resolve(__dirname, 'resources/js/src/@core/utils/validations/validations.js'),
+                '@axios': path.resolve(__dirname, 'resources/js/src/libs/axios')
+            }
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.s[ac]ss$/i,
+                    use: [
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sassOptions: {
+                                    includePaths: ['node_modules', 'resources/js/src/assets']
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
+                    loaders: {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'images/[path][name].[ext]',
+                            context: '../vuexy-vuejs-bootstrap-vue-template/src/assets/images'
+                        }
+                    }
+                }
+            ]
+        },
+        output: {
+            chunkFilename: mix.inProduction() ? "js/chunks/[chunkhash].js" : "js/chunks/[name].[chunkhash].js"
+        },
+        devtool: mix.inProduction() ? false : 'source-map'
+    })
+    .sass('resources/scss/app.scss', 'public/css')
+    .options({
+        postCss: [require('autoprefixer'), require('postcss-rtl')]
+    })
+mix.copy('resources/scss/loader.css', 'public/css')
+
+mix.sourceMaps(false)
+mix.version()
 
 
 

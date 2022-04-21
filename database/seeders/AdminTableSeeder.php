@@ -23,6 +23,5 @@ class AdminTableSeeder extends Seeder
             'password' => Hash::make('123'),
         ]);
         $admin->save();
-//        $admin->assignRole(2);
     }
 }

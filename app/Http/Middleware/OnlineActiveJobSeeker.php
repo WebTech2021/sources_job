@@ -20,8 +20,7 @@ class OnlineActiveJobSeeker
     public function handle(Request $request, Closure $next)
     {
         if (Auth::guard('jobSeeker')->check()) {
-            $seekerId = Auth::guard('jobSeeker')->user()->id;
-            $jobSeeker = JobSeeker::find($seekerId);
+            $jobSeeker = Auth::guard('jobSeeker')->user();
             $LastSeen = Carbon::parse($jobSeeker->last_seen_at)->addMinutes(1)->format('Y-m-d H:i:s');
             if (!$jobSeeker->last_seen_at || Carbon::now() > $LastSeen){
                 $now = Carbon::now();

@@ -12,6 +12,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+
 //use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -19,7 +20,7 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
-    protected $fillable=[
+    protected $fillable = [
         'first_name',
         'last_name',
         'image',
@@ -55,7 +56,7 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
 
     protected $hidden = ['password', 'remember_token',];
 
-    protected $casts = ['email_verified_at' => 'datetime','last_seen_at'=>'datetime'];
+    protected $casts = ['email_verified_at' => 'datetime', 'last_seen_at' => 'datetime'];
 
     public function sendPasswordResetNotification($token)
     {
@@ -87,8 +88,9 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Upazila::class, 'upazila_id');
     }
+
     public function career()
     {
-        return $this->hasOne(KeyFeatures::class, 'job_seeker_id','id');
+        return $this->hasOne(KeyFeatures::class, 'job_seeker_id', 'id');
     }
 }
