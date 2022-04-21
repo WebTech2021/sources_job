@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 import app from './app'
 import appConfig from './app-config'
 import verticalMenu from './vertical-menu'
-import user from './user'
+// import user from './user'
 import admin from './admin'
 import location from './location'
 
@@ -16,7 +16,7 @@ export default new Vuex.Store({
     app,
     appConfig,
     verticalMenu,
-    user,
+    // user,
     admin,
     location,
   },
