@@ -60,47 +60,4 @@
     </script>
 @endpush
 
-{{--public function inviteList(){--}}
-{{--if (\request()->ajax()) {--}}
-{{--$list_data = Invite::where(['job_seeker_id'=> auth('jobSeeker')->user()->id,'status'=>'pending'])->get();--}}
-{{--return DataTables::of($list_data)--}}
-{{--->addIndexColumn()--}}
-{{--->addColumn('nameWithImage', function ($list_data) {--}}
-{{--$id =  $list_data->organization_id;--}}
-{{--$logo =  DB::table('sources.organizations')->where('id','=',$id)->first()->logo;--}}
-{{--$name = DB::table('sources.organizations')->where('id','=',$id)->first()->name;--}}
-{{--return nameWithImage1($name, $logo, 'imagepath.companyLogo',--}}
-{{--'images/company-logo/default-logo.png');--}}
-{{--})--}}
-{{--->addColumn('email', function ($list_data) {--}}
-{{--$id =  $list_data->organization_id;--}}
-{{--return DB::table('sources.organizations')->where('id','=',$id)->first()->email;--}}
-{{--})--}}
-{{--->addColumn('phone', function ($list_data) {--}}
-{{--$id =  $list_data->organization_id;--}}
-{{--return DB::table('sources.organizations')->where('id','=',$id)->first()->phone_number;--}}
-{{--})--}}
-{{--->addColumn('address', function ($list_data) {--}}
-{{--$id =  $list_data->organization_id;--}}
-{{--return DB::table('sources.organizations')->where('id','=',$id)->first()->address;--}}
-{{--})--}}
 
-{{--->addColumn('action', function ($list_data) {--}}
-{{--return view('jobSeeker.inviteList.action_button',compact('list_data'));--}}
-{{--})--}}
-{{--->rawColumns(['action','nameWithImage','email','address','phone'])--}}
-{{--->tojson();--}}
-{{--}--}}
-{{--return view('jobSeeker.inviteList.index');--}}
-{{--}--}}
-{{--public function approved(Request $request,$id){--}}
-{{--Invite::update([--}}
-{{--'status'=> $request->all(),--}}
-{{--]);--}}
-{{--}--}}
-
-{{--public function reject(Request $request,$id){--}}
-{{--Invite::update([--}}
-{{--'status'=> $request->all(),--}}
-{{--]);--}}
-{{--}--}}
