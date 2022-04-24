@@ -82,5 +82,7 @@ Route::group(['as' => 'jobSeeker.'], function () {
         Route::get('invite/list',[JsJobsController::class,'inviteList'])->name('invite.list');
         Route::put('invite/acceptReject/{id}',[JsJobsController::class,'acceptReject'])->name('acceptReject');
 
+        Route::get('/job/seeker/{id}', [ProfileController::class, 'getPDF'])->name('seeker.pdf');
+
     });
 });

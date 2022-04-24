@@ -49,14 +49,14 @@
                 <div class="card">
                     <div class="card-header border-bottom p-1">
                         <div class="head-label">
-                            <h4 class="mb-0">{{__('Cv Preview')}}</h4>
+                            <h4 class="mb-0">{{__('CV Preview')}}</h4>
                         </div>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons d-inline-flex">
-{{--                                <a href="#" class="dt-button create-new btn btn-primary ml-1 mr-1" tabindex="0"--}}
-{{--                                   aria-controls="DataTables_Table_0" type="button" data-toggle="modal" data-target="#default2">--}}
-{{--                                    <span><i class="fas fa-download"></i> {{__('Download')}} </span>--}}
-{{--                                </a>--}}
+                                <a href="{{route('jobSeeker.seeker.pdf',$jobSeeker->id)}}" class="dt-button create-new btn btn-primary ml-1 mr-1" tabindex="0"
+                                   aria-controls="DataTables_Table_0" type="button" data-toggle="modal" data-target="#default2">
+                                    <span><i class="fas fa-download"></i> {{__('Download CV')}} </span>
+                                </a>
                             </div>
                         </div>
                     </div>
