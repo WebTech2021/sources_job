@@ -15,7 +15,7 @@ class CreateInvitesTable extends Migration
     {
         Schema::create('invites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('organization_id')->constrained('sources.organizations')->onDelete('cascade');
+            $table->foreignId('organization_id')->constrained(config('database.connections.sources.database').'.organizations')->onDelete('cascade');
             $table->foreignId('job_seeker_id')->constrained('job_seekers')->onDelete('cascade');
             $table->enum('status',['pending','accept','reject'])->default('pending');
             $table->timestamps();
