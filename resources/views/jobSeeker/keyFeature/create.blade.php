@@ -215,27 +215,27 @@
             })
 
         });
-        $('#select_division').change(function () {
-            $.ajax({
-                url: "{{route('districts.get_by_division')}}?division_id=" + $(this).val(),
-                method: 'GET',
-                success: function (data) {
-                    $('.district').show();
-                    $('#select_district').html(data.html);
-                }
-            });
-            $('#select_district').on('change', function () {
+        {{--$('#select_division').change(function () {--}}
+        {{--    $.ajax({--}}
+        {{--        url: "{{route('districts.get_by_division')}}?division_id=" + $(this).val(),--}}
+        {{--        method: 'GET',--}}
+        {{--        success: function (data) {--}}
+        {{--            $('.district').show();--}}
+        {{--            $('#select_district').html(data.html);--}}
+        {{--        }--}}
+        {{--    });--}}
+        {{--    $('#select_district').on('change', function () {--}}
 
-                //console.log($('#select_district').val());
-                $.ajax({
-                    url: "{{route('upazila.get_by_district')}}?district_id=" + $(this).val(),
-                    method: 'GET',
-                    success: function (data) {
-                        $('.upazila').show();
-                        $('#select_upazila').html(data.html);
-                    }
-                })
-            });
-        });
+        {{--        //console.log($('#select_district').val());--}}
+        {{--        $.ajax({--}}
+        {{--            url: "{{route('upazila.get_by_district')}}?district_id=" + $(this).val(),--}}
+        {{--            method: 'GET',--}}
+        {{--            success: function (data) {--}}
+        {{--                $('.upazila').show();--}}
+        {{--                $('#select_upazila').html(data.html);--}}
+        {{--            }--}}
+        {{--        })--}}
+        {{--    });--}}
+        {{--});--}}
     </script>
 @endpush

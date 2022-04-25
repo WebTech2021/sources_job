@@ -352,7 +352,7 @@
         });
         $('#select_division').change(function () {
             $.ajax({
-                url: "{{route('districts.get_by_division')}}?division_id=" + $(this).val(),
+                url: "{{route('jobSeeker.districts.get_by_division')}}?division_id=" + $(this).val(),
                 method: 'GET',
                 success: function (data) {
                     $('.district').show();
@@ -363,7 +363,7 @@
 
                 //console.log($('#select_district').val());
                 $.ajax({
-                    url: "{{route('upazila.get_by_district')}}?district_id=" + $(this).val(),
+                    url: "{{route('jobSeeker.upazila.get_by_district')}}?district_id=" + $(this).val(),
                     method: 'GET',
                     success: function (data) {
                         $('.upazila').show();

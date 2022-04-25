@@ -28,6 +28,8 @@ Route::group(['as' => 'jobSeeker.'], function () {
     Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+    Route::get('upazila/get_by_district', [JsHomeController::class, 'get_by_district'])->name('upazila.get_by_district');
+    Route::get('district/get_by_divison', [JsHomeController::class, 'get_by_division'])->name('districts.get_by_division');
 
 //email verification
     Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
@@ -78,6 +80,9 @@ Route::group(['as' => 'jobSeeker.'], function () {
         Route::post('/skill/store',[skillController::class,'storeSkill'])->name('skill.store');
         Route::delete('/skill/delete{id}',[skillController::class,'destroy'])->name('skill.destroy');
         Route::get('invite/list',[JsJobsController::class,'inviteList'])->name('invite.list');
+        Route::put('invite/acceptReject/{id}',[JsJobsController::class,'acceptReject'])->name('acceptReject');
+
+        Route::get('/job/seeker/{id}', [ProfileController::class, 'getPDF'])->name('seeker.pdf');
 
     });
 });

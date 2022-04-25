@@ -16,6 +16,7 @@ use App\Models\JobSeeker\Skills;
 use App\Models\Upazila;
 use App\Traits\UploadAble;
 use Brian2694\Toastr\Facades\Toastr;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class ProfileController extends Controller
 {
@@ -54,6 +55,14 @@ class ProfileController extends Controller
         return view('jobSeeker.dashboard.profilePreview',compact('skills','portfolios','reference','jobSeeker','experiences','educations','carerInfo'));
     }
 
+    public function getPDF($id){
+      return  $seeker_details = JobSeeker::findOrfail(\auth()->user()->id);
+//        $data = [
+//            'seeker_details' => $seeker_details,
+//        ];
+//        $pdf = PDF::loadHtml(view('jobSeeker..pdf', $data));
+//        return $pdf->stream( $seeker_details->id.'.pdf');
+    }
 
 
 
