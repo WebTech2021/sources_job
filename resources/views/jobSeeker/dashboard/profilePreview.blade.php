@@ -53,8 +53,7 @@
                         </div>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons d-inline-flex">
-                                <a href="{{route('jobSeeker.seeker.pdf',$jobSeeker->id)}}" class="dt-button create-new btn btn-primary ml-1 mr-1" tabindex="0"
-                                   aria-controls="DataTables_Table_0" type="button" data-toggle="modal" data-target="#default2">
+                                <a href="{{route('jobSeeker.seeker.pdf',$jobSeeker->id)}}" class="dt-button create-new btn btn-primary ml-1 mr-1" type="button" >
                                     <span><i class="fas fa-download"></i> {{__('Download CV')}} </span>
                                 </a>
                             </div>
@@ -66,7 +65,7 @@
                                     <div class="row">
                                         <div class="col-12  d-flex justify-content-between">
                                             <div class="left-content">
-                                                <h2>{{$jobSeeker->first_name?? ''.' '.$jobSeeker->last_name??''}}</h2>
+                                                <h2>{{$jobSeeker->first_name.' '.$jobSeeker->last_name ?? ' '}}</h2>
                                                 <p class="p-0"><b>Address:</b> {{$jobSeeker->p_address ?? ''}}</p>
                                                 <p class="p-0"><b>Mobile No:</b>{{$jobSeeker->phone_number ?? ''}}</p>
                                                 <p class="p-0"><b>Email:</b> {{$jobSeeker->email ?? ''}}</p>
@@ -194,70 +193,70 @@
                                                 <tr>
                                                     <th class="name_style">Preferred Job Category</th>
                                                     <th class="colon_style">:</th>
-                                                    <th>{{  ucfirst($carerInfo->pre_job_categories ?? ' ' )}}</th>
+{{--                                                    <th>{{  ucfirst($carerInfo->pre_job_categories ?? ' ' )}}</th>--}}
                                                 </tr>
                                                 <tr>
                                                     <td class="name_style">Looking For</td>
                                                     <th class="colon_style">:</th>
                                                     <td>
-                                                        @if($carerInfo->job_level ?? '' == 'entry_level')
-                                                            Entry Level
-                                                        @elseif($carerInfo->job_level??'' == 'mid_level')
-                                                            Mid Level
-                                                        @elseif($carerInfo->job_level??'' == 'top_level')
-                                                            Top Level
-                                                        @endif
+{{--                                                        @if($carerInfo->job_level ?? '' == 'entry_level')--}}
+{{--                                                            Entry Level--}}
+{{--                                                        @elseif($carerInfo->job_level??'' == 'mid_level')--}}
+{{--                                                            Mid Level--}}
+{{--                                                        @elseif($carerInfo->job_level??'' == 'top_level')--}}
+{{--                                                            Top Level--}}
+{{--                                                        @endif--}}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="name_style">Available For</td>
                                                     <th class="colon_style">:</th>
                                                     <td>
-                                                        @if($carerInfo->job_nature ?? '' == 'full_time')
-                                                            Full Time
-                                                        @elseif($carerInfo->job_nature ?? '' == 'part_time')
-                                                            Part Time
-                                                        @elseif($carerInfo->job_nature ?? '' == 'contract')
-                                                            Contract
-                                                        @elseif($carerInfo->job_nature ?? '' == 'internship')
-                                                            Internship
-                                                        @elseif($carerInfo->job_nature ?? '' == 'freelance')
-                                                            Freelance
-                                                        @endif
+{{--                                                        @if($carerInfo->job_nature ?? '' == 'full_time')--}}
+{{--                                                            Full Time--}}
+{{--                                                        @elseif($carerInfo->job_nature ?? '' == 'part_time')--}}
+{{--                                                            Part Time--}}
+{{--                                                        @elseif($carerInfo->job_nature ?? '' == 'contract')--}}
+{{--                                                            Contract--}}
+{{--                                                        @elseif($carerInfo->job_nature ?? '' == 'internship')--}}
+{{--                                                            Internship--}}
+{{--                                                        @elseif($carerInfo->job_nature ?? '' == 'freelance')--}}
+{{--                                                            Freelance--}}
+{{--                                                        @endif--}}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="name_style">Present Salary</td>
                                                     <td class="colon_style">:</td>
                                                     <td>
-                                                        Tk.{{$carerInfo->present_salary ?? ''}}
+{{--                                                        Tk.{{$carerInfo->present_salary ?? ''}}--}}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="name_style">Expected Salary</td>
                                                     <td class="colon_style">:</td>
                                                     <td width="66%" align="left">
-                                                        Tk. {{$carerInfo->expected_salary ?? ''}}
+{{--                                                        Tk. {{$carerInfo->expected_salary ?? ''}}--}}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="name_style">Preferred Location</td>
                                                     <td class="colon_style">:</td>
                                                     <td>
-                                                        @if($carerInfo->pre_job_location ?? '' == 'inside_dhaka')
-                                                            Inside Dhaka
-                                                        @elseif($carerInfo->pre_job_location ?? '' == 'outside_dhaka')
-                                                            Outside Dhaka
-                                                        @elseif($carerInfo->pre_job_location ?? '' == 'all_bangladesh')
-                                                            All Bangladesh
-                                                        @endif
+{{--                                                        @if($carerInfo->pre_job_location ?? '' == 'inside_dhaka')--}}
+{{--                                                            Inside Dhaka--}}
+{{--                                                        @elseif($carerInfo->pre_job_location ?? '' == 'outside_dhaka')--}}
+{{--                                                            Outside Dhaka--}}
+{{--                                                        @elseif($carerInfo->pre_job_location ?? '' == 'all_bangladesh')--}}
+{{--                                                            All Bangladesh--}}
+{{--                                                        @endif--}}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="name_style">Preferred Organization Types</td>
                                                     <td class="colon_style">:</td>
                                                     <td>
-                                                        {{$carerInfo->pre_organization_type ?? ''}}
+{{--                                                        {{$carerInfo->pre_organization_type ?? ''}}--}}
                                                     </td>
                                                 </tr>
                                                 </tbody>
