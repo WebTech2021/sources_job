@@ -1,11 +1,11 @@
 <template>
   <ul>
-    <div
-      class="text-center mb-1 mt-1"
-    >
-      Account Balance<br>
-      BDT. {{ balance }}
-    </div>
+<!--    <div-->
+<!--      class="text-center mb-1 mt-1"-->
+<!--    >-->
+<!--      Account Balance<br>-->
+<!--      BDT. {{ balance }}-->
+<!--    </div>-->
     <component
       :is="resolveNavItemComponent(item)"
       v-for="item in items"

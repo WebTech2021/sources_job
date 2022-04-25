@@ -1,88 +1,72 @@
-// import axios from 'axios'
-// eslint-disable-next-line import/extensions,import/no-unresolved
-import { axiosAdmin } from '@/libs/axios'
+import { axiosAdmin } from '@axios'
 
 export default {
   namespaced: true,
   state: {
     categories: [],
-    meta: {},
-    link: {},
   },
   getters: {
-    getCategories(state) {
+    CATEGORIES(state) {
       return state.categories
     },
-    getCatMetaData(state) {
-      return state.meta
-    },
-    getCatLinkData(state) {
-      return state.link
-    },
-
   },
   mutations: {
-    setCategories(state, values) {
+    SET_CATEGORIES(state, values) {
       state.categories = values
-    },
-    setMetaData(state, values) {
-      state.meta = values
-    },
-    setLinkData(state, values) {
-      state.link = values
     },
   },
   actions: {
-    StoreCat(context, payload) {
+    CATEGORY_LIST(context, payload) {
       return new Promise((resolve, reject) => {
-        axiosAdmin.post('api/v1/admin/category', payload)
+        axiosAdmin.get('api/v1/admin/categories', payload)
           .then(response => {
-            resolve(response.data)
-          })
-          .catch(error => {
+            context.commit('SET_CATEGORIES', response.data.categories)
+            resolve('success')
+          }).catch(error => {
             reject(error)
           })
       })
     },
-    getAllCats(context, payload) {
+    CATEGORY_DETAIL(context, payload) {
       return new Promise((resolve, reject) => {
-        axiosAdmin.get('api/v1/admin/category', payload)
+        axiosAdmin.get(`api/v1/admin/categories/${payload.id}`)
           .then(response => {
-            context.commit('setCategories', response.data.categories)
-            context.commit('setLinkData', response.data.links)
-            context.commit('setMetaData', response.data.meta)
-            resolve()
-          })
-          .catch(error => {
+            resolve(response.data.category)
+          }).catch(error => {
             reject(error)
           })
       })
     },
-    updateCat(context, payload) {
+    STORE_CATEGORY(context, payload) {
       return new Promise((resolve, reject) => {
-        axiosAdmin.post(`api/v1/admin/category/${payload.id}`, payload.formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-          .then(response => {
-            resolve(response.data)
-          })
-          .catch(error => {
-            reject(error)
-          })
-      })
-    },
-    deleteCat(context, payload) {
-      return new Promise((resolve, reject) => {
-        axiosAdmin.delete(`api/v1/admin/category/${payload}`)
+        axiosAdmin.post('api/v1/admin/categories', payload)
           .then(() => {
-            resolve()
+            resolve('success')
+          }).catch(error => {
+            reject(error)
           })
-          .catch(error => {
+      })
+    },
+    UPDATE_CATEGORY(context, payload) {
+      return new Promise((resolve, reject) => {
+        axiosAdmin.put(`api/v1/admin/categories/${payload.id}`, payload)
+          .then(() => {
+            resolve('success')
+          }).catch(error => {
+            reject(error)
+          })
+      })
+    },
+    DELETE_CATEGORY(context, payload) {
+      return new Promise((resolve, reject) => {
+        axiosAdmin.delete(`api/v1/admin/categories/${payload}`)
+          .then(() => {
+            resolve('success')
+          }).catch(error => {
             reject(error)
           })
       })
     },
   },
+
 }

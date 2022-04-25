@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\PaginateResource;
 use App\Models\JobCategory;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -13,64 +15,56 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        if (\request()->ajax()) {
-            $category = JobCategory::latest();
-            return DataTables::of($category)
-                ->addIndexColumn()
-                ->addColumn('action', function ($category) {
-                    return view('admin.jobCategory.action_button', compact('category'));
-                })
-                ->rawColumns(['action'])
-                ->tojson();
-        }
-        return view('admin.jobCategory.index');
+        $categories = JobCategory::latest();
+        return response()->json(['success' => true, 'categories' => new PaginateResource($categories->paginate(15), CategoryResource::class)]);
     }
 
-    public function create()
-    {
-        return view('admin.jobCategory.create');
-    }
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
+            'name' => 'required|string|unique:job_categories,name',
         ]);
-        $category = new JobCategory();
-        $category->name = $request->name;
-        $category->slug = Str::slug($request->name);
-        $category->save();
-        Toastr::success('Information Create successfully','Success');
-        return redirect()->route('category.index');
+        try {
+            $category = new JobCategory();
+            $category->name = $request->name;
+            $category->slug = Str::slug($request->name);
+            $category->save();
+            return response()->json(['success' => true, 'message' => 'Category Created!']);
+        } catch (\Exception $exception) {
+            return response()->json(['success' => false, 'message' => 'Category Unable to Create!']);
+        }
     }
 
     public function show($id)
     {
-        //
+        $category = JobCategory::findOrFail(decrypt($id));
+        return response()->json(['success' => true, 'category' => new CategoryResource($category)]);
     }
 
-    public function edit($id)
-    {
-        $category = JobCategory::findOrFail(decrypt($id));
-        return view('admin.jobCategory.edit',compact('category'));
-    }
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
+            'name' => 'required',
         ]);
-        $category = JobCategory::findOrFail(decrypt($id));
-        $category->name = $request->name;
-        $category->slug = Str::slug($request->name);
-        $category->update();
-        Toastr::success('Information Update successfully','Success');
-        return redirect()->route('category.index');
+        try {
+            $category = JobCategory::findOrFail(decrypt($id));
+            $category->name = $request->name;
+            $category->slug = Str::slug($request->name);
+            $category->update();
+            return response()->json(['success' => true, 'message' => 'Category Updated!']);
+        } catch (\Exception $exception) {
+            return response()->json(['success' => true, 'message' => 'Category unable to delete!']);
+        }
     }
 
     public function destroy($id)
     {
-        $category = JobCategory::findOrFail(decrypt($id));
-        $category->delete();
-        Toastr::success('Information Delete successfully','Success');
-        return back();
+        try {
+            $category = JobCategory::where('slug', $id)->first();
+            $category->delete();
+            return response()->json(['success' => true, 'message' => 'Category Deleted!']);
+        } catch (\Exception $exception) {
+            return response()->json(['success' => true, 'message' => 'Category unable to delete!']);
+        }
     }
 }

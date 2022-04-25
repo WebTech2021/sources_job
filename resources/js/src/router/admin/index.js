@@ -19,30 +19,39 @@ export default [
     },
   },
   {
-    path: '/admin/users',
-    name: 'admin.users',
-    component: () => import('@/views/admin/User/Index.vue'),
+    path: '/admin/job-seeker-list',
+    name: 'admin.job-seeker.list',
+    component: () => import('@/views/admin/job-seeker-list/Index.vue'),
     meta: {
       authAdminOnly: true,
-      pageTitle: 'Users',
+      pageTitle: 'Job Seekers',
     },
   },
   {
-    path: '/admin/posts',
-    name: 'admin.posts',
-    component: () => import('@/views/admin/post/Index.vue'),
+    path: '/admin/job-list',
+    name: 'admin.job.list',
+    component: () => import('@/views/admin/job-list/Index.vue'),
     meta: {
       authAdminOnly: true,
-      pageTitle: 'Posts',
+      pageTitle: 'Job List',
     },
   },
   {
-    path: '/admin/ad-requests',
-    name: 'admin.ad-requests',
-    component: () => import('@/views/admin/adRequest/Index.vue'),
+    path: '/admin/job-categories',
+    name: 'admin.job.categories',
+    component: () => import('@/views/admin/categories/Index.vue'),
     meta: {
       authAdminOnly: true,
-      pageTitle: 'Ad Requests',
+      pageTitle: 'Category List',
+    },
+  },
+  {
+    path: '/admin/job-education',
+    name: 'admin.job.education',
+    component: () => import('@/views/admin/education/Index.vue'),
+    meta: {
+      authAdminOnly: true,
+      pageTitle: 'Education List',
     },
   },
   {
@@ -53,39 +62,6 @@ export default [
     meta: {
       authAdminOnly: true,
       pageTitle: 'Profile',
-
-    },
-  },
-  {
-    path: '/admin/category',
-    name: 'admin.categories',
-    // eslint-disable-next-line import/no-unresolved
-    component: () => import('@/views/admin/Category.vue'),
-    meta: {
-      authAdminOnly: true,
-      pageTitle: 'Category',
-
-    },
-  },
-  {
-    path: '/admin/posts/reported',
-    name: 'admin.reported-posts',
-    // eslint-disable-next-line import/no-unresolved
-    component: () => import('@/views/admin/post/reported.vue'),
-    meta: {
-      authAdminOnly: true,
-      pageTitle: 'Reported Post',
-
-    },
-  },
-  {
-    path: '/admin/guide',
-    name: 'admin.guide',
-    // eslint-disable-next-line import/no-unresolved
-    component: () => import('@/views/admin/Guide.vue'),
-    meta: {
-      authAdminOnly: true,
-      pageTitle: 'Support and Guide',
 
     },
   },

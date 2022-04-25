@@ -7,6 +7,10 @@ import dashboard from './dashboard'
 import settings from './settings'
 import withdrawal from './withdrawal'
 
+import jobSeeker from './job-seeker'
+import jobs from './job'
+import education from './education'
+
 export default {
   namespaced: true,
   modules: {
@@ -17,6 +21,10 @@ export default {
     dashboard,
     settings,
     withdrawal,
+
+    jobSeeker,
+    jobs,
+    education,
   },
   state: {
     admin: null,
@@ -25,7 +33,7 @@ export default {
       message: '',
       errors: [],
     },
-    adminInfo: null,
+    adminInfo: {},
   },
   getters: {
     getMessage(state) {
