@@ -15,7 +15,7 @@ class CreateJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('organization_id')->constrained('sources.organizations')->onDelete('cascade');
+            $table->foreignId('organization_id')->constrained(config('database.connections.sources.database').'.organizations')->onDelete('cascade');
             $table->text('job_title');
             $table->string('slug')->unique();
             $table->foreignId('job_categories')->constrained('job_categories')->onDelete('cascade');
@@ -35,7 +35,7 @@ class CreateJobsTable extends Migration
             $table->text('job_notes')->nullable();
             $table->dateTime('from_date')->nullable();
             $table->dateTime('to_date')->nullable();
-            $table->enum('status',['draft','publish','expired'])->default('draft');
+            $table->enum('status',['draft','publish','expired', 'pending'])->default('draft');
             $table->timestamps();
         });
     }
