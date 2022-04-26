@@ -46,7 +46,7 @@ class ProfileController extends Controller
 
     public function getPDF($id){
         $seeker_details = JobSeeker::with('career','skill','objective','experience','education','reference','portfolio')
-            ->findOrfail(\auth()->user()->id);
+            ->findOrfail(\auth()->user()->id?? $id);
          $data = [
             'seeker_details' => $seeker_details,
           ];

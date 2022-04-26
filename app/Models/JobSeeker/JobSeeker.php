@@ -113,9 +113,4 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Portfolio::class,'job_seeker_id','id');
     }
 
-
-
-
-
-
 }
