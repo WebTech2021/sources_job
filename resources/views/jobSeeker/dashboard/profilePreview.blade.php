@@ -88,7 +88,7 @@
                                         <div class="mt-1 col-md-12">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                   {{$carerInfo->objective ?? ''}}
+                                                   {{$jobSeeker->objective->objective ?? ''}}
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
                                         <div class="mt-1 col-md-12">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    {{$carerInfo->career_summary ?? ''}}
+                                                    {{$jobSeeker->objective->career_summary ?? ''}}
                                                 </div>
                                             </div>
                                         </div>
@@ -108,7 +108,7 @@
                                         <div class="mt-1 col-md-12">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    {{$carerInfo->special_qualification ?? ''}}
+                                                    {{$jobSeeker->objective->special_qualification ?? ''}}
                                                 </div>
                                             </div>
                                         </div>
@@ -118,8 +118,8 @@
                                         <div class="mt-1 col-md-12">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    @foreach($skills as $data)
-                                                        <span>{{$data->skill}}</span>,
+                                                    @foreach($jobSeeker->skill as $data)
+                                                        <span>{{$data->skill ?? ' '}}</span>,
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -135,13 +135,11 @@
                                                     <th><strong>Department</strong></th>
                                                     <th><strong>Company Name</strong></th>
                                                     <th><strong>Area of Experience</strong></th>
-                                                {{--<th><strong>Company Location</strong></th>--}}
                                                     <th><strong>Start Date</strong></th>
                                                     <th><strong>End Date</strong></th>
-                                                {{--<th><strong>Currently Working</strong></th>--}}
                                                     <th><strong>Description</strong></th>
                                                 </tr>
-                                                @foreach($experiences as $data)
+                                                @foreach($jobSeeker->experience as $data)
                                                     <tr class="td_style">
                                                         <td>{{$data->designation ?? ''}}</td>
                                                         <td>{{$data->department ?? ''}}</td>
@@ -171,7 +169,7 @@
                                                     <th><strong>Result</strong></th>
                                                     <th><strong>Pas.Year</strong></th>
                                                 </tr>
-                                                @foreach($educations as $education)
+                                                @foreach($jobSeeker->education as $education)
                                                     <tr class="td_style">
                                                         <td>{{$education->degree_title ?? ''}}</td>
                                                         <td>{{$education->group ?? ''}}</td>
@@ -187,81 +185,62 @@
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">My Expectation:</div>
                                         </div>
-                                        <div class="mt-1 col-md-12">
+                                        <div class="mt-1 col-12">
                                             <table style="width: 100%">
                                                 <tbody>
                                                 <tr>
                                                     <th class="name_style">Preferred Job Category</th>
                                                     <th class="colon_style">:</th>
-{{--                                                    <th>{{  ucfirst($carerInfo->pre_job_categories ?? ' ' )}}</th>--}}
+                                                    <th>
+                                                        {{ $jobSeeker->career->category->name ?? '' }}
+                                                    </th>
                                                 </tr>
                                                 <tr>
-                                                    <td class="name_style">Looking For</td>
+                                                    <td class="name_style">Job Type</td>
                                                     <th class="colon_style">:</th>
                                                     <td>
-{{--                                                        @if($carerInfo->job_level ?? '' == 'entry_level')--}}
-{{--                                                            Entry Level--}}
-{{--                                                        @elseif($carerInfo->job_level??'' == 'mid_level')--}}
-{{--                                                            Mid Level--}}
-{{--                                                        @elseif($carerInfo->job_level??'' == 'top_level')--}}
-{{--                                                            Top Level--}}
-{{--                                                        @endif--}}
+                                                        {{$jobSeeker->career->job_type ?? ''}}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="name_style">Available For</td>
+                                                    <td class="name_style">Last Education</td>
                                                     <th class="colon_style">:</th>
                                                     <td>
-{{--                                                        @if($carerInfo->job_nature ?? '' == 'full_time')--}}
-{{--                                                            Full Time--}}
-{{--                                                        @elseif($carerInfo->job_nature ?? '' == 'part_time')--}}
-{{--                                                            Part Time--}}
-{{--                                                        @elseif($carerInfo->job_nature ?? '' == 'contract')--}}
-{{--                                                            Contract--}}
-{{--                                                        @elseif($carerInfo->job_nature ?? '' == 'internship')--}}
-{{--                                                            Internship--}}
-{{--                                                        @elseif($carerInfo->job_nature ?? '' == 'freelance')--}}
-{{--                                                            Freelance--}}
-{{--                                                        @endif--}}
+                                                        {{$jobSeeker->career->education ?? ''}}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="name_style">Present Salary</td>
+                                                    <td class="name_style">Expected Salary (BDT)</td>
                                                     <td class="colon_style">:</td>
                                                     <td>
-{{--                                                        Tk.{{$carerInfo->present_salary ?? ''}}--}}
+                                                        {{$jobSeeker->career->salary ?? ''}}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="name_style">Expected Salary</td>
+                                                    <td class="name_style">Experience (years)</td>
                                                     <td class="colon_style">:</td>
                                                     <td width="66%" align="left">
-{{--                                                        Tk. {{$carerInfo->expected_salary ?? ''}}--}}
+                                                        {{$jobSeeker->career->experience ?? ''}}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="name_style">Preferred Location</td>
+                                                    <td class="name_style">Location</td>
                                                     <td class="colon_style">:</td>
                                                     <td>
-{{--                                                        @if($carerInfo->pre_job_location ?? '' == 'inside_dhaka')--}}
-{{--                                                            Inside Dhaka--}}
-{{--                                                        @elseif($carerInfo->pre_job_location ?? '' == 'outside_dhaka')--}}
-{{--                                                            Outside Dhaka--}}
-{{--                                                        @elseif($carerInfo->pre_job_location ?? '' == 'all_bangladesh')--}}
-{{--                                                            All Bangladesh--}}
-{{--                                                        @endif--}}
+                                                        {{$jobSeeker->career->location ?? ''}}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="name_style">Preferred Organization Types</td>
+                                                    <td class="name_style">Available From</td>
                                                     <td class="colon_style">:</td>
                                                     <td>
-{{--                                                        {{$carerInfo->pre_organization_type ?? ''}}--}}
+                                                        {{$jobSeeker->career->available_status ?? ' '}}
                                                     </td>
                                                 </tr>
                                                 </tbody>
                                             </table>
                                         </div>
+
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Personal Details:</div>
                                         </div>
@@ -341,7 +320,6 @@
                                                 </tbody>
                                             </table>
                                         </div>
-
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Portfolios:</div>
                                         </div>
@@ -354,7 +332,7 @@
                                                     <th><strong>My Role</strong></th>
                                                     <th><strong>Project Link</strong></th>
                                                 </tr>
-                                                @foreach($portfolios as $portfolio)
+                                                @foreach($jobSeeker->portfolio as $portfolio)
                                                     <tr class="td_style">
                                                         <td>{{$portfolio->title ?? ''}}</td>
                                                         <td>{{$portfolio->short_info ?? ''}}</td>
@@ -379,7 +357,7 @@
                                                     <th><strong>Email</strong></th>
                                                     <th><strong>Address</strong></th>
                                                 </tr>
-                                                @foreach($reference as $ref)
+                                                @foreach($jobSeeker->reference as $ref)
                                                     <tr class="td_style">
                                                         <td>{{$ref->name ?? ''}}</td>
                                                         <td>{{$ref->phone_number ?? ''}}</td>

@@ -94,34 +94,28 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(KeyFeatures::class, 'job_seeker_id', 'id');
     }
-//    public function features()
-//    {
-//        return $this->hasOne(KeyFeatures::class, 'job_seeker_id','id');
-//    }
-    public function skill()
-    {
-        return $this->hasOne(Skills::class, 'job_seeker_id','id');
+    public function skill(){
+        return $this->hasMany(Skills::class,'job_seeker_id','id');
     }
-    public function experience()
-    {
-        return $this->hasOne(jsExperience::class, 'job_seeker_id','id');
+    public function objective(){
+        return $this->hasOne(CareerAndApplicationInformation::class,'job_seeker_id','id');
     }
-    public function education()
-    {
-        return $this->hasOne(jsEducation::class, 'job_seeker_id','id');
+    public function experience(){
+        return $this->hasMany(jsExperience::class,'job_seeker_id','id');
     }
-//    public function application_info()
-//    {
-//        return  $this->belongsTo(CareerAndApplicationInformation::where('job_seeker_id',auth('jobSeeker')->user()->id)->get());
-//    }
-    public function reference()
-    {
-        return $this->hasOne(Reference::class, 'job_seeker_id','id');
+    public function education(){
+        return $this->hasMany(jsEducation::class,'job_seeker_id','id');
     }
-    public function portfolio()
-    {
-        return $this->hasOne(Portfolio::class, 'job_seeker_id','id');
+    public function reference(){
+        return $this->hasMany(Reference::class,'job_seeker_id','id');
     }
+    public function portfolio(){
+        return $this->hasMany(Portfolio::class,'job_seeker_id','id');
+    }
+
+
+
+
 
 
 }
