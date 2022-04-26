@@ -16,6 +16,7 @@ use App\Models\JobSeeker\Skills;
 use App\Models\Upazila;
 use App\Traits\UploadAble;
 use Brian2694\Toastr\Facades\Toastr;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class ProfileController extends Controller
 {
@@ -47,13 +48,22 @@ class ProfileController extends Controller
         $jobSeeker = JobSeeker::findOrfail(\auth()->user()->id);
         $experiences = jsExperience::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
         $educations = jsEducation::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
-        $carerInfo = CareerAndApplicationInformation::where('job_seeker_id',auth('jobSeeker')->user()->id)->first();
+       $carerInfo = CareerAndApplicationInformation::where('job_seeker_id',auth('jobSeeker')->user()->id)->first();
         $reference = Reference::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
         $portfolios = Portfolio::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
         $skills = Skills::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
         return view('jobSeeker.dashboard.profilePreview',compact('skills','portfolios','reference','jobSeeker','experiences','educations','carerInfo'));
     }
 
+    public function getPDF($id){
+        $seeker_details = JobSeeker::with('career','skill','experience','education','portfolio','reference','application_info')
+          ->findOrfail(\auth()->user()->id);
+         $data = [
+            'seeker_details' => $seeker_details,
+          ];
+         $pdf = PDF::loadHtml(view('jobSeeker.dashboard.pdf', $data));
+        return $pdf->stream( $seeker_details->id.'.pdf');
+    }
 
 
 

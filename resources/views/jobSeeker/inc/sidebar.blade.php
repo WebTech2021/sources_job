@@ -100,8 +100,8 @@
 {{--                            class="menu-title text-truncate" data-i18n="Home"--}}
 {{--                        >{{__('job status')}}</span></a>--}}
 {{--                </li>--}}
-                <li class="class="{{ Route::currentRouteName()=='jobSeeker.invite.list' ? 'active':'' }} nav-item">
-                    <a class="d-flex align-items-center" href="{{route('jobSeeker.invite.list')}}"><i class="fab fa-invision"></i><span
+            <li class="{{ Route::currentRouteName()=='jobSeeker.invite.list' ? 'active':'' }} nav-item">
+            <a class="d-flex align-items-center" href="{{route('jobSeeker.invite.list')}}"><i class="fab fa-invision"></i><span
                             class="menu-title text-truncate" data-i18n="Home"
                         >{{__('Job Invitation')}}</span></a>
                 </li>

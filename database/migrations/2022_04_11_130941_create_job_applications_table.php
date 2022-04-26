@@ -17,7 +17,7 @@ class CreateJobApplicationsTable extends Migration
             $table->id();
             $table->foreignId('job_id')->constrained('jobs')->onDelete('cascade');
             $table->foreignId('job_seeker_id')->constrained('job_seekers')->onDelete('cascade');
-            $table->foreignId('organization_id')->constrained('sources.organizations')->onDelete('cascade');
+            $table->foreignId('organization_id')->constrained(config('database.connections.sources.database').'.organizations')->onDelete('cascade');
             $table->enum('status',['shortlisted','non_shortlisted','reject'])->default('non_shortlisted');
             $table->timestamps();
         });
