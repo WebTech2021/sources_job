@@ -5,23 +5,23 @@ export default [
     icon: 'HomeIcon',
   },
   {
-    title: 'Job Seeker List',
+    title: 'Job Seeker',
     route: 'admin.job-seeker.list',
-    icon: 'HomeIcon',
+    icon: 'UsersIcon',
   },
   {
-    title: 'Job List',
+    title: 'Jobs',
     route: 'admin.job.list',
-    icon: 'HomeIcon',
+    icon: 'ServerIcon',
   },
   {
-    title: 'Job Categories',
+    title: 'Categories',
     route: 'admin.job.categories',
-    icon: 'HomeIcon',
+    icon: 'GridIcon',
   },
   {
-    title: 'Job Education',
+    title: 'Education',
     route: 'admin.job.education',
-    icon: 'HomeIcon',
+    icon: 'BookIcon',
   },
 ]

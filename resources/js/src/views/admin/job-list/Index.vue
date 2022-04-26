@@ -3,6 +3,20 @@
     <b-col cols="12">
       <div class="card">
         <div class="card-body">
+          <div class="custom-search d-flex justify-content-end">
+            <b-form-group>
+              <div class="d-flex align-items-center">
+                <label class="mr-1">Search</label>
+                <b-form-input
+                  v-model="searchTerm"
+                  placeholder="Search"
+                  type="text"
+                  class="d-inline-block"
+                  @keyup="searchHandler"
+                />
+              </div>
+            </b-form-group>
+          </div>
           <!-- table -->
           <vue-good-table
             ref="productsTable"
@@ -140,7 +154,7 @@
 
 <script>
 import {
-  BCol, BButton, BFormSelect, BPagination, BDropdown, BDropdownItem, BAvatar,
+  BCol, BFormSelect, BPagination, BDropdown, BDropdownItem, BAvatar, BFormInput, BFormGroup,
 } from 'bootstrap-vue'
 import { VueGoodTable } from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
@@ -151,12 +165,13 @@ export default {
   components: {
     VueGoodTable,
     BCol,
-    BButton,
+    BFormGroup,
     BFormSelect,
     BPagination,
     BDropdown,
     BDropdownItem,
     BAvatar,
+    BFormInput,
   },
   data() {
     return {

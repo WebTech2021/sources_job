@@ -14,13 +14,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::patch('update-my-info', [\App\Http\Controllers\Api\Admin\AdminProfileController::class, 'updateInfo']);
         Route::post('logout', [\App\Http\Controllers\Api\Admin\AuthController::class, 'logout'])->name('logout');
 
-        Route::get('job-seeker-list',[JobSeekerController::class,'getJobSeekerList'])->name('jobSeeker.list');
-        Route::put('job-seeker/{id}', [JobSeekerController::class, 'activeInactiveBlocked']);
-        Route::get('/job-seeker-export', [JobSeekerController::class, 'ExportJobSeeker'])->name('jobSeeker-export');
-        Route::post('/login-as-jobSeeker',[JobSeekerController::class,'loginAsJobSeeker'])->name('login.as.jobSeeker');
-        Route::get('job-list',[JobSeekerController::class,'getJobList'])->name('job.list');
-
         Route::put('job-list/{id}', [JobSeekerController::class, 'changeJobStatus']);
+        Route::get('job-list',[JobSeekerController::class,'getJobList'])->name('job.list');
+        Route::post('/login-as-jobSeeker',[JobSeekerController::class,'loginAsJobSeeker'])->name('login.as.jobSeeker');
+        Route::get('/job-seeker-export', [JobSeekerController::class, 'ExportJobSeeker'])->name('jobSeeker-export');
+        Route::put('job-seeker/{id}', [JobSeekerController::class, 'activeInactiveBlocked']);
+        Route::apiResource('job-seekers',JobSeekerController::class);
+
 
         Route::apiResource('categories',CategoryController::class);
         Route::apiResource('educations',EducationController::class);
