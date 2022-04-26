@@ -38,7 +38,7 @@
             title-tag="h2"
             class="font-weight-bold mb-1 text-center"
           >
-            Welcome to Sources Blogs!
+            Welcome to Sources Jobs!
           </b-card-title>
           <b-card-text class="mb-2 text-center">
             Please verify your email address
