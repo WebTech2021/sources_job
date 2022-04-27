@@ -40,7 +40,8 @@ class JSEducationController extends Controller
             $education = jsEducation::findOrFail(decrypt($id));
             return view('jobSeeker.education.edit',compact('education'));
         }catch (DecryptException $e){
-            abort(404);
+            Toastr::error('Something went wrong!', 'Error');
+            return back();
         }
     }
     public function update(Request $request, $id)
@@ -61,7 +62,8 @@ class JSEducationController extends Controller
             return  redirect()->route('jobSeeker.education.index');
 
         }catch (DecryptException $e){
-            abort(404);
+            Toastr::error('Something went wrong!', 'Error');
+            return back();
         }
     }
 
@@ -73,7 +75,8 @@ class JSEducationController extends Controller
             Toastr::success('Information deleted successfully', 'Deleted.');
             return redirect()->route('jobSeeker.education.index');
         } catch (DecryptException $e) {
-            abort(404);
+            Toastr::error('Something went wrong!', 'Error');
+            return back();
         }
 
     }

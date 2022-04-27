@@ -8,6 +8,7 @@ use App\Models\JobApplication;
 use App\Models\Jobs;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Queue\Jobs\Job;
 use Illuminate\Support\Facades\Auth;
@@ -66,7 +67,10 @@ class JsJobsController extends Controller
                 ->addColumn('expire_date', function ($job_data) {
                     return \Carbon\Carbon::parse($job_data->to_date)->format('D, d M Y');
                 })
-                ->rawColumns(['nameWithImage', 'expire_date', 'salary', 'action', 'employment_status'])
+                ->addColumn('job_title', function ($job_data) {
+                    return '<a href="' . route('jobSeeker.jobs.details', encrypt($job_data->id)) . '">' . $job_data->job_title . '</a>';
+                })
+                ->rawColumns(['nameWithImage', 'expire_date', 'salary', 'action', 'employment_status','job_title'])
                 ->tojson();
         }
 
@@ -77,20 +81,34 @@ class JsJobsController extends Controller
 
     public function job_details($id)
     {
-        $job_details = Jobs::find($id);
-        return view('jobSeeker.jobs.show', compact('job_details'));
+         try {
+             $job_details = Jobs::find($id);
+             return view('jobSeeker.jobs.show', compact('job_details'));
+
+         }catch (DecryptException $e){
+             Toastr::error('Something went wrong!', 'Error');
+             return back();
+         }
+
     }
 
     public function apply(Request $request, $id)
     {
-        $apply_data = Jobs::find($id);
-        JobApplication::create([
-            'job_seeker_id' => Auth::guard('jobSeeker')->user()->id,
-            'job_id' => $apply_data->id,
-            'organization_id' => $apply_data->organization_id
-        ]);
-        Toastr::success('Apply Successfully!', 'success');
-        return redirect()->back();
+        try {
+            $apply_data = Jobs::find(decrypt($id));
+            JobApplication::create([
+                'job_seeker_id' => Auth::guard('jobSeeker')->user()->id,
+                'job_id' => $apply_data->id,
+                'organization_id' => $apply_data->organization_id
+            ]);
+            Toastr::success('Apply Successfully!', 'success');
+            return redirect()->back();
+
+        }catch (DecryptException $e){
+            Toastr::error('Something went wrong!', 'Error');
+            return back();
+        }
+
     }
 
 
@@ -162,18 +180,25 @@ class JsJobsController extends Controller
         return view('jobSeeker.inviteList.index');
     }
     public function acceptReject(Request $request,$id){
-//         return $request->all();
-        if ($request->status == 'accept') {
-            $data = Invite::findOrFail(decrypt($id));
-            $data->update($request->except(['token']));
-            Toastr::success('Accept Successfully!', 'success');
-            return redirect()->back();
-        }else{
-            $data = Invite::findOrFail(decrypt($id));
-            $data->update($request->except(['token']));
-            Toastr::success('Reject Successfully!', 'success');
-            return redirect()->back();
+        try {
+            if ($request->status == 'accept') {
+                $data = Invite::findOrFail(decrypt($id));
+                $data->update($request->except(['token']));
+                Toastr::success('Accept Successfully!', 'success');
+                return redirect()->back();
+            }else{
+                $data = Invite::findOrFail(decrypt($id));
+                $data->update($request->except(['token']));
+                Toastr::success('Reject Successfully!', 'success');
+                return redirect()->back();
+            }
+
+        }catch (DecryptException $e){
+            Toastr::error('Something went wrong!', 'Error');
+            return back();
         }
+
+
 
     }
 
