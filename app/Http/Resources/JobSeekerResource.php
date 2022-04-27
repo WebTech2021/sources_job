@@ -24,6 +24,7 @@ class JobSeekerResource extends JsonResource
             'email' => $this->email,
             'online_status' => $this->last_seen_at >= Carbon::now()->subMinutes(1)->format('Y-m-d H:i:s') ? 'Online' : ($this->last_seen_at !== null ? $this->last_seen_at->diffForHumans() : '-'),
             'status' => $this->status,
+            'created_at' => $this->created_at->format("d-m-Y") ?? null,
         ];
     }
 }

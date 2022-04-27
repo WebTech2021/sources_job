@@ -16,7 +16,7 @@ class JobResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'organization_name' => DB::table(config('database.connections.sources.database').'.organizations')->where('id','=',$this->id)->first()->name,
+            'organization_name' => DB::table(config('database.connections.sources.database').'.organizations')->where('id','=',$this->organization_id)->first()->name,
             'title' => $this->job_title,
             'slug' => $this->slug,
             'vacancy' => $this->vacancy,

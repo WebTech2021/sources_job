@@ -82,7 +82,7 @@ class JsJobsController extends Controller
     public function job_details($id)
     {
          try {
-             $job_details = Jobs::find(decrypt($id));
+             $job_details = Jobs::find($id);
              return view('jobSeeker.jobs.show', compact('job_details'));
 
          }catch (DecryptException $e){

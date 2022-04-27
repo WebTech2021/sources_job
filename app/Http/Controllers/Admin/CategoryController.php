@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = JobCategory::latest();
-        return response()->json(['success' => true, 'categories' => new PaginateResource($categories->paginate(15), CategoryResource::class)]);
+        return response()->json(['success' => true, 'categories' => new PaginateResource($categories->paginate(\request()->per_page ?? 20), CategoryResource::class)]);
     }
 
     public function store(Request $request)
