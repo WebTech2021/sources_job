@@ -20,7 +20,7 @@ class CreateJobsTable extends Migration
             $table->string('slug')->unique();
             $table->foreignId('job_categories')->constrained('job_categories')->onDelete('cascade');
             $table->text('vacancy')->nullable();
-            $table->enum('employment_status',['full_time','part_time','contract','internship','freelance'])->nullable();
+            $table->enum('employment_status',['full_time','part_time','contract','internship','freelance','online'])->nullable();
             $table->string('workplace')->nullable();
             $table->string('min_experience')->nullable();
             $table->string('job_location')->nullable();

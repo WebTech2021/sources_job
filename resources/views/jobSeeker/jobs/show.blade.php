@@ -106,7 +106,8 @@
                                         <h3>Job Summery</h3>
                                          <p><b>Published on:</b> {{$job_details->updated_at != null ? \Carbon\Carbon::parse($job_details->updated_at)->format('d M Y'):'no deadline issue'}}</p>
                                          <p><b>Job Title:</b> {{$job_details->job_title ?? ''}}</p>
-                                        <p><b>Company Name:</b> {{$job_details->organization->name ?? ''}}</p>
+{{--                                        <p><b>Company Name:</b> {{$job_details->organization->name ?? ''}}</p>--}}
+{{--                                        <p><b>Company Name:</b> {{ \Illuminate\Support\Facades\DB::connection('sources')->table('organization')-> }}</p>--}}
                                          <p><b>Vacancy:</b> {{$job_details->vacancy ?? ''}}</p>
                                          <p><b>Employment Status:</b> {{$job_details->employment_status }}</p>
                                          <p><b>Gander:</b>
@@ -130,7 +131,7 @@
                                            <p><b>Application Deadline:</b> {{$job_details->to_date != null ? \Carbon\Carbon::parse($job_details->to_date)->format('d M Y'):'no deadline issue'}}</p>
                                            <div class="text-center">
                                                @if(!$job_details->checkApplication())
-                                                   <form action="{{route('jobSeeker.job.apply',$job_details->id)}}" method="post">
+                                                   <form action="{{route('jobSeeker.job.apply',encrypt($job_details->id))}}" method="post">
                                                        @csrf
                                                        <button class="btn btn-success" type="submit">Apply Now</button>
                                                    </form>
