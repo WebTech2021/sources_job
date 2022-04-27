@@ -149,13 +149,16 @@ class JobSeekerController extends Controller
 
     public function changeJobStatus(Request $request, $id)
     {
+        DB::beginTransaction();
         try {
             $job = Jobs::where(['status' => 'pending', 'slug' => $id])->first();
             $job->update([
                 'status' => $request->status,
             ]);
+            DB::commit();
             return response()->json(['success' => true, 'message' => 'Status changed!']);
         } catch (\Exception $e) {
+            DB::rollBack();
             info($e);
         }
     }
