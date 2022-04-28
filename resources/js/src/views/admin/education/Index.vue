@@ -65,15 +65,6 @@
                         />
                       </template>
                       <b-dropdown-item
-                        @click.prevent="deleteData(props.row.id)"
-                      >
-                        <feather-icon
-                          icon="TrashIcon"
-                          class="mr-50"
-                        />
-                        <span>Delete</span>
-                      </b-dropdown-item>
-                      <b-dropdown-item
                         @click.prevent="openEditModal(props.row, true)"
                       >
                         <feather-icon
@@ -81,6 +72,15 @@
                           class="mr-50"
                         />
                         <span>Edit</span>
+                      </b-dropdown-item>
+                      <b-dropdown-item
+                        @click.prevent="deleteData(props.row.id)"
+                      >
+                        <feather-icon
+                          icon="TrashIcon"
+                          class="mr-50"
+                        />
+                        <span>Delete</span>
                       </b-dropdown-item>
                     </b-dropdown>
                   </span>

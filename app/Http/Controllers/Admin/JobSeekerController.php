@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\JobSeekerExport;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\jsRegistrationRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Resources\JobResource;
 use App\Http\Resources\JobSeekerResource;
 use App\Http\Resources\PaginateResource;
@@ -12,18 +14,27 @@ use App\Models\Jobs;
 use App\Models\JobSeeker\JobSeeker;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
 class JobSeekerController extends Controller
 {
-    public function getJobSeekerList()
+    public function index()
     {
-        $seekers = JobSeeker::latest('last_seen_at');
+        $seekers = JobSeeker::query();
+        $searchTerm = \request()->searchTerm;
+        if ($searchTerm) {
+            $seekers = $seekers
+                ->where('email', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('first_name', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%');
+        }
 //      return  $job_seeker = JobSeeker::all();
 //        if (\request()->ajax()) {
 //            $job_seeker = JobSeeker::latest('last_seen_at');
@@ -67,7 +78,57 @@ class JobSeekerController extends Controller
 //                ->rawColumns(['action','linkWithEmail','nameWithImage','js_status','onlineStatus'])
 //                ->tojson();
 //        }
-        return response()->json(['success' => true, 'seekers' => new PaginateResource($seekers->paginate(15), JobSeekerResource::class)]);
+        return response()->json(['success' => true, 'seekers' => new PaginateResource($seekers->latest('last_seen_at')->paginate(\request()->per_page ?? 20), JobSeekerResource::class)]);
+    }
+
+    public function show($id)
+    {
+        $job_seeker = JobSeeker::findOrFail(decrypt($id));
+        return response()->json(['success' => true, 'job_seeker' => new JobSeekerResource($job_seeker)]);
+    }
+
+    public function update(UpdateProfileRequest $request, $id)
+    {
+        $validated = $request->validated();
+        DB::beginTransaction();
+        try {
+            $job_seeker = JobSeeker::findOrFail(decrypt($id));
+            $job_seeker->first_name = $validated['first_name'];
+            $job_seeker->last_name = $validated['last_name'];
+            $job_seeker->phone_number = $validated['phone_number'];
+            $job_seeker->email = $validated['email'];
+            if ($request->password) {
+                $job_seeker->password = bcrypt($validated['password']);
+            }
+            $job_seeker->save();
+            DB::commit();
+            return response()->json(['success' => true, 'message' => 'Profile updated!']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => 'Job seeker unable to update!'], Response::HTTP_EXPECTATION_FAILED);
+        }
+    }
+
+    public function store(jsRegistrationRequest $request)
+    {
+        $validated = $request->validated();
+        DB::beginTransaction();
+        try {
+            $jobSeeker = JobSeeker::create([
+                'first_name' => $validated['first_name'],
+                'last_name' => $validated['last_name'],
+                'phone_number' => $validated['phone_number'],
+                'email' => strtolower($validated['email']),
+                'password' => bcrypt($validated['password']),
+                'country_id' => 20,
+            ]);
+            event(new Registered($jobSeeker));
+            DB::commit();
+            return response()->json(['success' => true, 'message' => 'Job Seeker Added!']);
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => 'Job Seeker Unable to add!'], Response::HTTP_EXPECTATION_FAILED);
+        }
     }
 
     public function activeInactiveBlocked(Request $request, $id)
@@ -85,15 +146,19 @@ class JobSeekerController extends Controller
             info($e);
         }
     }
+
     public function changeJobStatus(Request $request, $id)
     {
+        DB::beginTransaction();
         try {
-            $job = Jobs::where(['status'=>'pending', 'slug'=>$id])->first();
+            $job = Jobs::where(['status' => 'pending', 'slug' => $id])->first();
             $job->update([
                 'status' => $request->status,
             ]);
+            DB::commit();
             return response()->json(['success' => true, 'message' => 'Status changed!']);
         } catch (\Exception $e) {
+            DB::rollBack();
             info($e);
         }
     }
@@ -112,7 +177,11 @@ class JobSeekerController extends Controller
 
     public function getJobList()
     {
-        $job_list = Jobs::latest();
+        $job_list = Jobs::query();
+        $searchTerm = \request()->searchTerm;
+        if ($searchTerm) {
+            $job_list = $job_list->where('job_title', 'LIKE', '%' . $searchTerm . '%');
+        }
 //      if (\request()->ajax()) {
 //          return DataTables::of($job_list)
 //              ->addIndexColumn()
@@ -133,7 +202,7 @@ class JobSeekerController extends Controller
 //              ->rawColumns(['status'])
 //              ->tojson();
 //      }
-        return response()->json(['success' => true, 'jobs' => new PaginateResource($job_list->paginate(15), JobResource::class)]);
+        return response()->json(['success' => true, 'jobs' => new PaginateResource($job_list->latest()->paginate(\request()->per_page ?? 20), JobResource::class)]);
 
     }
 

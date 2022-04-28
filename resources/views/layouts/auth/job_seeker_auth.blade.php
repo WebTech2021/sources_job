@@ -9,7 +9,7 @@
     <meta name="description" content="Sources admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Sources admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Login | Sources | Best Communication Platforms For business.</title>
+    <title>Login | Sources Job | Find Jobs</title>
     <link rel="apple-touch-icon" href="{{ asset('admin/app-assets/images/ico/webtech.png') }}'">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/app-assets/images/ico/sources.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
