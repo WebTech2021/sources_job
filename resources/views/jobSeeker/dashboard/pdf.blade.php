@@ -396,7 +396,7 @@
         </div>
         <br><br><br>
         <div>
-            <small><small>NOTE: This is system generate invoice no need of signature</small></small>
+            <small><small>NOTE: This CV Verified By Sources</small></small>
         </div>
     </div>
 </div>
