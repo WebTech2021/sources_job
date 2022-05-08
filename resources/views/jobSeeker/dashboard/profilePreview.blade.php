@@ -76,7 +76,7 @@
                                                      class="user-avatar users-avatar-shadow rounded mr-2 my-25 cursor-pointer"
                                                      height="170" width="150" style="border: 1px solid #bfbfbf;" alt="profile image">
                                                  @else
-                                                     <img src="{{asset('images/default.png')}}"
+                                                     <img src="{{asset('images/dummy.jpg')}}"
                                                           class="user-avatar users-avatar-shadow rounded mr-2 my-25 cursor-pointer"
                                                           height="170" width="150" style="border: 1px solid #bfbfbf;" alt="profile image">
                                                  @endif

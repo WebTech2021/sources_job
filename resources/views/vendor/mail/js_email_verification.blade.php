@@ -5,7 +5,7 @@
     <p style="font-weight: 700; font-size: 20px; margin-top: 0; --text-opacity: 1; color: #7367f0; ">{{ $name }}</p>
     <p style="margin: 0 0 24px;">
         A request to Email verification from your new
-        <span style="font-weight: 600;">Sources</span> Account -
+        <span style="font-weight: 600;">Sources</span> Job Account -
         Email: <a href="mailto:{{ $email }}" class="hover-underline" style="--text-opacity: 1; color: #7367f0;  text-decoration: none;">{{ $email }}</a></p>
     <p style="margin: 0 0 24px;">Use this link to verify your Account.</p>
     @if(isset($password))
