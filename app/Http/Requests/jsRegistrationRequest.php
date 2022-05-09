@@ -27,7 +27,7 @@ class jsRegistrationRequest extends FormRequest
             'first_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
             'last_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
             'email' => 'required|email:rfc,dns|unique:job_seekers,email',
-            'phone_number' => 'bail|numeric|digits:11|regex:/^(?:\+?88)?01[3-9]\d{8}$/',
+            'phone_number' => 'bail|numeric|digits:11|regex:/^(?:\+?88)?01[3-9]\d{8}$/|unique:job_seekers,phone_number',
             'password' => 'required|min:8|max:20|confirmed',
         ];
     }
