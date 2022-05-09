@@ -130,7 +130,7 @@
                                             </div>
                                         </div>
                                         @endif
-                                        @if($jobSeeker->experience)
+                                        @if($jobSeeker->experiences)
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Employment History:</div>
                                         </div>
@@ -146,7 +146,7 @@
                                                     <th><strong>End Date</strong></th>
                                                     <th><strong>Description</strong></th>
                                                 </tr>
-                                                @foreach($jobSeeker->experience as $data)
+                                                @foreach($jobSeeker->experiences as $data)
                                                     <tr class="td_style">
                                                         <td>{{$data->designation ?? ''}}</td>
                                                         <td>{{$data->department ?? ''}}</td>
@@ -163,7 +163,7 @@
                                             </table>
                                         </div>
                                         @endif
-                                        @if($jobSeeker->experience)
+                                        @if($jobSeeker->experiences)
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Academic Qualification:</div>
                                         </div>

@@ -39,13 +39,14 @@ class ProfileController extends Controller
     }
 
     public function  cv_preview(){
-        $jobSeeker = JobSeeker::with('career','skill','objective','experience','education','reference','portfolio')
+         $jobSeeker = JobSeeker::with('career','skill','objective','experiences','education','reference','portfolio')
             ->findOrfail(\auth()->user()->id);
+//         return $jobSeeker->experiences;
         return view('jobSeeker.dashboard.profilePreview',compact('jobSeeker'));
     }
 
     public function getPDF($id){
-        $seeker_details = JobSeeker::with('career','skill','objective','experience','education','reference','portfolio')
+        $seeker_details = JobSeeker::with('career','skill','objective','experiences','education','reference','portfolio')
             ->findOrfail(\auth()->user()->id ?? $id);
          $data = [
             'seeker_details' => $seeker_details,

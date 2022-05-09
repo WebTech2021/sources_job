@@ -123,7 +123,7 @@
                 </div>
             </div>
             @endif
-         @if($seeker_details->experience)
+         @if($seeker_details->experiences)
             <div class="col-md-12 table-responsive">
                 <table class="table table-condensed table-hover"  style="padding-bottom: 5px;">
                     <thead>
@@ -143,7 +143,7 @@
                             <th class="title" style="width: 14.28%">End Date</th>
                             <th class="title" style="width: 14.28%">Description</th>
                         </tr>
-                        @foreach($seeker_details->experience as $data)
+                        @foreach($seeker_details->experiences as $data)
                         <tr>
                             <td class="title">{{$data->designation ?? ''}}</td>
                             <td class="title">{{$data->department ?? ''}}</td>
