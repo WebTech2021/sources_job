@@ -139,6 +139,7 @@
                                                     <th><strong>End Date</strong></th>
                                                     <th><strong>Description</strong></th>
                                                 </tr>
+                                                @if($jobSeeker->experience)
                                                 @foreach($jobSeeker->experience as $data)
                                                     <tr class="td_style">
                                                         <td>{{$data->designation ?? ''}}</td>
@@ -152,6 +153,7 @@
                                                         <td>{{$data->description ?? ''}}</td>
                                                     </tr>
                                                 @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
