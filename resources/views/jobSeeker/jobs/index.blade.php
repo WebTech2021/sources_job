@@ -21,26 +21,9 @@
                         </div>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons d-inline-flex">
-                                {{--                                <a href="#" class="dt-button create-new btn btn-primary ml-1 mr-1" tabindex="0"--}}
-                                {{--                                   aria-controls="DataTables_Table_0" type="button" data-toggle="modal" data-target="#default">--}}
-                                {{--                                    <span>{{__('')}} <i class="fas fa-plus"></i></span>--}}
-                                {{--                                </a>--}}
                             </div>
                         </div>
                     </div>
-                    {{--                    <div class="col-sm-4 col-lg-4 mb-1 mt-1">--}}
-                    {{--                        <label for="workplace">{{__('search by job type')}}</label>--}}
-                    {{--                        <select class="select2 form-select select2-hidden-accessible form-control basicInput "--}}
-                    {{--                                tabindex="-1" aria-hidden="true" id="employment_status"--}}
-                    {{--                        >--}}
-                    {{--                            <option value="all" selected>All</option>--}}
-                    {{--                            <option value="full_time">Full Time</option>--}}
-                    {{--                            <option value="part_time">Part Time</option>--}}
-                    {{--                            <option value="contract">Contract</option>--}}
-                    {{--                            <option value="internship">Internship</option>--}}
-                    {{--                            <option value="freelance">Freelance</option>--}}
-                    {{--                        </select>--}}
-                    {{--                    </div>--}}
                     <div class="card-body pt-2 pb-0">
                         <div class="row ">
                             <div class="col-12">
@@ -80,63 +63,6 @@
             });
         })
     </script>
-
-    {{--    --}}
-    {{--    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>--}}
-    {{--    <script>--}}
-    {{--        $(document).ready(function () {--}}
-    {{--            let filterData = {}--}}
-    {{--            load_data()--}}
-
-    {{--            function load_data() {--}}
-    {{--                $('#dataTable').dataTable({--}}
-    {{--                    sDom: "ltipr",--}}
-    {{--                    destroy: true,--}}
-    {{--                    serverSide: true,--}}
-    {{--                    processing: true,--}}
-    {{--                    responsive: true,--}}
-    {{--                    ajax: {--}}
-    {{--                        url: '{!! route('jobSeeker.jobs.list', ['status'=>request('status')]) !!}',--}}
-    {{--                        data: filterData--}}
-    {{--                    },--}}
-
-    {{--                    columns: [--}}
-    {{--                        {--}}
-    {{--                            data: "DT_RowIndex",--}}
-    {{--                            title: 'SI',--}}
-    {{--                            name: "DT_RowIndex",--}}
-    {{--                            searchable: false,--}}
-    {{--                            orderable: false,--}}
-    {{--                            defaultContent: '-'--}}
-    {{--                        },--}}
-    {{--                        {data: "organization_name", title: 'Company Name', searchable: true, defaultContent: '-'},--}}
-    {{--                        {data: "job_title", title: 'job title', searchable: true, defaultContent: '-'},--}}
-    {{--                        {--}}
-    {{--                            data: "min_experience",--}}
-    {{--                            title: ' Min Experience (year)',--}}
-    {{--                            searchable: true,--}}
-    {{--                            defaultContent: '-'--}}
-    {{--                        },--}}
-    {{--                        {data: "vacancy", title: 'vacancy', searchable: true, defaultContent: '-'},--}}
-    {{--                        {data: "salary", title: 'salary', searchable: true, defaultContent: '-'},--}}
-    {{--                        {data: "employment_status", title: 'job type', searchable: true, defaultContent: '-'},--}}
-    {{--                        {data: "expire_date", title: 'Apply DeadLine', searchable: true, defaultContent: '-'},--}}
-    {{--                        {data: "action", title: 'action', orderable: false, searchable: false, defaultContent: '-'},--}}
-    {{--                    ],--}}
-    {{--                });--}}
-    {{--            }--}}
-
-    {{--            $('.basicInput').bind('keyup change', function () {--}}
-    {{--                filterData.status = $('#employment_status').val()--}}
-    {{--                load_data()--}}
-
-    {{--                let queryParams = new URLSearchParams(window.location.search);--}}
-    {{--                queryParams.set("status", $("#employment_status option:selected").text());--}}
-    {{--                history.replaceState(null, null, "?" + queryParams.toString());--}}
-    {{--            });--}}
-
-    {{--        })--}}
-    {{--    </script>--}}
 @endpush
 
 

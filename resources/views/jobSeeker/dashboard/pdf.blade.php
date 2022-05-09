@@ -105,26 +105,29 @@
                     </div>
                 </div>
             </div>
+            @if(sizeof($seeker_details->skill)>0)
             <div class="col-md-12 table-responsive">
                 <table class="table table-condensed table-hover"  style="padding-bottom: 5px;">
                     <thead>
-                    <tr>
+                        <tr>
                         <th class="heading">Skills:</th>
                     </tr>
                     </thead>
                 </table>
                 <div class="mt-1 col-12" style="padding: 5px; margin-bottom: 15px">
-                     <div style="margin-left: 5px;">
+                    <div style="margin-left: 5px;">
                          @foreach($seeker_details->skill as $data)
                              <span>{{$data->skill ?? ' '}}</span>,
                          @endforeach
                      </div>
                 </div>
             </div>
+            @endif
+         @if(sizeof($seeker_details->experience)>0)
             <div class="col-md-12 table-responsive">
                 <table class="table table-condensed table-hover"  style="padding-bottom: 5px;">
                     <thead>
-                    <tr>
+                        <tr>
                         <th class="heading">Employment History:</th>
                     </tr>
                     </thead>
@@ -154,10 +157,12 @@
                     </table>
                 </div>
             </div>
+            @endif
+           @if(sizeof($seeker_details->education)>0)
             <div class="col-md-12 table-responsive">
                 <table class="table table-condensed table-hover" style="padding-bottom: 5px;">
                     <thead>
-                    <tr>
+                        <tr>
                         <th class="heading">Academic Qualification:</th>
                     </tr>
                     </thead>
@@ -185,6 +190,7 @@
                     </table>
                 </div>
             </div>
+            @endif
             <div class="col-md-12 table-responsive">
                 <table class="table table-condensed table-hover" style="padding-bottom: 4px;">
                     <thead>
@@ -334,6 +340,7 @@
                     </table>
                 </div>
             </div>
+            @if(sizeof($seeker_details->portfolio)>0)
             <div class="col-md-12 table-responsive">
                 <table class="table table-condensed table-hover" style="padding-bottom: 5px;">
                     <thead>
@@ -361,7 +368,9 @@
                     </table>
                 </div>
             </div>
-            <div class="col-md-12 table-responsive">
+            @endif
+           @if(sizeof($seeker_details->reference)>0)
+              <div class="col-md-12 table-responsive">
                 <table class="table table-condensed table-hover" style="padding-bottom: 5px;">
                     <thead>
                     <tr>
@@ -392,6 +401,7 @@
                     </table>
                 </div>
             </div>
+           @endif
             <!-- /.col -->
         </div>
         <br><br><br>
