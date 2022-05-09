@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\URL;
 
-class jsEmailVerifyNotification extends Notification
+class EmailVerification extends Notification
 {
 
     public $password;
@@ -66,7 +66,7 @@ class jsEmailVerifyNotification extends Notification
         return (new MailMessage)->view('vendor.mail.js_email_verification',[
             'url' => $verificationUrl,
             'email' => $email,
-            'name' =>$notifiable->name,
+            'name' =>$notifiable->first_name.' '. $notifiable->last_name,
             'password'=>$this->password
 
         ]);

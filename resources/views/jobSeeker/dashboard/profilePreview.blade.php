@@ -51,13 +51,17 @@
                         <div class="head-label">
                             <h4 class="mb-0">{{__('CV Preview')}}</h4>
                         </div>
-                        <div class="dt-action-buttons text-right">
-                            <div class="dt-buttons d-inline-flex">
-                                <a href="{{route('jobSeeker.seeker.pdf',$jobSeeker->id)}}" class="dt-button create-new btn btn-primary ml-1 mr-1" type="button" >
-                                    <span><i class="fas fa-download"></i> {{__('Download CV')}} </span>
-                                </a>
+{{--                        @if($jobSeeker->)--}}
+{{--                            <p>fill up all information for cv</p>--}}
+{{--                        @else--}}
+                            <div class="dt-action-buttons text-right">
+                                <div class="dt-buttons d-inline-flex">
+                                    <a href="{{route('jobSeeker.seeker.pdf',encrypt($jobSeeker->id))}}" class="dt-button create-new btn btn-primary ml-1 mr-1" type="button" >
+                                        <span><i class="fas fa-download"></i> {{__('Download CV')}} </span>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+{{--                        @endif--}}
                     </div>
                     <div class="card-body">
                             <div class="container">
@@ -76,7 +80,7 @@
                                                      class="user-avatar users-avatar-shadow rounded mr-2 my-25 cursor-pointer"
                                                      height="170" width="150" style="border: 1px solid #bfbfbf;" alt="profile image">
                                                  @else
-                                                     <img src="{{asset('images/default.png')}}"
+                                                     <img src="{{asset('images/dummy.jpg')}}"
                                                           class="user-avatar users-avatar-shadow rounded mr-2 my-25 cursor-pointer"
                                                           height="170" width="150" style="border: 1px solid #bfbfbf;" alt="profile image">
                                                  @endif
@@ -112,6 +116,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @if($jobSeeker->skill)
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Skills:</div>
                                         </div>
@@ -124,6 +129,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+                                        @if($jobSeeker->experiences)
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Employment History:</div>
                                         </div>
@@ -139,7 +146,7 @@
                                                     <th><strong>End Date</strong></th>
                                                     <th><strong>Description</strong></th>
                                                 </tr>
-                                                @foreach($jobSeeker->experience as $data)
+                                                @foreach($jobSeeker->experiences as $data)
                                                     <tr class="td_style">
                                                         <td>{{$data->designation ?? ''}}</td>
                                                         <td>{{$data->department ?? ''}}</td>
@@ -155,6 +162,8 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        @endif
+                                        @if($jobSeeker->experiences)
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Academic Qualification:</div>
                                         </div>
@@ -182,6 +191,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        @endif
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">My Expectation:</div>
                                         </div>
@@ -320,6 +330,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        @if(sizeof($jobSeeker->portfolio)>0)
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Portfolios:</div>
                                         </div>
@@ -343,6 +354,9 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        @endif
+
+                                        @if(sizeof($jobSeeker->reference)>0)
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">References:</div>
                                         </div>
@@ -370,6 +384,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -380,3 +395,10 @@
     </section>
 @endsection
 
+<script>
+    var msg = '{{Session::get('alert')}}';
+    var exist = '{{Session::has('alert')}}';
+    if(exist){
+        alert(msg);
+    }
+</script>

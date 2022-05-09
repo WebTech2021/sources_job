@@ -2,19 +2,14 @@
 
 namespace App\Models\JobSeeker;
 
-use App\Models\Country;
 use App\Models\District;
 use App\Models\Division;
-use App\Models\Invite;
 use App\Models\Upazila;
-use App\Notifications\JobSeeker\jsEmailVerifyNotification;
+use App\Notifications\JobSeeker\EmailVerification;
 use App\Notifications\JobSeeker\ResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-
-//use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class JobSeeker extends Authenticatable implements MustVerifyEmail
@@ -67,7 +62,7 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
 
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new jsEmailVerifyNotification());
+        $this->notify(new EmailVerification());
     }
 
     public function country()
@@ -100,7 +95,7 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
     public function objective(){
         return $this->hasOne(CareerAndApplicationInformation::class,'job_seeker_id','id');
     }
-    public function experience(){
+    public function experiences(){
         return $this->hasMany(jsExperience::class,'job_seeker_id','id');
     }
     public function education(){

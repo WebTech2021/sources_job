@@ -58,7 +58,7 @@
                                                              class="user-avatar users-avatar-shadow rounded mr-2 my-25 cursor-pointer"
                                                              height="90" width="90">
                                                     @else
-                                                        <img src="{{asset('images/default.png')}}" id="blah"
+                                                        <img src="{{asset('images/dummy.jpg')}}" id="blah"
                                                              class="user-avatar users-avatar-shadow rounded mr-2 my-25 cursor-pointer"
                                                              height="90" width="90">
                                                     @endif

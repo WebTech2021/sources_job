@@ -151,15 +151,15 @@ class JsJobsController extends Controller
                 })
                 ->addColumn('email', function ($list_data) {
                     $id =  $list_data->organization_id;
-                    return DB::table('sources.organizations')->where('id','=',$id)->first()->email;
+                    return DB::table(config('database.connections.sources.database').'.organizations')->where('id','=',$id)->first()->email;
                 })
                 ->addColumn('phone', function ($list_data) {
                     $id =  $list_data->organization_id;
-                    return DB::table('sources.organizations')->where('id','=',$id)->first()->phone_number;
+                    return DB::table(config('database.connections.sources.database').'.organizations')->where('id','=',$id)->first()->phone_number;
                 })
                 ->addColumn('address', function ($list_data) {
                     $id =  $list_data->organization_id;
-                    return DB::table('sources.organizations')->where('id','=',$id)->first()->address;
+                    return DB::table(config('database.connections.sources.database').'.organizations')->where('id','=',$id)->first()->address;
                 })
                 ->addColumn('status', function ($list_data) {
                     if ($list_data->status == 'pending' ){
