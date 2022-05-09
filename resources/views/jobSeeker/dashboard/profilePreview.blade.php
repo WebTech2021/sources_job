@@ -116,7 +116,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @if(sizeof($jobSeeker->skill)>0)
+                                        @if($jobSeeker->skill)
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Skills:</div>
                                         </div>
@@ -130,7 +130,7 @@
                                             </div>
                                         </div>
                                         @endif
-                                        @if(sizeof($jobSeeker->experience)>0)
+                                        @if($jobSeeker->experience)
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Employment History:</div>
                                         </div>
@@ -146,7 +146,6 @@
                                                     <th><strong>End Date</strong></th>
                                                     <th><strong>Description</strong></th>
                                                 </tr>
-                                                @if($jobSeeker->experience)
                                                 @foreach($jobSeeker->experience as $data)
                                                     <tr class="td_style">
                                                         <td>{{$data->designation ?? ''}}</td>
@@ -160,12 +159,11 @@
                                                         <td>{{$data->description ?? ''}}</td>
                                                     </tr>
                                                 @endforeach
-                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
                                         @endif
-                                        @if(sizeof($jobSeeker->education)>0)
+                                        @if($jobSeeker->experience)
                                         <div class="col-12 mt-5 rounded" style="background-color: #bfbfbf">
                                             <div class="" style="color: #000; padding: 5px 3px;">Academic Qualification:</div>
                                         </div>

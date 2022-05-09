@@ -123,7 +123,7 @@
                 </div>
             </div>
             @endif
-         @if(sizeof($seeker_details->experience)>0)
+         @if($seeker_details->experience)
             <div class="col-md-12 table-responsive">
                 <table class="table table-condensed table-hover"  style="padding-bottom: 5px;">
                     <thead>
