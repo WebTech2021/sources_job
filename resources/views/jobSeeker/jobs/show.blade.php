@@ -112,8 +112,6 @@
                                         <h3>Job Summery</h3>
                                          <p><b>Published on:</b> {{$job_details->updated_at != null ? \Carbon\Carbon::parse($job_details->updated_at)->format('d M Y'):'no deadline issue'}}</p>
                                          <p><b>Job Title:</b> {{$job_details->job_title ?? ''}}</p>
-{{--                                        <p><b>Company Name:</b> {{$job_details->organization->name ?? ''}}</p>--}}
-{{--                                        <p><b>Company Name:</b> {{ \Illuminate\Support\Facades\DB::connection('sources')->table('organization')-> }}</p>--}}
                                          <p><b>Vacancy:</b> {{$job_details->vacancy ?? ''}}</p>
                                         <p><b>Job Type:</b>
                                             @if($job_details->employment_status == 'contact')
