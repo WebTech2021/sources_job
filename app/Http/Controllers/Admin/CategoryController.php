@@ -57,6 +57,23 @@ class CategoryController extends Controller
         }
     }
 
+    public function jobCategories()
+    {
+        $parentCategories = JobCategory::query();
+        if (\request()->cat === 'seeker') {
+            $parentCategories = $parentCategories->with('activeJobSeekers')->withCount('activeJobSeekers as seeker_count');
+        } else {
+            $parentCategories = $parentCategories->with('activeJobs')->withCount('activeJobs as job_count');
+        }
+        if (strlen($key = \request('key')) > 0) {
+            $parentCategories = $parentCategories->where('name', 'LIKE', "%$key%");
+        }
+        if (!$parentCategories) {
+            return response()->json(['success' => false, 'message' => 'Something went wrong!'], 404);
+        }
+        return response()->json(['success' => true, 'categories' => new PaginateResource($parentCategories->paginate(20), CategoryResource::class)]);
+    }
+
     public function destroy($id)
     {
         try {
