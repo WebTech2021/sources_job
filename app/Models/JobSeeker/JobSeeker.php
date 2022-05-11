@@ -108,4 +108,9 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Portfolio::class,'job_seeker_id','id');
     }
 
+    public function featuredProfile()
+    {
+        return $this->morphOne(Feature::class, 'featurable');
+    }
+
 }

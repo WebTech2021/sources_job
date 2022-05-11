@@ -11,10 +11,10 @@ class Jobs extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'organization_id','job_title','vacancy','employment_status','gander',
-        'workplace','job_location','min_experience','job_categories',
-        'salary','salary_type','job_responsibilities','educational_requirements',
-        'additional_requirements','other_benefits','job_context','to_date','job_notes','status','slug','from_date'
+//        'organization_id','job_title','vacancy','employment_status','gander',
+//        'workplace','job_location','min_experience','job_categories',
+//        'salary','salary_type','job_responsibilities','educational_requirements',
+//        'additional_requirements','other_benefits','job_context','to_date','job_notes','status','slug','from_date'
     ];
 
     public function checkApplication(){

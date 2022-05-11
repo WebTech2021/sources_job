@@ -109,11 +109,12 @@
                     <a class="d-flex align-items-center" href="{{route('jobSeeker.jobs.list')}}">
                         <i class="fal fa-list-ul"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('Job offer')}}</span></a>
                 </li>
-            <li class=" nav-item">
-                <a class="d-flex align-items-center" href="#">
-                    <i class="fal fa-list-ul"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('Promote CV')}}</span></a>
-            </li>
-{{--            @endif--}}
+
+{{--            <li class="{{ Route::currentRouteName()=='jobSeeker.make.feature' ? 'active':'' }}  nav-item">--}}
+{{--                <a class="d-flex align-items-center" href="{{route('jobSeeker.make.feature')}}">--}}
+{{--                    <i class="fal fa-list-ul"></i> <span class="menu-title text-truncate" data-i18n="Home">{{__('Promote CV')}}</span></a>--}}
+{{--            </li>--}}
+
         </ul>
     </div>
 </div>

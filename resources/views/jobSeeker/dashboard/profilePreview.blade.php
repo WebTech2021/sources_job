@@ -55,6 +55,19 @@
 {{--                            <p>fill up all information for cv</p>--}}
 {{--                        @else--}}
                             <div class="dt-action-buttons text-right">
+                                @if($jobSeeker->featuredProfile()->exists())
+                                    <p class="badge badge-glow badge-danger">Already Promoted</p>
+                                @else
+                                    <div class="dt-buttons d-inline-flex">
+                                        <form action="{{route('jobSeeker.make.feature',encrypt($jobSeeker->id))}}" method="post">
+                                            @csrf
+                                            <button class="dt-button create-new btn btn-secondary ml-1 mr-1" type="submit"
+                                                    style="width: 100%; border: none; outline:none;">
+                                                <div><i class="fa fa-pen"></i>&nbsp;&nbsp; {{__('Promote CV')}}</div>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
                                 <div class="dt-buttons d-inline-flex">
                                     <a href="{{route('jobSeeker.seeker.pdf',encrypt($jobSeeker->id))}}" class="dt-button create-new btn btn-primary ml-1 mr-1" type="button" >
                                         <span><i class="fas fa-download"></i> {{__('Download CV')}} </span>
