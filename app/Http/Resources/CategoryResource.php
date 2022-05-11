@@ -16,7 +16,14 @@ class CategoryResource extends JsonResource
     {
         return [
             'id' => encrypt($this->id),
-            'name' => $this->name
+            'name' => $this->name,
+            'slug' => $this->slug,
+            'active_jobs_count'=> $this->whenLoaded('activeJobs', function (){
+                return $this->job_count;
+            }),
+            'active_seeker_count'=> $this->whenLoaded('activeJobSeekers', function (){
+                return $this->seeker_count;
+            }),
         ];
     }
 }

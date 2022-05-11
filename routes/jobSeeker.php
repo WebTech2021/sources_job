@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\JobSeeker\Auth\ForgotPasswordController;
 use App\Http\Controllers\JobSeeker\Auth\LoginController as jsLoginController;
 use App\Http\Controllers\JobSeeker\Auth\RegisterController;
