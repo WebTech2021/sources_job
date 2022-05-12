@@ -15,7 +15,7 @@ class CreateFeaturesTable extends Migration
     {
         Schema::create('features', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->enum('type',['feature','urgent'])->default('feature');
             $table->string('featurable_type');
             $table->unsignedBigInteger('featurable_id');
             $table->enum('status',['pending','approved','unapproved','expired'])->default('pending');
