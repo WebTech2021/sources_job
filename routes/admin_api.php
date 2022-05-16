@@ -23,5 +23,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::apiResource('categories',CategoryController::class);
         Route::apiResource('educations',EducationController::class);
+        Route::apiResource('feature-setting',\App\Http\Controllers\Admin\FeatureSettingController::class);
     });
 });

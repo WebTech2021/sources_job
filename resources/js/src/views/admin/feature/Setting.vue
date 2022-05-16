@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row class="d-flex justify-content-center">
-      <b-col cols="6">
+      <b-col cols="12">
         <div class="card">
           <div class="card-header">
             <span class="card-title" />
@@ -173,36 +173,36 @@
             </validation-provider>
           </b-form-group>
           <b-form-group
-            label="Name"
-            label-for="login-name"
+            label="Days"
+            label-for="days"
           >
             <validation-provider
               #default="{ errors }"
-              vid="name"
-              name="name"
+              vid="days"
+              name="days"
               rules="required"
             >
               <b-form-input
-                v-model="form.name"
+                v-model="form.days"
                 :state="errors.length > 0 ? false:null"
                 name="login-name"
-                placeholder="Enter your name"
+                placeholder="Enter the number of days"
               />
               <small class="text-danger">{{ errors[0] }}</small>
             </validation-provider>
           </b-form-group>
           <b-form-group
-            label="Name"
-            label-for="login-name"
+            label="Cost"
+            label-for="cost"
           >
             <validation-provider
               #default="{ errors }"
-              vid="name"
-              name="name"
+              vid="cost"
+              name="cost"
               rules="required"
             >
               <b-form-input
-                v-model="form.name"
+                v-model="form.cost"
                 :state="errors.length > 0 ? false:null"
                 name="login-name"
                 placeholder="Enter your name"
@@ -216,7 +216,7 @@
         <b-button
           size="md"
           variant="outline-secondary"
-          @click.prevent="$bvModal.hide('modal-add-education')"
+          @click.prevent="$bvModal.hide('modal-add-setting')"
         >
           Cancel
         </b-button>
@@ -271,20 +271,34 @@ export default {
   },
   data() {
     return {
-      selected: 'feature',
       options: [
         { value: 'feature', text: 'Feature' },
         { value: 'urgent', text: 'Urgent' },
       ],
       required,
+      selected: 'feature',
       form: {
-        name: '',
+        days: '',
+        cost: '',
+        type: '',
       },
       columns: [
         {
-          label: 'Name',
-          field: 'name',
+          label: 'Type',
+          field: 'type',
           thClass: 'text-center',
+          tdClass: 'text-center',
+        },
+        {
+          label: 'Days',
+          field: 'days',
+          thClass: 'text-center',
+          tdClass: 'text-center',
+        }, {
+          label: 'Cost',
+          field: 'cost',
+          thClass: 'text-center',
+          tdClass: 'text-center',
         },
         {
           label: 'Action',
@@ -300,94 +314,96 @@ export default {
   },
   computed: {
     rows() {
-      return this.$store.getters['admin/education/EDUCATIONS']
+      return this.$store.getters['admin/settings/SETTINGS']
     },
   },
   created() {
-    this.getEducations()
+    this.getSettings()
   },
   methods: {
     clearForm() {
       for (const key in this.form) {
         this.form[key] = ''
       }
+      this.selected = 'feature'
     },
     openModal() {
       this.edit = false
       this.clearForm()
-      this.$bvModal.show('modal-add-education')
+      this.$bvModal.show('modal-add-setting')
     },
     openEditModal(item) {
       this.clearForm()
       this.edit = true
-      this.$store.dispatch('admin/education/EDUCATION_DETAIL', {
-        id: item.id,
-      }).then(response => {
-        this.form.id = response.id
-        this.form.name = response.name
-        this.$bvModal.show('modal-add-education')
-      })
+
+      this.form.id = item.id
+      this.selected = item.type
+      this.form.days = item.days
+      this.form.cost = item.cost
+      this.$bvModal.show('modal-add-setting')
     },
-    editEducation() {
-      this.$refs.addEducation.validate().then(success => {
+    editSetting() {
+      this.$refs.addSetting.validate().then(success => {
         if (success) {
-          this.$store.dispatch('admin/education/UPDATE_EDUCATION', this.form)
+          this.form.type = this.selected
+          this.$store.dispatch('admin/settings/UPDATE_SETTING', this.form)
             .then(() => {
-              this.$bvModal.hide('modal-add-education')
+              this.$bvModal.hide('modal-add-setting')
               this.$toast({
                 component: ToastificationContent,
                 props: {
                   title: 'Success',
                   icon: 'BellIcon',
-                  text: 'Education updated',
+                  text: 'Setting updated',
                   variant: 'success',
                 },
               })
               this.edit = false
-              this.$refs.addEducation.reset()
-              this.getEducations()
+              this.$refs.addSetting.reset()
+              this.getSettings()
             })
             .catch(error => {
-              this.$refs.addEducation.setErrors(error.response.data.errors)
+              this.$refs.addSetting.setErrors(error.response.data.errors)
             })
         }
       })
     },
     handleSubmit(edit) {
       if (edit) {
-        this.editEducation()
+        this.editSetting()
         return
       }
-      this.$refs.addEducation.validate().then(success => {
+      this.$refs.addSetting.validate().then(success => {
         if (success) {
-          this.$store.dispatch('admin/education/STORE_EDUCATION', this.form)
+          this.form.type = this.selected
+          this.$store.dispatch('admin/settings/STORE_SETTING', this.form)
             .then(() => {
               this.$nextTick(() => {
-                this.$refs['education-add-modal'].hide()
+                this.$refs['setting-add-modal'].hide()
                 for (const key in this.form) {
                   this.form[key] = ''
                 }
-                this.$refs.addEducation.reset()
+                this.$refs.addSetting.reset()
               })
-              this.getEducations()
+              this.getSettings()
               this.$toast({
                 component: ToastificationContent,
                 props: {
                   title: 'Success',
                   icon: 'BellIcon',
-                  text: 'Education added',
+                  text: 'Setting added',
                   variant: 'success',
                 },
               })
             })
             .catch(error => {
-              this.$refs.addEducation.setErrors(error.response.data.errors)
+              this.$refs.addSetting.setErrors(error.response.data.errors)
             })
         }
       })
     },
-    getEducations(current_page = 1) {
-      this.$store.dispatch('admin/education/EDUCATION_LIST', {
+    getSettings(current_page = 1) {
+      this.$store.dispatch('admin/settings/SETTING_LIST', {
         params: {
           page: current_page,
           per_page: this.pageLength,
@@ -396,13 +412,13 @@ export default {
       })
     },
     handleChangePage(page) {
-      this.getEducations(page)
+      this.getSettings(page)
     },
     selectedPage(value) {
-      this.getEducations(this.page, value)
+      this.getSettings(this.page, value)
     },
     searchHandler() {
-      this.getEducations(this.page, this.pageLength, this.searchTerm)
+      this.getSettings(this.page, this.pageLength, this.searchTerm)
     },
     deleteData(slug) {
       this.$swal({
@@ -419,14 +435,14 @@ export default {
       })
         .then(result => {
           if (result.value) {
-            this.$store.dispatch('admin/education/DELETE_EDUCATION', slug)
+            this.$store.dispatch('admin/settings/DELETE_SETTING', slug)
               .then(response => {
                 if (response.data.success) {
-                  this.getEducations()
+                  this.getSettings()
                   this.$swal({
                     icon: 'success',
                     title: 'Deleted!',
-                    text: 'Education removed',
+                    text: 'Setting removed',
                     customClass: {
                       confirmButton: 'btn btn-success',
                     },
