@@ -36,15 +36,11 @@
               >
                 <!-- Column: Name -->
                 <span
-                  v-if="props.column.field === 'contact'"
+                  v-if="props.column.field === 'cost'"
                   class="text-nowrap"
                 >
                   <!-- link avatar -->
-                  <b-avatar
-                    href="#foobar"
-                    :src="props.row.image"
-                  />
-                  <span>{{ props.row.first_name +' '+props.row.last_name }}</span>
+                  <span>{{ props.row.cost }} BDT</span>
 
                 </span>
                 <!-- Column: ads count -->
@@ -288,23 +284,27 @@ export default {
           field: 'type',
           thClass: 'text-center',
           tdClass: 'text-center',
+          sortable: false,
         },
         {
           label: 'Days',
           field: 'days',
           thClass: 'text-center',
           tdClass: 'text-center',
+          sortable: true,
         }, {
           label: 'Cost',
           field: 'cost',
           thClass: 'text-center',
           tdClass: 'text-center',
+          sortable: false,
         },
         {
           label: 'Action',
           field: 'action',
           thClass: 'text-center',
           tdClass: 'text-center',
+          sortable: false,
         },
       ],
       pageLength: 10,
