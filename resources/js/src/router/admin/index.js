@@ -76,4 +76,25 @@ export default [
 
     },
   },
+  {
+    path: '/admin/feature-setting',
+    name: 'admin.feature.setting',
+    // eslint-disable-next-line import/no-unresolved
+    component: () => import('@/views/admin/feature/Setting.vue'),
+    meta: {
+      authAdminOnly: true,
+      pageTitle: 'Setting',
+      breadcrumb: [
+        {
+          text: 'Feature',
+          active: true,
+        },
+        {
+          text: 'setting',
+          active: true,
+        },
+      ],
+
+    },
+  },
 ]

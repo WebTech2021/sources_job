@@ -9,6 +9,6 @@ class FeatureData extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'type','days','total_cost'
+        'type','days','cost'
     ];
 }

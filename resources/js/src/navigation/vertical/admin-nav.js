@@ -24,4 +24,13 @@ export default [
     route: 'admin.job.education',
     icon: 'BookIcon',
   },
+  {
+    title: 'Feature',
+    icon: 'AwardIcon',
+    children: [{
+      title: 'Setting',
+      route: 'admin.feature.setting',
+      icon: 'SlidersIcon',
+    }],
+  },
 ]
