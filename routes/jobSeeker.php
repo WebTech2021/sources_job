@@ -84,6 +84,7 @@ Route::group(['as' => 'jobSeeker.'], function () {
         Route::put('invite/acceptReject/{id}',[JsJobsController::class,'acceptReject'])->name('acceptReject');
 
         Route::get('/job/seeker/{id}', [ProfileController::class, 'getPDF'])->name('seeker.pdf');
+        Route::post('/cv/feature', [ProfileController::class, 'createFeature'])->name('make.feature');
 
     });
 });

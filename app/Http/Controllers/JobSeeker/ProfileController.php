@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonalInfoRequest;
 use App\Models\District;
 use App\Models\Division;
+use App\Models\JobSeeker\Feature;
 use App\Models\JobSeeker\JobSeeker;
 use App\Models\Upazila;
 use App\Traits\UploadAble;
@@ -53,6 +54,20 @@ class ProfileController extends Controller
           ];
          $pdf = PDF::loadHtml(view('jobSeeker.dashboard.pdf', $data));
         return $pdf->stream( $seeker_details->first_name.' '.$seeker_details->last_name.'.pdf');
+    }
+
+    public function createFeature(){
+        if (Feature::where('featurable_id', '=', auth()->user()->id)->exists()){
+            Toastr::error('Already featured listed!','Error');
+            return  redirect()->back();
+        }else{
+            Feature::create([
+                'type' => 'feature',
+                'featurable_type' => JobSeeker::class,
+                'featurable_id' => auth('jobSeeker')->user()->id,
+            ]);
+            return back();
+        }
     }
 
 
