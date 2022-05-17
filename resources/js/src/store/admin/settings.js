@@ -1,51 +1,63 @@
 import { axiosAdmin } from '@axios'
 
 export default {
+  namespaced: true,
   state: {
-    data: {},
+    settings: [],
   },
   getters: {
-    getSettingsData(state) {
-      return state.data
-    },
-    getTermsCondition(state) {
-      return state.data.terms_condition
-    },
-    getBloggerContent(state) {
-      return state.data.blogger_dashboard
-    },
-    getApplyForAdContent(state) {
-      return state.data.apply_ad
+    SETTINGS(state) {
+      return state.settings
     },
   },
   mutations: {
-    setSettingsData(state, values) {
-      state.data = values
+    SET_SETTINGS(state, values) {
+      state.settings = values
     },
   },
   actions: {
-    storeSettings(context, payload) {
+    SETTING_LIST(context, payload) {
       return new Promise((resolve, reject) => {
-        axiosAdmin.post('api/v1/admin/store-setting', payload)
-          .then(res => {
-            console.log(res)
-            resolve()
+        axiosAdmin.get('api/v1/admin/feature-setting', payload)
+          .then(response => {
+            context.commit('SET_SETTINGS', response.data.features)
+            resolve('success')
           }).catch(error => {
             reject(error)
           })
       })
     },
-    settings(context) {
+    STORE_SETTING(context, payload) {
       return new Promise((resolve, reject) => {
-        axiosAdmin.get('api/v1/admin/get-setting')
-          .then(res => {
-            console.log(res)
-            context.commit('setSettingsData', res.data.settings)
-            resolve()
+        axiosAdmin.post('api/v1/admin/feature-setting', payload)
+          .then(() => {
+            resolve('success')
+          }).catch(error => {
+            reject(error)
+          })
+      })
+    },
+    DELETE_SETTING(context, payload) {
+      return new Promise((resolve, reject) => {
+        axiosAdmin.delete(`api/v1/admin/feature-setting/${payload}`)
+          .then(response => {
+            resolve(response)
+          }).catch(error => {
+            reject(error)
+          })
+      })
+    },
+    UPDATE_SETTING(context, payload) {
+        console.log(payload.id)
+      return new Promise((resolve, reject) => {
+        axiosAdmin.put(`api/v1/admin/feature-setting/${payload.id}`, payload)
+          .then(() => {
+            resolve('success')
           }).catch(error => {
             reject(error)
           })
       })
     },
   },
+
 }
