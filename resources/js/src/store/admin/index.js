@@ -10,6 +10,7 @@ import withdrawal from './withdrawal'
 import jobSeeker from './job-seeker'
 import jobs from './job'
 import education from './education'
+import notice from './notice'
 
 export default {
   namespaced: true,
@@ -25,6 +26,7 @@ export default {
     jobSeeker,
     jobs,
     education,
+    notice,
   },
   state: {
     admin: null,

@@ -22,7 +22,7 @@ export default {
           .then(response => {
             console.log(response)
             context.commit('SET_SEEKERS', response.data.seekers)
-            resolve('success')
+            resolve(response)
           }).catch(error => {
             reject(error)
           })
