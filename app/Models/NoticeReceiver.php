@@ -14,6 +14,7 @@ class NoticeReceiver extends Model
     {
        return $this->belongsTo(Notice::class, 'notice_id');
     }
+
     public function markRead($id)
     {
         $this->find($id)->update(['read_at'=>now()]);

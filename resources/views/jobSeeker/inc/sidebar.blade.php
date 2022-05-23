@@ -112,6 +112,11 @@
                     <i class="fal fa-list-ul"></i> <span class="menu-title text-truncate"
                                                          data-i18n="Home">{{__('Job offer')}}</span></a>
             </li>
+            <li class="{{ Route::currentRouteName()=='jobSeeker.seeker.notice' ? 'active':'' }} nav-item">
+                <a class="d-flex align-items-center" href="{{route('jobSeeker.seeker.notice')}}">
+                    <i class="fas fa-bell"></i> <span class="menu-title text-truncate"
+                                                         data-i18n="Home">{{__('Notice')}}</span></a>
+            </li>
         </ul>
     </div>
 </div>

@@ -86,5 +86,10 @@ Route::group(['as' => 'jobSeeker.'], function () {
         Route::get('/job/seeker/{id}', [ProfileController::class, 'getPDF'])->name('seeker.pdf');
         Route::post('/cv/feature', [ProfileController::class, 'createFeature'])->name('make.feature');
 
+
+        Route::get('/notice', [\App\Http\Controllers\Admin\NoticeController::class, 'getNotice'])->name('seeker.notice');
+        Route::post('notice-read',[\App\Http\Controllers\Admin\NoticeController::class,'noticeRead'])->name('notice.read');
+
+
     });
 });
