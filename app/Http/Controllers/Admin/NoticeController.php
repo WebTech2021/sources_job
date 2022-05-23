@@ -61,7 +61,6 @@ class NoticeController extends Controller
             DB::commit();
             return response()->json(['success' => true, 'message' => 'Successfully Sent']);
         } catch (\Exception $exception) {
-            return $exception;
             DB::rollBack();
         }
 
