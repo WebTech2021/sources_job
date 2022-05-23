@@ -18,6 +18,7 @@ class CreateFeaturesTable extends Migration
             $table->enum('type',['feature','urgent'])->default('feature');
             $table->string('featurable_type');
             $table->unsignedBigInteger('featurable_id');
+            $table->dateTime('expired')->nullable();
             $table->enum('status',['pending','approved','unapproved','expired'])->default('pending');
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ class CreateFeatureDataTable extends Migration
             $table->id();
             $table->enum('type',['feature','urgent'])->default('feature');
             $table->string('days');
-            $table->string('total_cost');
+            $table->string('cost');
             $table->timestamps();
         });
     }
