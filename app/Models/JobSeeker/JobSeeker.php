@@ -4,6 +4,8 @@ namespace App\Models\JobSeeker;
 
 use App\Models\District;
 use App\Models\Division;
+use App\Models\Notice;
+use App\Models\NoticeReceiver;
 use App\Models\Upazila;
 use App\Notifications\JobSeeker\EmailVerification;
 use App\Notifications\JobSeeker\ResetPasswordNotification;
@@ -111,6 +113,15 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
     public function featuredProfile()
     {
         return $this->morphOne(Feature::class, 'featurable');
+    }
+
+    public function notices()
+    {
+        return $this->hasManyThrough(Notice::class, NoticeReceiver::class, 'notice_id', 'id');
+    }
+    public function myNotice()
+    {
+        return $this->hasMany(NoticeReceiver::class, 'user_id')->latest();
     }
 
 }

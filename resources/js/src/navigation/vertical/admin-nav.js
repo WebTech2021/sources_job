@@ -33,4 +33,22 @@ export default [
       icon: 'SlidersIcon',
     }],
   },
+
+  {
+    title: 'Custom Notice',
+    icon: 'ListIcon',
+    children: [
+      {
+        title: 'Create New',
+        icon: 'PlusIcon',
+        route: { name: 'admin.notice.create' },
+      },
+      {
+        title: 'All Notice',
+        icon: 'FileIcon',
+        route: { name: 'admin.notice.list' },
+      },
+    ],
+
+  },
 ]

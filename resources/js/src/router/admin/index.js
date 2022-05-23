@@ -97,4 +97,42 @@ export default [
 
     },
   },
+  {
+    path: '/admin/notice-list',
+    name: 'admin.notice.list',
+    component: () => import('@/views/admin/notice/Index.vue'),
+    meta: {
+      authAdminOnly: true,
+      pageTitle: 'All Notice',
+      breadcrumb: [
+        {
+          text: 'Notice',
+          active: true,
+        },
+        {
+          text: 'List',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: '/admin/add-notice',
+    name: 'admin.notice.create',
+    component: () => import('@/views/admin/notice/Create.vue'),
+    meta: {
+      authAdminOnly: true,
+      pageTitle: 'All Notice',
+      breadcrumb: [
+        {
+          text: 'Notice',
+          active: true,
+        },
+        {
+          text: 'List',
+          active: true,
+        },
+      ],
+    },
+  },
 ]
