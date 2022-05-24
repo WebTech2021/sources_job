@@ -57,11 +57,11 @@
                                     <label class="form-label" for="modern-last-name">Job Type:<span style="color:red">*</span></label>
                                     <select class="select2 form-control" id="" name="job_type" required>
                                         <option disabled selected>Select Option</option>
-                                        <option value="full_time" {{old('job_type',$keyFeatures->job_type?? '') == 'full_time'? 'selected':'' }}>FullTime</option>
-                                        <option value="par_time" {{old('job_type',$keyFeatures->job_type?? '') == 'par_time'? 'selected':'' }}>ParTime</option>
-                                        <option value="online" {{old('job_type',$keyFeatures->job_type?? '') == 'online'? 'selected':'' }}>Online</option>
-                                        <option value="internship" {{old('job_type',$keyFeatures->job_type?? '') == 'internship'? 'selected':'' }}>Internship</option>
-                                        <option value="contractual" {{old('job_type',$keyFeatures->job_type?? '') == 'contractual'? 'selected':'' }}>Contractual</option>
+                                        <option value="Full Time" {{old('job_type',$keyFeatures->job_type?? '') == 'Full Time'? 'selected':'' }}>Full Time</option>
+                                        <option value="Part Time" {{old('job_type',$keyFeatures->job_type?? '') == 'Part Time'? 'selected':'' }}>Part Time</option>
+                                        <option value="Online" {{old('job_type',$keyFeatures->job_type?? '') == 'Online'? 'selected':'' }}>Online</option>
+                                        <option value="Internship" {{old('job_type',$keyFeatures->job_type?? '') == 'Internship'? 'selected':'' }}>Internship</option>
+                                        <option value="Contractual" {{old('job_type',$keyFeatures->job_type?? '') == 'Contractual'? 'selected':'' }}>Contractual</option>
                                     </select>
                                 </div>
                                 <div class="mb-1 col-md-3">

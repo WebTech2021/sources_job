@@ -56,7 +56,10 @@
 {{--                        @else--}}
                             <div class="dt-action-buttons text-right">
                                 @if($jobSeeker->featuredProfile()->exists())
-                                    <p class="badge badge-glow badge-danger">Already Promoted</p>
+{{--                                    <p class="badge badge-glow badge-danger">Already Promoted</p>--}}
+                                    <button type="button" class="btn btn-secondary active" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                                        Tooltip on top
+                                    </button>
                                 @else
                                     <div class="dt-buttons d-inline-flex">
                                         <form action="{{route('jobSeeker.make.feature',encrypt($jobSeeker->id))}}" method="post">

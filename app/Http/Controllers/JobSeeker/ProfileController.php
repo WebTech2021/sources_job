@@ -58,7 +58,7 @@ class ProfileController extends Controller
 
     public function createFeature(){
         if (Feature::where('featurable_id', '=', auth()->user()->id)->exists()){
-            Toastr::error('Already featured listed!','Error');
+            Toastr::error('Already Promote listed!','Error');
             return  redirect()->back();
         }else{
             Feature::create([
