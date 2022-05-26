@@ -33,8 +33,8 @@
                     cols="4"
                   >
                     <b-form-group
-                      label="Search for company"
-                      label-for="company"
+                      label="Search for seeker"
+                      label-for="seeker"
                     >
                       <validation-provider
                         #default="{ errors }"
@@ -43,7 +43,7 @@
                       >
                         <b-form-input
                           v-model="searchSeeker"
-                          placeholder="Search company..."
+                          placeholder="Search seeker..."
                           :state="errors.length > 0 ? false:null"
                           type="text"
                           class="d-inline-block"
@@ -242,8 +242,8 @@ export default {
         type: 'all',
       },
       options: [
-        { value: 'all', text: 'All advertisers ' },
-        { value: 'select', text: 'Select Advertisers' },
+        { value: 'all', text: 'All job seeker ' },
+        { value: 'select', text: 'Select Job Seeker' },
       ],
       columns: [
         {

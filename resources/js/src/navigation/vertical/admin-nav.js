@@ -35,7 +35,7 @@ export default [
   },
 
   {
-    title: 'Custom Notice',
+    title: 'Notice Board',
     icon: 'ListIcon',
     children: [
       {

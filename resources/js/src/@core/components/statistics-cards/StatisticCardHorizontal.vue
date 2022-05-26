@@ -2,10 +2,12 @@
   <b-card no-body>
     <b-card-body class="d-flex justify-content-between align-items-center">
       <div class="truncate">
-        <h2 class="mb-25 font-weight-bolder">
-          {{ statistic }}
-        </h2>
-        <span>{{ statisticTitle }}</span>
+        <router-link :to="{name:route}">
+          <h2 class="mb-25 font-weight-bolder">
+            {{ statistic }}
+          </h2>
+          <span>{{ statisticTitle }}</span>
+        </router-link>
       </div>
       <b-avatar
         :variant="`light-${color}`"
@@ -31,6 +33,10 @@ export default {
   },
   props: {
     icon: {
+      type: String,
+      required: true,
+    },
+    route: {
       type: String,
       required: true,
     },
