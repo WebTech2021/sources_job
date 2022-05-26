@@ -1,11 +1,11 @@
 <template>
   <ul>
-<!--    <div-->
-<!--      class="text-center mb-1 mt-1"-->
-<!--    >-->
-<!--      Account Balance<br>-->
-<!--      BDT. {{ balance }}-->
-<!--    </div>-->
+    <!--    <div-->
+    <!--      class="text-center mb-1 mt-1"-->
+    <!--    >-->
+    <!--      Account Balance<br>-->
+    <!--      BDT. {{ balance }}-->
+    <!--    </div>-->
     <component
       :is="resolveNavItemComponent(item)"
       v-for="item in items"
@@ -48,17 +48,17 @@ export default {
     }
   },
   mounted() {
-    if (this.$route.meta.authUserOnly) {
-      axiosIns.get('api/v1/profile/current-balance')
-        .then(response => {
-          this.balance = response.data.balance
-        })
-    } else {
-      axiosAdmin.get('api/v1/admin/current-balance')
-        .then(response => {
-          this.balance = response.data.balance
-        })
-    }
+    // if (this.$route.meta.authUserOnly) {
+    //   axiosIns.get('api/v1/profile/current-balance')
+    //     .then(response => {
+    //       this.balance = response.data.balance
+    //     })
+    // } else {
+    //   axiosAdmin.get('api/v1/admin/current-balance')
+    //     .then(response => {
+    //       this.balance = response.data.balance
+    //     })
+    // }
   },
 }
 </script>

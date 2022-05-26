@@ -10,7 +10,7 @@ use PhpOffice\PhpSpreadsheet\Calculation\Category;
 class Jobs extends Model
 {
     use HasFactory;
-    protected $fillable =[
+    protected $fillable =['status'
 //        'organization_id','job_title','vacancy','employment_status','gander',
 //        'workplace','job_location','min_experience','job_categories',
 //        'salary','salary_type','job_responsibilities','educational_requirements',
