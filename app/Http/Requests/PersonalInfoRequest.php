@@ -25,12 +25,13 @@ class PersonalInfoRequest extends FormRequest
     {
         return [
             'image'=>['image','mimes:jpg,png'],
-            'first_name' => ['required','regex:/^[\pL\s\-]+$/u','max:255'],
-            'last_name' => ['required','regex:/^[\pL\s\-]+$/u','max:255'],
+            'email'=>['required','unique:job_seekers,email,'.$this->id],
+            'first_name' => ['required','max:255'],
+            'last_name' => ['required','max:255'],
             'phone_number' => ['bail','numeric','digits:11','regex:/^(?:\+?88)?01[3-9]\d{8}$/','unique:job_seekers,phone_number,'.$this->id],
             'nid' => ['numeric','digits_between:10,17','unique:job_seekers,nid,'.$this->id],
-            'father_name'=>['required','regex:/^[\pL\s\-]+$/u','max:255'],
-            'mother_name'=>['required','regex:/^[\pL\s\-]+$/u','max:255'],
+            'father_name'=>['required','max:255'],
+            'mother_name'=>['required','max:255'],
         ];
     }
 

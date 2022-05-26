@@ -19,9 +19,9 @@ class JsJobsController extends Controller
 {
     public function get_job_list(Request $request)
     {
-        if (! \auth()->user()->career){
+        if (!\auth()->user()->career) {
             $job_data = [];
-        }else{
+        } else {
             $info = \auth()->user()->career->category->activeJobs();
             $job_data = jobCount(request()->employment_status, $info);
         }
@@ -37,9 +37,9 @@ class JsJobsController extends Controller
                     }
                 })
                 ->addColumn('nameWithImage', function ($job_data) {
-                    $id =  $job_data->organization_id;
-                    $logo =  DB::table('sources.organizations')->where('id','=',$id)->first()->logo;
-                    $name = DB::table('sources.organizations')->where('id','=',$id)->first()->name;
+                    $id = $job_data->organization_id;
+                    $logo = $this->getSourcesOrgTable()->where('id', '=', $id)->first()->logo;
+                    $name = $this->getSourcesOrgTable()->where('id', '=', $id)->first()->name;
                     return nameWithImage1($name, $logo, 'imagepath.companyLogo',
                         'images/company-logo/default-logo.png');
                 })
@@ -70,7 +70,7 @@ class JsJobsController extends Controller
                 ->addColumn('job_title', function ($job_data) {
                     return '<a href="' . route('jobSeeker.jobs.details', encrypt($job_data->id)) . '">' . $job_data->job_title . '</a>';
                 })
-                ->rawColumns(['nameWithImage', 'expire_date', 'salary', 'action', 'employment_status','job_title'])
+                ->rawColumns(['nameWithImage', 'expire_date', 'salary', 'action', 'employment_status', 'job_title'])
                 ->tojson();
         }
 
@@ -81,14 +81,14 @@ class JsJobsController extends Controller
 
     public function job_details($id)
     {
-         try {
-             $job_details = Jobs::find($id);
-             return view('jobSeeker.jobs.show', compact('job_details'));
+        try {
+            $job_details = Jobs::find($id);
+            return view('jobSeeker.jobs.show', compact('job_details'));
 
-         }catch (DecryptException $e){
-             Toastr::error('Something went wrong!', 'Error');
-             return back();
-         }
+        } catch (DecryptException $e) {
+            Toastr::error('Something went wrong!', 'Error');
+            return back();
+        }
 
     }
 
@@ -104,7 +104,7 @@ class JsJobsController extends Controller
             Toastr::success('Apply Successfully!', 'success');
             return redirect()->back();
 
-        }catch (DecryptException $e){
+        } catch (DecryptException $e) {
             Toastr::error('Something went wrong!', 'Error');
             return back();
         }
@@ -137,71 +137,76 @@ class JsJobsController extends Controller
 //        return view('jobSeeker.applicationStatus.index');
 //    }
 
-    public function inviteList(){
+    public function inviteList()
+    {
         if (\request()->ajax()) {
-            $list_data = Invite::where(['job_seeker_id'=> auth('jobSeeker')->user()->id])->get();
+            $list_data = Invite::where(['job_seeker_id' => auth('jobSeeker')->user()->id])->get();
             return DataTables::of($list_data)
                 ->addIndexColumn()
                 ->addColumn('nameWithImage', function ($list_data) {
-                    $id =  $list_data->organization_id;
-                    $logo =  DB::table('sources.organizations')->where('id','=',$id)->first()->logo;
-                    $name = DB::table('sources.organizations')->where('id','=',$id)->first()->name;
+                    $id = $list_data->organization_id;
+                    $logo = $this->getSourcesOrgTable()->where('id', '=', $id)->first()->logo;
+                    $name = $this->getSourcesOrgTable()->where('id', '=', $id)->first()->name;
                     return nameWithImage1($name, $logo, 'imagepath.companyLogo',
                         'images/company-logo/default-logo.png');
                 })
                 ->addColumn('email', function ($list_data) {
-                    $id =  $list_data->organization_id;
-                    return DB::table(config('database.connections.sources.database').'.organizations')->where('id','=',$id)->first()->email;
+                    $id = $list_data->organization_id;
+                    return $this->getSourcesOrgTable()->where('id', '=', $id)->first()->email;
                 })
                 ->addColumn('phone', function ($list_data) {
-                    $id =  $list_data->organization_id;
-                    return DB::table(config('database.connections.sources.database').'.organizations')->where('id','=',$id)->first()->phone_number;
+                    $id = $list_data->organization_id;
+                    return $this->getSourcesOrgTable()->where('id', '=', $id)->first()->phone_number;
                 })
                 ->addColumn('address', function ($list_data) {
-                    $id =  $list_data->organization_id;
-                    return DB::table(config('database.connections.sources.database').'.organizations')->where('id','=',$id)->first()->address;
+                    $id = $list_data->organization_id;
+                    return $this->getSourcesOrgTable()->where('id', '=', $id)->first()->address;
                 })
                 ->addColumn('status', function ($list_data) {
-                    if ($list_data->status == 'pending' ){
+                    if ($list_data->status == 'pending') {
                         return '<div class="badge badge-light-warning">Pending</div>';
-                    }elseif ($list_data->status == 'accept'){
+                    } elseif ($list_data->status == 'accept') {
                         return '<div class="badge badge-light-success">Accept</div>';
-                    }else{
+                    } else {
                         return '<div class="badge badge-light-danger">Reject</div>';
                     }
                 })
-
                 ->addColumn('action', function ($list_data) {
-                    return view('jobSeeker.inviteList.action_button',compact('list_data'));
+                    return view('jobSeeker.inviteList.action_button', compact('list_data'));
                 })
-                ->rawColumns(['action','nameWithImage','email','address','phone','status'])
+                ->rawColumns(['action', 'nameWithImage', 'email', 'address', 'phone', 'status'])
                 ->tojson();
         }
         return view('jobSeeker.inviteList.index');
     }
-    public function acceptReject(Request $request,$id){
+
+    public function acceptReject(Request $request, $id)
+    {
         try {
             if ($request->status == 'accept') {
                 $data = Invite::findOrFail(decrypt($id));
                 $data->update($request->except(['token']));
                 Toastr::success('Accept Successfully!', 'success');
                 return redirect()->back();
-            }else{
+            } else {
                 $data = Invite::findOrFail(decrypt($id));
                 $data->update($request->except(['token']));
                 Toastr::success('Reject Successfully!', 'success');
                 return redirect()->back();
             }
 
-        }catch (DecryptException $e){
+        } catch (DecryptException $e) {
             Toastr::error('Something went wrong!', 'Error');
             return back();
         }
 
 
-
     }
 
+    public function getSourcesOrgTable()
+    {
+        return DB::connection('sources')->table('organizations');
+    }
 
 
 }

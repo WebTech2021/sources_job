@@ -34,7 +34,7 @@
                              @method('PUT')
                             <div class="row mt-2">
                                      <div class="form-group col-sm-12">
-                                        <h5>Career And Application Objective</h5>
+{{--                                        <h5>Career And Application Objective</h5>--}}
                                     </div>
                               </div>
                             <div class="row mt-2">

@@ -35,7 +35,7 @@ class ProfileController extends Controller
         $info = implode(',', $request->language);
         $jobSeeker->update($request->except(['token','image','language']));
         $jobSeeker->update(['language'=>$info]);
-        Toastr::success('Information changed Successfully!','Success');
+        Toastr::success('Information Changed Successfully!','Success');
         return  redirect()->back();
     }
 

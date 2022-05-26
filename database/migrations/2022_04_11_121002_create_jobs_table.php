@@ -25,7 +25,7 @@ class CreateJobsTable extends Migration
             $table->string('workplace')->nullable();
             $table->string('min_experience')->nullable();
             $table->string('job_location')->nullable();
-            $table->string('gander')->nullable();
+            $table->string('gender')->nullable();
             $table->string('age')->nullable();
             $table->string('salary')->nullable();
             $table->string('salary_type')->nullable();

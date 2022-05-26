@@ -8,7 +8,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">My Info</a>
                 </li>
-                <li class="breadcrumb-item active"> Edit Personal info
+                <li class="breadcrumb-item active"> Update Personal info
                 </li>
             </ol>
         </div>
@@ -129,7 +129,7 @@
                                         <select class="js-example-tokenizer" multiple="multiple" name="language[]" id="languages" required>
                                             @if ($jobSeeker->language != "")
                                                 @foreach(explode(',', $jobSeeker->language) as $language)
-                                                    <option value="{{$language}}" selected >{{$language}}</option>
+                                                    <option value="{{$language}}" {{old('language',$jobSeeker->language) == $jobSeeker->language ? 'selected':'' }} >{{$language}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -147,20 +147,6 @@
                                             </select>
                                         </div>
                                     </div>
-{{--                                    <div class="mb-1 col-md-3">--}}
-{{--                                        <label class="form-label" for="modern-last-name">Experience: (In Years) <span style="color:red">*</span></label>--}}
-{{--                                        <input type="number" id="modern-last-name" name="experience" class="form-control" placeholder="experience years" value="{{old('experience',$jobSeeker->experience)}}">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="mb-1 col-md-3">--}}
-{{--                                        <label class="form-label" for="modern-last-name">Skills:<span style="color:red">*</span></label>--}}
-{{--                                        <select class="js-example-tokenizer1" multiple="multiple" name="skills[]" id="" required>--}}
-{{--                                            @if ($jobSeeker->skills != "")--}}
-{{--                                                @foreach(explode(',', $jobSeeker->skills) as $skill)--}}
-{{--                                                    <option value="{{$skill}}" selected >{{$skill}}</option>--}}
-{{--                                                @endforeach--}}
-{{--                                            @endif--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
                                     <div class="mb-1 col-md-3">
                                         <label for="email">{{__('Division')}}<span style="color: red;">*</span></label>
                                         <select class="form-control select2" id="select_division" aria-invalid="false" name="division_id">
