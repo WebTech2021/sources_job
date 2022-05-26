@@ -17,7 +17,7 @@ class EducationController extends Controller
     public function index()
     {
         $educations = Education::latest();
-        return response()->json(['success' => true, 'educations' => new PaginateResource($educations-->paginate(\request()->per_page ?? 20), EducationResource::class)]);
+        return response()->json(['success' => true, 'educations' => new PaginateResource($educations->paginate(\request()->per_page ?? 20), EducationResource::class)]);
 
     }
 

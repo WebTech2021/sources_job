@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Admin;
 use App\Models\District;
+use App\Models\Jobs;
+use App\Models\JobSeeker\JobSeeker;
 use App\Models\Upazila;
 use App\Traits\UploadAble;
 use Illuminate\Http\Request;
@@ -18,7 +20,21 @@ class HomeController extends Controller
 
     public function getDashboard()
     {
-        return view('admin.home.dashboard');
+        $total_jobs = Jobs::where('status', 'publish')->count();
+        $total_seekers = JobSeeker::where('status', 'active')->count();
+        $data = [
+          'Jobs'=>[
+              'count'=>$total_jobs,
+              'icon' => 'BriefcaseIcon',
+              'route'=> 'admin.job.list'
+          ],
+          'Seekers'=>[
+              'count'=>$total_seekers,
+              'icon'=>'UsersIcon',
+              'route'=> 'admin.job-seeker.list'
+          ],
+        ];
+        return response()->json(['success'=>true, 'data'=>$data]);
     }
 
     public function login()
