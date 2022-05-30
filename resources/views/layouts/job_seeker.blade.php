@@ -63,6 +63,7 @@
 
 
 @stack('scripts')
+
 <script>
     //type and search by select2 plugin
     $('.select2').select2();

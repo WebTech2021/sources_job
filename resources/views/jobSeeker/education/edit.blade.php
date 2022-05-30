@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="result">Result:</label><span class="text-danger">*</span>
-                                    <input class="form-control" required="" name="result" type="text" id="result" value="{{old('result',$education->result)}}">
+                                    <input class="form-control" required="" name="result" type="number" id="result" value="{{old('result',$education->result)}}">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="year">Passing Year:</label><span class="text-danger">*</span>

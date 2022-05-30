@@ -15,6 +15,7 @@ class CreateJobSeekersTable extends Migration
     {
         Schema::create('job_seekers', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone_number')->unique()->nullable();

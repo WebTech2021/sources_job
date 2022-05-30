@@ -85,7 +85,7 @@
                                     <div class="row">
                                         <div class="col-12  d-flex justify-content-between">
                                             <div class="left-content">
-                                                <h2>{{$jobSeeker->first_name.' '.$jobSeeker->last_name ?? ' '}}</h2>
+                                                <h2>{{ucfirst($jobSeeker->first_name.' '.$jobSeeker->last_name ?? ' ')}}</h2>
                                                 <p class="p-0"><b>Address:</b> {{$jobSeeker->p_address ?? ''}}</p>
                                                 <p class="p-0"><b>Mobile No:</b>{{$jobSeeker->phone_number ?? ''}}</p>
                                                 <p class="p-0"><b>Email:</b> {{$jobSeeker->email ?? ''}}</p>
@@ -170,7 +170,7 @@
                                                         <td>{{$data->experience ?? ''}}</td>
                                                         {{--<td>{{$data->company_location}}</td>--}}
                                                         <td>{{$data->start_date != null ? \Carbon\Carbon::parse($data->start_date)->format('d M Y'):'-'}}</td>
-                                                        <td>{{$data->end_date != null ? \Carbon\Carbon::parse($data->end_date)->format('d M Y'): 'currently working'}}</td>
+                                                        <td>{{$data->end_date != null ? \Carbon\Carbon::parse($data->end_date)->format('d M Y'): 'Currently working'}}</td>
                                                         {{--<td>{{$data->currently_working ?? 'no'}}</td>--}}
                                                         <td>{{$data->description ?? ''}}</td>
                                                     </tr>

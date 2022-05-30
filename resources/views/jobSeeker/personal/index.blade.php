@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-header border-bottom p-1">
                         <div class="head-label">
-                            <h4 class="mb-0"> <i class="fa fa-edit"></i> {{__('Edit My Info')}}</h4>
+                            <h4 class="mb-0"> <i class="fa fa-edit"></i> {{__('Update My Info')}}</h4>
                         </div>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons d-inline-flex">
@@ -208,7 +208,7 @@
                             </div>
                                 <div class="row">
                                     <div class="mb-1 col-md-3">
-                                        <label class="form-label" for="modern-last-name">facebook link:</label>
+                                        <label class="form-label" for="modern-last-name">Facebook link:</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">

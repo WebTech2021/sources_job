@@ -37,7 +37,7 @@ Route::group(['as' => 'jobSeeker.'], function () {
     Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
     Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
-    Route::group(['middleware' => ['auth:jobSeeker', 'prevent-back-history', 'OnlineActiveJobSeeker']], function () {
+    Route::group(['middleware' => ['auth:jobSeeker','verified.jobSeeker', 'prevent-back-history', 'OnlineActiveJobSeeker']], function () {
         Route::get('/', [JsHomeController::class, 'index'])->name('home');
         //Job seeker profile manage routes
         Route::get('/profile', [JsHomeController::class, 'view_jobSeeker_profile'])->name('view.profile');

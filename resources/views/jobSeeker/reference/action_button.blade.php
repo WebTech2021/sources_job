@@ -10,7 +10,7 @@
         <form action="{{route('jobSeeker.reference.destroy', encrypt($ref_data->id))}}" method="post">
             @csrf
             @method('DELETE')
-            <button class="confirm-text dropdown-item" type="submit"
+            <button class="dropdown-item confirm-text" type="submit"
                     style="width: 100%; border: none; outline:none;">
                 <div><i class="far fa-trash-alt"></i>&nbsp;&nbsp; {{__('Delete')}}</div>
             </button>
