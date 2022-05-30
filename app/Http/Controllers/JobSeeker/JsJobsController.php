@@ -40,8 +40,9 @@ class JsJobsController extends Controller
                     $id = $job_data->organization_id;
                     $logo = $this->getSourcesOrgTable()->where('id', '=', $id)->first()->logo;
                     $name = $this->getSourcesOrgTable()->where('id', '=', $id)->first()->name;
-                    return nameWithImage1($name, $logo, 'imagepath.companyLogo',
-                        'images/company-logo/default-logo.png');
+                    $image = '<img src="'.config('app.seller_image_url').$logo.'" style="width: 30px; height: 30px; border-radius: 50%;">';
+                    return $image.'  '. ucwords($name);
+
                 })
                 ->addColumn('employment_status', function ($job_data) {
                     if ($job_data->employment_status == 'full_time') {
@@ -68,7 +69,7 @@ class JsJobsController extends Controller
                     return \Carbon\Carbon::parse($job_data->to_date)->format('D, d M Y');
                 })
                 ->addColumn('job_title', function ($job_data) {
-                    return '<a href="' . route('jobSeeker.jobs.details', encrypt($job_data->id)) . '">' . $job_data->job_title . '</a>';
+                    return '<a href="' . route('jobSeeker.jobs.details', encrypt($job_data->id)) . '">' . $job_data->job_title. '</a>';
                 })
                 ->rawColumns(['nameWithImage', 'expire_date', 'salary', 'action', 'employment_status', 'job_title'])
                 ->tojson();
@@ -81,9 +82,13 @@ class JsJobsController extends Controller
 
     public function job_details($id)
     {
+//      return  $job_details = Jobs::findOrfail(decrypt($id));
+
         try {
-            $job_details = Jobs::find($id);
-            return view('jobSeeker.jobs.show', compact('job_details'));
+            $job_details = Jobs::findOrfail(decrypt($id));
+            $id = $job_details->organization_id;
+            $name = $this->getSourcesOrgTable()->where('id', '=', $id)->first()->name;
+            return view('jobSeeker.jobs.show', compact('job_details','name'));
 
         } catch (DecryptException $e) {
             Toastr::error('Something went wrong!', 'Error');
@@ -94,8 +99,10 @@ class JsJobsController extends Controller
 
     public function apply(Request $request, $id)
     {
+//      return  $apply_data = Jobs::findOrfail(decrypt($id));
+
         try {
-            $apply_data = Jobs::find(decrypt($id));
+            $apply_data = Jobs::findOrfail(decrypt($id));
             JobApplication::create([
                 'job_seeker_id' => Auth::guard('jobSeeker')->user()->id,
                 'job_id' => $apply_data->id,
@@ -110,32 +117,6 @@ class JsJobsController extends Controller
         }
 
     }
-
-
-//    public function getShortlist(){
-//        if (\request()->ajax()) {
-//            $list_data = JobApplication::where(['job_seeker_id'=> auth('jobSeeker')->user()->id,'status'=>'shortlisted'])->get();
-//            return DataTables::of($list_data)
-//                ->addIndexColumn()
-//                ->addColumn('nameWithImage', function ($list_data) {
-//                    $route = url('', ($list_data->organization->slug));
-//                    return nameWithImage($list_data->organization->name, $list_data->organization->logo, 'imagepath.companyLogo',
-//                        'images/company-logo/default-logo.png', $route);
-//                })
-//                ->addColumn('job_title', function ($list_data) {
-////                    return $list_data->job->job_title;
-//                    return $list_data->job->job_title ?? "";
-//                })
-//                ->addColumn('status', function ($list_data) {
-//                    if ($list_data->status == 'shortlisted'){
-//                        return  '<div class="badge badge-light-success">'.'you are short listed'.'</div>';
-//                    }
-//                })
-//                ->rawColumns(['nameWithImage','job_title','status'])
-//                ->tojson();
-//        }
-//        return view('jobSeeker.applicationStatus.index');
-//    }
 
     public function inviteList()
     {
