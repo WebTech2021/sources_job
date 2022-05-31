@@ -30,6 +30,7 @@ class AdminProfileController extends Controller
         $validated = $request->validate([
             'name' => ['string', 'min:5', 'max:255'],
             'avatar' => ['image', 'mimes:jpeg,jpg,png'],
+            'email' => ['email'],
             'old_password' => ['required_if:password,', function ($attribute, $value, $fail) {
                 if (!Hash::check($value, Auth::user()->password)) {
                     $fail('Wrong Old Password');
@@ -43,8 +44,8 @@ class AdminProfileController extends Controller
             DB::commit();
         } catch (\Exception $error) {
             DB::rollBack();
-            return response()->basicErrorResponse($error->getMessage());
+            return response()->json(['success'=>false, 'message'=>$error->getMessage()]);
         }
-        return response()->basicSuccessResponse('Updated');
+        return response()->json(['success'=>true, 'message'=>'Profile Updated!']);
     }
 }
