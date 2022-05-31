@@ -2,6 +2,7 @@
 
 namespace App\Utilities;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -15,7 +16,9 @@ class ImageFun
         } else {
             $generateNameWithExt = '/' . $generateName . "." . 'webp';
         }
-
+        if (!File::exists(public_path($folder))) {
+            File::makeDirectory(public_path($folder), 0777, true);
+        }
         Storage::disk('public')->putFileAs($folder, $file, $generateNameWithExt);
 
         return $generateNameWithExt;

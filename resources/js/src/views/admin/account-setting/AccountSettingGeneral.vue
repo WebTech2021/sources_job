@@ -36,6 +36,7 @@
                   ref="refInputEl"
                   v-model="userInfo.avatar"
                   accept=".jpg, .png, .gif"
+                  :state="errors.length > 0 ? false:null"
                   :hidden="true"
                   plain
                   @input="inputImageRenderer"
@@ -68,6 +69,7 @@
                 <b-form-input
                   v-model="userInfo.name"
                   name="name"
+                  :state="errors.length > 0 ? false:null"
                   placeholder="Name"
                 />
                 <small class="text-danger">{{ errors[0] }}</small>
@@ -79,12 +81,17 @@
               label="E-mail"
               label-for="account-e-mail"
             >
-              <b-form-input
-                v-model="userInfo.email"
+              <validation-provider
+                #default="{ errors }"
                 name="email"
-                placeholder="Email"
-              />
-
+              >
+                <b-form-input
+                  v-model="userInfo.email"
+                  :state="errors.length > 0 ? false:null"
+                  name="email"
+                  placeholder="Email"
+                />
+              </validation-provider>
             </b-form-group>
           </b-col>
 
@@ -162,7 +169,9 @@ export default {
   data() {
     return {
       profileFile: null,
-      userInfo: {},
+      userInfo: {
+        value: '',
+      },
     }
   },
   created() {

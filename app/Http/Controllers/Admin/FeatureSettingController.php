@@ -7,6 +7,7 @@ use App\Http\Resources\FeatureDataResource;
 use App\Http\Resources\PaginateResource;
 use App\Models\Admin\FeatureData;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class FeatureSettingController extends Controller
 {
@@ -31,7 +32,12 @@ class FeatureSettingController extends Controller
     {
         $request->validate([
             'type' => 'required|string|in:feature,urgent',
-            'days' => 'required|numeric',
+            'days' => [
+                'required',
+                Rule::unique('feature_data')->where(function ($query) use ($request){
+                    return $query->where('type', $request->type)->where('days', $request->days);
+                })
+        ],
             'cost' => 'required|numeric',
         ]);
         try {
