@@ -24,7 +24,7 @@ class JSEducationController extends Controller
             'degree_title'=>'required',
             'group'=>'required',
             'institute_name'=>'required',
-            'result'=>'required|numeric',
+            'result'=>'required|regex:/^[0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)*$/',
             'passing_year'=>'required|numeric',
         ]);
         $education = new jsEducation();

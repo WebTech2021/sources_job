@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-header border-bottom p-1">
                         <div class="head-label">
-                            <h4 class="mb-0">{{__('Create Career Objective')}}</h4>
+                            <h4 class="mb-0">{{__('Career Objective')}}</h4>
                         </div>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons d-inline-flex">
@@ -31,10 +31,9 @@
                     <div class="card-body table-responsive">
                         <form action="{{route('jobSeeker.info-store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            {{-- @method('PUT')--}}
                             <div class="row mt-2">
                                 <div class="form-group col-sm-12">
-                                    <h5>Career And Application Objective</h5>
+{{--                                    <h5>Career And Application Objective</h5>--}}
                                 </div>
                             </div>
                             <div class="row mt-2">

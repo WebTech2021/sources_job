@@ -24,7 +24,13 @@ class RegisterController extends Controller
     }
     public function register(jsRegistrationRequest $request)
     {
+        $data =JobSeeker::select('id')->latest()->first();
+        $id = $data->id;
+        $digit = 100;
+        $new_digit = $digit+$id+1;
+        $code = date('ymd').$new_digit;
         $jobSeeker = JobSeeker::create([
+            'code' => $code,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
@@ -32,7 +38,6 @@ class RegisterController extends Controller
             'password' => bcrypt($request->password),
             'country_id' => 20,
         ]);
-        $jobSeeker->save();
         event(new Registered($jobSeeker));
         Auth::guard('jobSeeker')->login($jobSeeker);
         Toastr::success("Registered Successfully", "Success");

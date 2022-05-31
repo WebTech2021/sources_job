@@ -15,6 +15,22 @@
     </div>
 @endsection
 @section('content')
+    @if(auth('jobSeeker')->user()->myNotice()->count() > 0)
+        <section id="alerts-closable">
+            <div class="row">
+                <div class="col-md-12">
+                    @foreach(auth('jobSeeker')->user()->myNotice()->whereNull('read_at')->take(5)->get() as $notice)
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding: 0.71rem 1rem !important;border: 1px solid transparent !important;">
+                            <strong>{{ $notice->notice->subject }}!</strong><br> {!! $notice->notice->data !!}
+                            <button type="button" class="close notice_close" id="notice_close" data-dismiss="alert" aria-label="Close" data-source="{{encrypt($notice->id)}}">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
     <section id="basic-datatable">
         <div class="row">
             <!--Bar Chart Start -->
@@ -137,4 +153,35 @@
         </div>
     </section>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#notice_close').on('click', function (){
+                let encryptedId= $(this).attr('data-source')
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('jobSeeker.notice.read') }}",
+                    data: {
+                        encryptedId: $(this).attr('data-source')
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (response) {
+                        console.log(response)
+                    },
+                    error: function (error) {
+                        const obj = error.responseJSON.errors;
+                        for (key in obj) {
+                            toastr.error(obj[key])
+                        }
+                    }
+                });
+            })
+        });
+    </script>
+@endpush
+
+
+
 

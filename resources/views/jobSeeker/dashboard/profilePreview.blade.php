@@ -56,7 +56,10 @@
 {{--                        @else--}}
                             <div class="dt-action-buttons text-right">
                                 @if($jobSeeker->featuredProfile()->exists())
-                                    <p class="badge badge-glow badge-danger">Already Promoted</p>
+{{--                                    <p class="badge badge-glow badge-danger">Already Promoted</p>--}}
+                                    <button type="button" class="btn btn-secondary active" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                                        Tooltip on top
+                                    </button>
                                 @else
                                     <div class="dt-buttons d-inline-flex">
                                         <form action="{{route('jobSeeker.make.feature',encrypt($jobSeeker->id))}}" method="post">
@@ -82,7 +85,7 @@
                                     <div class="row">
                                         <div class="col-12  d-flex justify-content-between">
                                             <div class="left-content">
-                                                <h2>{{$jobSeeker->first_name.' '.$jobSeeker->last_name ?? ' '}}</h2>
+                                                <h2>{{ucfirst($jobSeeker->first_name.' '.$jobSeeker->last_name ?? ' ')}}</h2>
                                                 <p class="p-0"><b>Address:</b> {{$jobSeeker->p_address ?? ''}}</p>
                                                 <p class="p-0"><b>Mobile No:</b>{{$jobSeeker->phone_number ?? ''}}</p>
                                                 <p class="p-0"><b>Email:</b> {{$jobSeeker->email ?? ''}}</p>
@@ -167,7 +170,7 @@
                                                         <td>{{$data->experience ?? ''}}</td>
                                                         {{--<td>{{$data->company_location}}</td>--}}
                                                         <td>{{$data->start_date != null ? \Carbon\Carbon::parse($data->start_date)->format('d M Y'):'-'}}</td>
-                                                        <td>{{$data->end_date != null ? \Carbon\Carbon::parse($data->end_date)->format('d M Y'): 'currently working'}}</td>
+                                                        <td>{{$data->end_date != null ? \Carbon\Carbon::parse($data->end_date)->format('d M Y'): 'Currently working'}}</td>
                                                         {{--<td>{{$data->currently_working ?? 'no'}}</td>--}}
                                                         <td>{{$data->description ?? ''}}</td>
                                                     </tr>

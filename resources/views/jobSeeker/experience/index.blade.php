@@ -54,9 +54,9 @@
                                     <td>{{$data->company_name}}</td>
                                     <td>{{$data->experience}}</td>
                                     <td>{{$data->company_location}}</td>
-                                    <td>{{$data->start_date != null ? \Carbon\Carbon::parse($data->start_date)->format('d M Y'):'-'}}</td>
-                                    <td>{{$data->end_date != null ? \Carbon\Carbon::parse($data->end_date)->format('d M Y'): 'null'}}</td>
-                                    <td>{{$data->currently_working ?? 'no'}}</td>
+                                    <td>{{$data->start_date != null ? \Carbon\Carbon::parse($data->start_date)->format('d M Y'):'no date issue'}}</td>
+                                    <td>{{$data->end_date != null ? \Carbon\Carbon::parse($data->end_date)->format('d M Y'): 'no date issue'}}</td>
+                                    <td>{{$data->currently_working ?? '-'}}</td>
                                     <td>{{$data->description}}</td>
                                     <td>
                                         <div class="btn-group">

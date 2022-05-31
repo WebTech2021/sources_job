@@ -14,8 +14,7 @@ class UpazilaSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+    { DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Upazila::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $upazilas = array(

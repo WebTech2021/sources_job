@@ -8,12 +8,12 @@ use App\Http\Resources\PaginateResource;
 use App\Models\JobSeeker\JobSeeker;
 use App\Models\Notice;
 use App\Models\NoticeReceiver;
-use App\Models\NoticeReciver;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Exception;
+use Yajra\DataTables\Facades\DataTables;
 
 class NoticeController extends Controller
 {
@@ -115,4 +115,40 @@ class NoticeController extends Controller
         }
         return response()->json(['success' => false,'subject'=>'Unable to Delete', 'message' => 'No notice found before 1 month!']);
     }
+
+    public function getNotice(){
+//     return   $notice = NoticeReceiver::with('notice')->where(['user_id'=> auth('jobSeeker')->user()->id])->get();
+        if (\request()->ajax()) {
+            $notices = NoticeReceiver::with('notice')->where(['user_id'=> auth('jobSeeker')->user()->id])->latest();
+            return DataTables::of($notices)
+                ->addIndexColumn()
+                ->addColumn('notice_body', function ($notice) {
+                    return $notice->notice->data;
+                })->addColumn('notice_subject', function ($notice) {
+                    return $notice->notice->subject;
+                })
+                ->addColumn('read_at', function ($notice) {
+                    if ($notice->read_at === NULL){
+                        $notice->read_at = Carbon::now();
+                        $notice->save();
+                    }
+                    return $notice->read_at !==NULL ?  \Carbon\Carbon::parse($notice->read_at)->diffForHumans() : $notice->read_at;
+                })
+                ->addColumn('created', function ($notice) {
+                    return $notice->notice->created_at->diffForHumans();
+                })
+                ->escapeColumns('notice_body')
+                ->rawColumns(['notice_body', 'read_at','created','notice_subject'])
+                ->tojson();
+        }
+        return view('jobSeeker.notice.index');
+
+    }
+    public function noticeRead()
+    {
+        $notice = NoticeReceiver::findOrFail(decrypt(\request()->encryptedId));
+        $notice->read_at = \Carbon\Carbon::now();
+        $notice->save();
+    }
+
 }

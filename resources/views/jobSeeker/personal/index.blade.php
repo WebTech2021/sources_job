@@ -8,7 +8,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">My Info</a>
                 </li>
-                <li class="breadcrumb-item active"> Edit Personal info
+                <li class="breadcrumb-item active"> Update Personal info
                 </li>
             </ol>
         </div>
@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-header border-bottom p-1">
                         <div class="head-label">
-                            <h4 class="mb-0"> <i class="fa fa-edit"></i> {{__('Edit My Info')}}</h4>
+                            <h4 class="mb-0"> <i class="fa fa-edit"></i> {{__('Update My Info')}}</h4>
                         </div>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons d-inline-flex">
@@ -129,7 +129,7 @@
                                         <select class="js-example-tokenizer" multiple="multiple" name="language[]" id="languages" required>
                                             @if ($jobSeeker->language != "")
                                                 @foreach(explode(',', $jobSeeker->language) as $language)
-                                                    <option value="{{$language}}" selected >{{$language}}</option>
+                                                    <option value="{{$language}}" {{old('language',$jobSeeker->language) == $jobSeeker->language ? 'selected':'' }} >{{$language}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -147,20 +147,6 @@
                                             </select>
                                         </div>
                                     </div>
-{{--                                    <div class="mb-1 col-md-3">--}}
-{{--                                        <label class="form-label" for="modern-last-name">Experience: (In Years) <span style="color:red">*</span></label>--}}
-{{--                                        <input type="number" id="modern-last-name" name="experience" class="form-control" placeholder="experience years" value="{{old('experience',$jobSeeker->experience)}}">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="mb-1 col-md-3">--}}
-{{--                                        <label class="form-label" for="modern-last-name">Skills:<span style="color:red">*</span></label>--}}
-{{--                                        <select class="js-example-tokenizer1" multiple="multiple" name="skills[]" id="" required>--}}
-{{--                                            @if ($jobSeeker->skills != "")--}}
-{{--                                                @foreach(explode(',', $jobSeeker->skills) as $skill)--}}
-{{--                                                    <option value="{{$skill}}" selected >{{$skill}}</option>--}}
-{{--                                                @endforeach--}}
-{{--                                            @endif--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
                                     <div class="mb-1 col-md-3">
                                         <label for="email">{{__('Division')}}<span style="color: red;">*</span></label>
                                         <select class="form-control select2" id="select_division" aria-invalid="false" name="division_id">
@@ -222,7 +208,7 @@
                             </div>
                                 <div class="row">
                                     <div class="mb-1 col-md-3">
-                                        <label class="form-label" for="modern-last-name">facebook link:</label>
+                                        <label class="form-label" for="modern-last-name">Facebook link:</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">

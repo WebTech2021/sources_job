@@ -63,7 +63,7 @@
 @stack('scripts')
 <script>
     function tinyEditor(elementId,lengthShowId,maximumLength,placeholder){
-        let max_chars = maximumLength; //max characters
+        let max_chars = maximumLength; //max charactersn
         let max_for_html = max_chars+100; //max characters for html tags
         let allowed_keys = [8, 13, 16, 17, 18, 20, 33, 34, 35, 36, 37, 38, 39, 40, 46];
         let chars_without_html = 0;

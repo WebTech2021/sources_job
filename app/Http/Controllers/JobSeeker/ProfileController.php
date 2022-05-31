@@ -35,7 +35,7 @@ class ProfileController extends Controller
         $info = implode(',', $request->language);
         $jobSeeker->update($request->except(['token','image','language']));
         $jobSeeker->update(['language'=>$info]);
-        Toastr::success('Information changed Successfully!','Success');
+        Toastr::success('Information Changed Successfully!','Success');
         return  redirect()->back();
     }
 
@@ -58,7 +58,7 @@ class ProfileController extends Controller
 
     public function createFeature(){
         if (Feature::where('featurable_id', '=', auth()->user()->id)->exists()){
-            Toastr::error('Already featured listed!','Error');
+            Toastr::error('Already Promote listed!','Error');
             return  redirect()->back();
         }else{
             Feature::create([

@@ -43,8 +43,17 @@
                                         <h5>Job Context:</h5>
                                         <p class="ml-2"> {{$job_details->job_context ?? ''}}</p>
                                         <h5>Job Type:</h5>
-                                        {{-- <p class="ml-2"> {{ implode(', ',json_decode($job_details->employment_status)) }}</p>--}}
-                                        <p class="ml-2"> {{$job_details->employment_status ?? ' '}}</p>
+                                        @if($job_details->employment_status == 'contact')
+                                            <p class="ml-2">Contact</p>
+                                        @elseif($job_details->employment_status == 'online')
+                                            <p class="ml-2">Online</p>
+                                        @elseif($job_details->employment_status == 'full_time')
+                                            <p class="ml-2"> Full Time</p>
+                                        @elseif($job_details->employment_status == 'part_time')
+                                            <p class="ml-2">Part time</p>
+                                        @else
+                                            <p class="ml-2"> Freelance</p>
+                                        @endif
                                         <h5>Minimum Experience:</h5>
                                         @if($job_details->min_experience == 'fresher')
                                             <p class="ml-2"> Fresher</p>
@@ -59,21 +68,24 @@
                                         @elseif($job_details->job_location == 'all_bangladesh')
                                             <p class="ml-2">Anywhere in Bangladesh</p>
                                         @endif
-                                        <h5>Gander:</h5>
-                                        @if($job_details->gander == 'male')
+                                        <h5>Gender:</h5>
+                                        @if($job_details->gender == 'male')
                                             <p class="ml-2">Only male can apply</p>
-                                        @elseif($job_details->gander == 'female')
+                                        @elseif($job_details->gender == 'female')
                                             <p class="ml-2">Only female can apply</p>
                                         @else
-                                            <p class="ml-2">Male & Female both can apply</p>
+                                            <p class="ml-2">Both Male & Female can apply</p>
                                         @endif
-
+                                        <h5>Age:</h5>
+                                            <p class="ml-2">{{$job_details->age}} years</p>
                                         <h5>Salary (BDT):</h5>
                                         @if($job_details->salary == 'negotiable')
                                             <p class="ml-2">Negotiable</p>
                                         @else
                                             <p class="ml-2"> {{$job_details->salary ?? ''}}</p>
                                         @endif
+                                        <h5>Educational Level:</h5>
+                                        <p class="ml-2"> {{$job_details->educational_requirements ?? ''}}</p>
 
                                         <h5>Job Responsibilities:</h5>
                                         @foreach(json_decode($job_details->job_responsibilities) as $data)
@@ -81,12 +93,7 @@
                                                 <li>{{$data}}</li>
                                             </ul>
                                         @endforeach
-                                        <h5>Educational Requirements:</h5>
-                                        @foreach(json_decode($job_details->educational_requirements) as $data)
-                                            <ul>
-                                                <li>{{$data}}</li>
-                                            </ul>
-                                        @endforeach
+
                                         <h5>Additional Requirements:</h5>
                                         @foreach(json_decode($job_details->additional_requirements) as $data)
                                             <ul>
@@ -107,10 +114,11 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="card">
+                                <div class="card" style="background-color: #FFEFD5;">
                                     <div class="card-body">
-                                        <h3>Job Summery</h3>
-                                         <p><b>Published on:</b> {{$job_details->updated_at != null ? \Carbon\Carbon::parse($job_details->updated_at)->format('d M Y'):'no deadline issue'}}</p>
+                                        <h3 style="background-color: darkgrey; color:#fff;padding: 8px 10px; margin-bottom: 20px; border-radius: 5px;">Job Summery</h3>
+                                        <p><b>Company Name:</b> {{$name ?? ''}}</p>
+                                        <p><b>Published on:</b> {{$job_details->updated_at != null ? \Carbon\Carbon::parse($job_details->updated_at)->format('d M Y'):'no deadline issue'}}</p>
                                          <p><b>Job Title:</b> {{$job_details->job_title ?? ''}}</p>
                                          <p><b>Vacancy:</b> {{$job_details->vacancy ?? ''}}</p>
                                         <p><b>Job Type:</b>
@@ -126,17 +134,20 @@
                                                 Freelance
                                             @endif
                                         </p>
-                                         <p><b>Gander:</b>
-                                             @if($job_details->gander == 'male')
+                                         <p><b>Gender:</b>
+                                             @if($job_details->gender == 'male')
                                                 Only Male can apply.
-                                             @elseif($job_details->gander == 'female')
+                                             @elseif($job_details->gender == 'female')
                                                Only Female can apply.
                                              @else
                                                Both Male & Female can apply.
                                              @endif
                                              </p>
+                                        <p><b>Age:</b>
+                                            {{$job_details->age ??' '}} years
+                                        </p>
                                          <p><b>Job Location:</b>
-                                            @if($job_details->job_location == 'outsideSide_dhaka')
+                                            @if($job_details->job_location == 'outside_dhaka')
                                                 Outside Dhaka
                                             @elseif($job_details->job_location == 'inside_dhaka')
                                                 Inside Dhaka
@@ -144,7 +155,8 @@
                                                 Anywhere in Bangladesh
                                             @endif
                                             </p>
-                                           <p><b>Application Deadline:</b> {{$job_details->to_date != null ? \Carbon\Carbon::parse($job_details->to_date)->format('d M Y'):'no deadline issue'}}</p>
+                                        <p><b>Expire Date:</b> {{$job_details->to_date != null ? \Carbon\Carbon::parse($job_details->to_date)->format('d M Y'): 'no deadline issue'}}</p>
+{{--                                        <p><b>Application Deadline:</b> {{$job_details->to_date != null ? \Carbon\Carbon::parse($job_details->to_date)->format('d M Y'):'no deadline issue'}}</p>--}}
                                            <div class="text-center">
                                                @if(!$job_details->checkApplication())
                                                    <form action="{{route('jobSeeker.job.apply',encrypt($job_details->id))}}" method="post">

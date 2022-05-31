@@ -61,7 +61,8 @@ class ReferenceController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'email' => 'email:rfc,dns',
+            'name' => 'required',
+            'email' => 'email:rfc,dns|unique:references,email',
             'phone_number' => 'required|bail|numeric|digits:11|regex:/^(?:\+?88)?01[3-9]\d{8}$/',
         ]);
         $reference = Reference::findOrFail(decrypt($id));
