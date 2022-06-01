@@ -16,8 +16,14 @@ class JSEducationController extends Controller
         $educations = jsEducation::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
         return view('jobSeeker.education.index',compact('educations'));
     }
+    public function create()
+    {
+        return view('jobSeeker.education.create');
+    }
+
     public function store(Request $request)
     {
+        return $request->all();
         $request->validate([
             'education_level'=>'required',
             'education_board'=>'required',

@@ -13,10 +13,15 @@ class jsEducation extends Model
         'job_seeker_id',
         'education_level',
         'degree_title',
+        'phd_title',
         'education_board',
         'group',
         'institute_name',
         'result',
         'passing_year',
+        'scale',
+        'mark',
+        'cgpa',
+
     ];
 }
