@@ -40,8 +40,6 @@ class CreateJobSeekersTable extends Migration
             $table->foreignId('district_id')->nullable()->constrained()->OnUpdate('cascade')->onDelete('cascade');
             $table->foreignId('upazila_id')->nullable()->constrained()->OnUpdate('cascade')->onDelete('cascade');
             $table->string('post_code')->nullable();
-            $table->bigInteger('view')->default(0)->nullable();
-            $table->bigInteger('click')->default(0)->nullable();
             $table->enum('status',['active','inactive','blocked'])->default('active');
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('last_seen_at')->nullable();

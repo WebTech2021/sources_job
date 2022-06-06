@@ -179,7 +179,6 @@ class JsJobsController extends Controller
             return back();
         }
 
-
     }
 
     public function getSourcesOrgTable()

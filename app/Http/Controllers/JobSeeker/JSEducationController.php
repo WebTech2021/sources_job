@@ -23,14 +23,14 @@ class JSEducationController extends Controller
 
     public function store(Request $request)
     {
-        return $request->all();
+//        return $request->all();
         $request->validate([
             'education_level'=>'required',
-            'education_board'=>'required',
             'degree_title'=>'required',
             'group'=>'required',
             'institute_name'=>'required',
-            'result'=>'required|regex:/^[0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)*$/',
+            'result'=>'required',
+//            'cgpa'=>'required|regex:/^[0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)*$/',
             'passing_year'=>'required|numeric',
         ]);
         $education = new jsEducation();
@@ -54,11 +54,10 @@ class JSEducationController extends Controller
     {
         $request->validate([
             'education_level'=>'required',
-            'education_board'=>'required',
-            'degree_title'=>'required',
             'group'=>'required',
             'institute_name'=>'required',
-            'result'=>'required|numeric',
+            'result'=>'required',
+//            'cgpa'=>'required|regex:/^[0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)*$/',
             'passing_year'=>'required|numeric',
         ]);
         try {

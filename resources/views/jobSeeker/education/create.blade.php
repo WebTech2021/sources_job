@@ -66,7 +66,7 @@
                                             <option value="" data-select2-id="2" selected disabled>Select Option</option>
                                             <option value="Barishal" {{old('education_board') == 'Barishal' ? 'selected':'' }}>Barishal</option>
                                             <option value="Chattogram" {{old('education_board') == 'Chattogram' ? 'selected':'' }}>Chattogram</option>
-                                            <option value="Cumilla" {{old('education_board') == 'Cumilla' ? 'selected':'' }}>Cumilla</option>
+                                            <option value="Comilla" {{old('education_board') == 'Cumilla' ? 'selected':'' }}>Cumilla</option>
                                             <option value="Dhaka" {{old('education_board') == 'Dhaka' ? 'selected':'' }}>Dhaka</option>
                                             <option value="Dinajpur" {{old('education_board') == 'Dinajpur' ? 'selected':'' }}>Dinajpur</option>
                                             <option value="Jashore" {{old('education_board') == 'Jashore' ? 'selected':'' }}>Jashore</option>
@@ -75,8 +75,8 @@
                                             <option value="Sylhet" {{old('education_board') == 'Sylhet' ? 'selected':'' }}>Sylhet</option>
                                             <option value="Madrasah" {{old('education_board') == 'Madrasah' ? 'selected':'' }}>Madrasah</option>
                                             <option value="Technical" {{old('education_board') == 'Technical' ? 'selected':'' }}>Technical</option>
-                                            <option value="BOU (Bangladesh Open University)" {{old('education_board') == 'BOU (Bangladesh Open University)' ? 'selected':'' }}>BOU(Bangladesh Open University)</option>
-                                            <option value="Foreign Institute" {{old('education_board') == 'Foreign Institute' ? 'selected':'' }}>Foreign Institute</option>
+                                            <option value="BOU" {{old('education_board') == 'BOU' ? 'selected':'' }}>BOU(Bangladesh Open University)</option>
+                                            <option value="Foreign_Institute" {{old('education_board') == 'Foreign_Institute' ? 'selected':'' }}>Foreign Institute</option>
                                             <option value="Other" {{old('education_board') == 'Other' ? 'selected':'' }}>Other</option>
                                         </select>
                                     </div>
@@ -172,41 +172,41 @@
             if ($(this).val() === 'psc') {
                 $('#d1_title').show();
                 $('#degree_title').show();
-                $('#degree_title').append(`<option value="psc">PSC</option>`)
-                $('#degree_title').append(`<option value="ebtedayee">Ebtedayee (Madrasah)</option>`)
-                $('#degree_title').append(`<option value="5_pass" >5 Pass</option>`)
-                $('#degree_title').append(`<option value="other">Other</option>`)
+                $('#degree_title').append(`<option value="PSC">PSC</option>`)
+                $('#degree_title').append(`<option value="Ebtedayee">Ebtedayee (Madrasah)</option>`)
+                $('#degree_title').append(`<option value="5_Pass" >5 Pass</option>`)
+                $('#degree_title').append(`<option value="Other">Other</option>`)
             }
             // =============If Click Selected=============
             else if ($(this).val() === 'jsc') {
                 $('#d1_title').show();
                 $('#degree_title').show();
-                $('#degree_title').append(`<option value="jsc">JSC</option>`)
-                $('#degree_title').append(`<option value="jdc">JDC (Madrasah)</option>`)
-                $('#degree_title').append(`<option value="8_pass">8 Pass</option>`)
-                $('#degree_title').append(`<option value="others">Other</option>`)
+                $('#degree_title').append(`<option value="JSC">JSC</option>`)
+                $('#degree_title').append(`<option value="JDC">JDC (Madrasah)</option>`)
+                $('#degree_title').append(`<option value="8_Pass">8 Pass</option>`)
+                $('#degree_title').append(`<option value="Pthers">Other</option>`)
             }
             // =============If Inquiry Selected=============
             else if ($(this).val() === 'secondary') {
                 $('#group').show();
                 $('#d1_title').show();
                 $('#degree_title').show();
-                $('#degree_title').append(`<option value="ssc">SSC</option>`)
-                $('#degree_title').append(`<option value="o_level">O Level</option>`)
-                $('#degree_title').append(`<option value="dakhil">Dakhil (Madrasah)</option>`)
-                $('#degree_title').append(`<option value="ssc_vocational">SSC (Vocational)</option>`)
-                $('#degree_title').append(`<option value="others">Other</option>`)
+                $('#degree_title').append(`<option value="SSC">SSC</option>`)
+                $('#degree_title').append(`<option value="O_Level">O Level</option>`)
+                $('#degree_title').append(`<option value="Dakhil">Dakhil (Madrasah)</option>`)
+                $('#degree_title').append(`<option value="SSC_Vocational">SSC (Vocational)</option>`)
+                $('#degree_title').append(`<option value="Others">Other</option>`)
             }
             // =============If Inquiry Selected=============
             else if ($(this).val() === 'higher_secondary') {
                 $('#group').show();
                 $('#d1_title').show();
                 $('#degree_title').show();
-                $('#degree_title').append(`<option value="hsc">HSC</option>`)
-                $('#degree_title').append(`<option value="a_level">A Level</option>`)
-                $('#degree_title').append(`<option value="alim">Alim (Madrasah)</option>`)
-                $('#degree_title').append(`<option value="hsc_vocational">HSC (Vocational)</option>`)
-                $('#degree_title').append(`<option value="others">Other</option>`)
+                $('#degree_title').append(`<option value="HSC">HSC</option>`)
+                $('#degree_title').append(`<option value="A_level">A Level</option>`)
+                $('#degree_title').append(`<option value="Alim">Alim (Madrasah)</option>`)
+                $('#degree_title').append(`<option value="HSC_Vocational">HSC (Vocational)</option>`)
+                $('#degree_title').append(`<option value="Others">Other</option>`)
 
             }
             // =============If Inquiry Selected=============
@@ -237,7 +237,7 @@
                 $('#degree_title').append('<option value="Diploma in Marine">Diploma in Marine</option>')
                 $('#degree_title').append('<option value="Diploma in Medical">Diploma in Medical</option>')
                 $('#degree_title').append('<option value="Diploma in Midwifery">Diploma in Midwifery</option>')
-                $('#degree_title').append('<option value="others">Other</option></select>')
+                $('#degree_title').append('<option value="Others">Other</option></select>')
 
             }
             // =============If Inquiry Selected=============
@@ -265,7 +265,7 @@
                     $('#degree_title').append(`<option value="Bachelor of Computer Application (BCA)">Bachelor of Computer Application (BCA)</option>`)
                     $('#degree_title').append(`<option value="Fazil (Madrasah)">Fazil (Madrasah)</option>`)
                     $('#degree_title').append(`<option value="Bachelor in Engineering (BEngg)">Bachelor in Engineering (BEngg)</option>`)
-                    $('#degree_title').append(`<option value="others">Other</option>`)
+                    $('#degree_title').append(`<option value="0thers">Other</option>`)
             }
             // =============If Inquiry Selected=============
             else if ($(this).val() === 'masters') {
@@ -295,7 +295,7 @@
                      $('#degree_title').append(`<option value="Masters in Bank Management (MBM)">Masters in Bank Management (MBM)</option>`)
                      $('#degree_title').append(`<option value="Masters in Information Systems Security (MISS)">Masters in Information Systems Security (MISS)</option>`)
                      $('#degree_title').append(`<option value="Master of Information &amp; Communication Technology (MICT)">Master of Information &amp; Communication Technology (MICT)</option>`)
-                     $('#degree_title').append(`<option value="others">Other</option>`)
+                     $('#degree_title').append(`<option value="Others">Other</option>`)
             }
             else if ($(this).val() === 'phd') {
                 $('#group').show();

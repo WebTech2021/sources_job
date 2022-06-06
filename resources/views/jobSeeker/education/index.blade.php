@@ -38,7 +38,7 @@
                                     <th>Board</th>
                                     <th>Group</th>
                                     <th>Institute Name</th>
-                                    <th>Result(GPA)</th>
+                                    <th>Result</th>
                                     <th>Passing Year</th>
                                     <th>Action</th>
                                 </tr>
@@ -52,9 +52,13 @@
                                                 <p>Secondary</p>
                                             @elseif($data->education_level == 'higher_secondary')
                                                 <p>Higher Secondary</p>
+                                            @elseif($data->education_level == 'psc')
+                                                <p>PSC/5 pass</p>
+                                            @elseif($data->education_level == 'jsc')
+                                                <p>JSC/JDC/8 pass</p>
                                             @elseif($data->education_level == 'diploma')
                                                 <p>Diploma</p>
-                                            @elseif($data->education_level == 'bachelor/honors')
+                                            @elseif($data->education_level == 'bachelor_honors')
                                                 <p>Bachelor/Honors</p>
                                             @elseif($data->education_level == 'masters')
                                                 <p>Masters</p>
@@ -67,29 +71,29 @@
                                         </td>
                                         <td>{{$data->degree_title}}</td>
                                         <td>
-                                            @if($data->education_board == 'dhaka')
+                                            @if($data->education_board == 'Dhaka')
                                                 <p>Dhaka</p>
-                                            @elseif($data->education_board == 'barishal')
+                                            @elseif($data->education_board == 'Barishal')
                                                 <p>Barishal</p>
-                                            @elseif($data->education_board == 'chattogram')
+                                            @elseif($data->education_board == 'Chattogram')
                                                 <p>Chattogram</p>
-                                            @elseif($data->education_board == 'comilla')
+                                            @elseif($data->education_board == 'Comilla')
                                                 <p>Comilla</p>
-                                            @elseif($data->education_board == 'dinajpur')
+                                            @elseif($data->education_board == 'Dinajpur')
                                                 <p>Dinajpur</p>
-                                            @elseif($data->education_board == 'jashore')
+                                            @elseif($data->education_board == 'Jashore')
                                                 <p>jashore</p>
-                                            @elseif($data->education_board == 'mymensingh')
+                                            @elseif($data->education_board == 'Mymensingh')
                                                 <p>Mymensingh</p>
-                                            @elseif($data->education_board == 'rajshahi')
+                                            @elseif($data->education_board == 'Rajshahi')
                                                 <p>Rajshahi</p>
-                                            @elseif($data->education_board == 'sylhet')
+                                            @elseif($data->education_board == 'Sylhet')
                                                 <p>Sylhet</p>
-                                            @elseif($data->education_board == 'madrasah')
+                                            @elseif($data->education_board == 'Madrasah')
                                                 <p>Madrasah</p>
-                                            @elseif($data->education_board == 'technical')
+                                            @elseif($data->education_board == 'Technical')
                                                 <p>Technical</p>
-                                            @elseif($data->education_board == 'bou')
+                                            @elseif($data->education_board == 'BOU')
                                                 <p>BOU</p>
                                             @else
                                                 <p>-</p>
@@ -98,9 +102,19 @@
                                         </td>
                                         <td>{{$data->group}}</td>
                                         <td>{{$data->institute_name}}</td>
-                                        <td>{{$data->result}}</td>
-                                        <td>{{$data->passing_year}}</td>
-                                        <td>
+                                         <td>
+                                            @if($data->result == 'grade')
+                                                <p>CGPA-{{ $data->cgpa }} out of {{$data->scale}}</p>
+                                            @elseif($data->result == '1st_class')
+                                                <p>First Division,Mark: {{$data->mark}}%</p>
+                                            @elseif($data->result == '2nd_class')
+                                                 <p>Second Division,Mark: {{$data->mark}}%</p>
+                                            @elseif($data->result == '3rd_class')
+                                                 <p>Third Division,Mark: {{$data->mark}}%</p>
+                                            @endif
+                                          </td>
+                                         <td>{{$data->passing_year}}</td>
+                                         <td>
                                             <div class="btn-group">
                                                 <div class="mr-1">
                                                     <a href="{{route('jobSeeker.education.edit',encrypt($data->id))}}" class="btn btn-sm btn-primary" >
