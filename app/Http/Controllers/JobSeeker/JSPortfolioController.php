@@ -54,7 +54,7 @@ class JSPortfolioController extends Controller
             $portfolio = Portfolio::findOrFail(decrypt($id));
             return view('jobSeeker.portfolio.details', compact('portfolio'));
         } catch (DecryptException $e) {
-            abort(404);
+            Toastr::error('Something wants wrong!', 'error');
         }
 
     }
@@ -66,7 +66,7 @@ class JSPortfolioController extends Controller
             return view('jobSeeker.portfolio.edit', compact('portfolio'));
 
         } catch (DecryptException $e) {
-            abort(404);
+            Toastr::error('Something wants wrong!', 'error');
         }
     }
 
@@ -92,7 +92,7 @@ class JSPortfolioController extends Controller
             return redirect()->route('jobSeeker.portfolio.index');
 
         } catch (DecryptException $e) {
-            abort(404);
+            Toastr::error('Something wants wrong!', 'error');
         }
 
     }
@@ -106,7 +106,7 @@ class JSPortfolioController extends Controller
             return redirect()->route('jobSeeker.portfolio.index');
 
         } catch (DecryptException $e) {
-            abort(404);
+            Toastr::error('Something wants wrong!', 'error');
         }
     }
 }

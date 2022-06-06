@@ -117,8 +117,8 @@
                                         <div class="card" style="border:1px solid grey">
                                             <div class="card-header align-items-start pb-0">
                                                 <div>
-                                                    <h2 class="fw-bolder">50</h2>
-                                                    <p class="card-text">Invitation</p>
+                                                    <h2 class="fw-bolder">{{\App\Models\Invite::where(['job_seeker_id' => auth('jobSeeker')->user()->id,'status'=>'accept'])->count()}}</h2>
+                                                    <p class="card-text">Invitation Accept</p>
                                                 </div>
                                                 <div class="avatar bg-light-warning p-50">
                                                     <div class="avatar-content">

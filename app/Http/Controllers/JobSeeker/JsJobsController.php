@@ -121,15 +121,15 @@ class JsJobsController extends Controller
     public function inviteList()
     {
         if (\request()->ajax()) {
-            $list_data = Invite::where(['job_seeker_id' => auth('jobSeeker')->user()->id])->get();
+            $list_data = Invite::where(['job_seeker_id' => auth('jobSeeker')->user()->id])->latest();
             return DataTables::of($list_data)
                 ->addIndexColumn()
                 ->addColumn('nameWithImage', function ($list_data) {
                     $id = $list_data->organization_id;
                     $logo = $this->getSourcesOrgTable()->where('id', '=', $id)->first()->logo;
                     $name = $this->getSourcesOrgTable()->where('id', '=', $id)->first()->name;
-                    return nameWithImage1($name, $logo, 'imagepath.companyLogo',
-                        'images/company-logo/default-logo.png');
+                    $image = '<img src="'.config('app.seller_image_url').$logo.'" style="width: 30px; height: 30px; border-radius: 50%;">';
+                    return $image.'  '. ucwords($name);
                 })
                 ->addColumn('email', function ($list_data) {
                     $id = $list_data->organization_id;
