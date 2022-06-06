@@ -87,12 +87,13 @@
                                         <div class="card" style="border:1px solid grey">
                                             <div class="card-header align-items-start pb-0">
                                                 <div>
-                                                    <h2 class="fw-bolder">100</h2>
-                                                    <p class="card-text">Profile View</p>
+                                                    <h2 class="fw-bolder">{{\App\Models\JobApplication::where(['job_seeker_id' => auth('jobSeeker')->user()->id])->count() ?? '0 '}}</h2>
+                                                    <p class="card-text">Total Apply</p>
                                                 </div>
                                                 <div class="avatar bg-light-primary p-50">
                                                     <div class="avatar-content">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor font-medium-5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                                                        <i class="fa fa-check-circle font-medium-5" width="20" height="20" aria-hidden="true" ></i>
+{{--                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor font-medium-5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>--}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -102,7 +103,8 @@
                                         <div class="card" style="border:1px solid grey">
                                             <div class="card-header align-items-start pb-0">
                                                 <div>
-                                                    <h2 class="fw-bolder">12</h2>
+                                                    <h2 class="fw-bolder">{{\App\Models\Statistics::where(['seeker_id' => auth('jobSeeker')->user()->id])->count()?? '0'}}</h2>
+
                                                     <p class="card-text">CV Download</p>
                                                 </div>
                                                 <div class="avatar bg-light-success p-50">
@@ -117,7 +119,7 @@
                                         <div class="card" style="border:1px solid grey">
                                             <div class="card-header align-items-start pb-0">
                                                 <div>
-                                                    <h2 class="fw-bolder">{{\App\Models\Invite::where(['job_seeker_id' => auth('jobSeeker')->user()->id,'status'=>'accept'])->count()}}</h2>
+                                                    <h2 class="fw-bolder">{{\App\Models\Invite::where(['job_seeker_id' => auth('jobSeeker')->user()->id,'status'=>'accept'])->count() ?? '0'}}</h2>
                                                     <p class="card-text">Invitation Accept</p>
                                                 </div>
                                                 <div class="avatar bg-light-warning p-50">

@@ -8,9 +8,12 @@ use App\Models\District;
 use App\Models\Division;
 use App\Models\JobSeeker\Feature;
 use App\Models\JobSeeker\JobSeeker;
+use App\Models\Statistics;
 use App\Models\Upazila;
 use App\Traits\UploadAble;
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class ProfileController extends Controller
@@ -53,6 +56,11 @@ class ProfileController extends Controller
             'seeker_details' => $seeker_details,
           ];
          $pdf = PDF::loadHtml(view('jobSeeker.dashboard.pdf', $data));
+        Statistics::create([
+            'seeker_id'=>$seeker_details->id,
+            'download_at'=>Carbon::now(),
+            'organization_id'=>$this->getSourcesOrgTable()->first()->id,
+        ]);
         return $pdf->stream( $seeker_details->first_name.' '.$seeker_details->last_name.'.pdf');
     }
 
@@ -68,6 +76,11 @@ class ProfileController extends Controller
             ]);
             return back();
         }
+    }
+
+    public function getSourcesOrgTable()
+    {
+        return DB::connection('sources')->table('organizations');
     }
 
 

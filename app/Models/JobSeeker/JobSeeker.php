@@ -50,7 +50,7 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
         'google_plus_url',
         'status',
         'last_seen_at',
-        'code'
+        'code',
     ];
 
     protected $hidden = ['password', 'remember_token',];

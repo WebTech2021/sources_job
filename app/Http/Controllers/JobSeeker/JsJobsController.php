@@ -82,8 +82,6 @@ class JsJobsController extends Controller
 
     public function job_details($id)
     {
-//      return  $job_details = Jobs::findOrfail(decrypt($id));
-
         try {
             $job_details = Jobs::findOrfail(decrypt($id));
             $id = $job_details->organization_id;
