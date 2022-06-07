@@ -51,11 +51,20 @@
                         <div class="head-label">
                             <h4 class="mb-0">{{__('CV Preview')}}</h4>
                         </div>
-{{--                        @if($jobSeeker->)--}}
-{{--                            <p>fill up all information for cv</p>--}}
-{{--                        @else--}}
-                            <div class="dt-action-buttons text-right">
-                                @if($jobSeeker->featuredProfile()->exists())
+                        {{$jobSeeker->latestFeature() ? 'can': 'none'}}
+                             <div class="dt-action-buttons text-right">
+{{--                               {{$jobSeeker->p_status->status ??' '}}--}}
+                                 @if($jobSeeker->latestFeature())
+                                     <div class="dt-buttons d-inline-flex">
+                                         <form action="{{route('jobSeeker.make.feature',encrypt($jobSeeker->id))}}" method="post">
+                                             @csrf
+                                             <button class="dt-button create-new btn btn-secondary ml-1 mr-1" type="submit"
+                                                     style="width: 100%; border: none; outline:none;">
+                                                 <div><i class="fa fa-pen"></i>&nbsp;&nbsp; {{__('Promote CV')}}</div>
+                                             </button>
+                                         </form>
+                                     </div>
+                                @elseif($jobSeeker->featuredProfile()->exists())
                                     <span class="badge badge-danger">Already Promote listed</span>
                                 @else
                                     <div class="dt-buttons d-inline-flex">
@@ -63,7 +72,7 @@
                                             @csrf
                                             <button class="dt-button create-new btn btn-secondary ml-1 mr-1" type="submit"
                                                     style="width: 100%; border: none; outline:none;">
-                                                <div><i class="fa fa-pen"></i>&nbsp;&nbsp; {{__('Promote CV')}}</div>
+                                                <div><i class="fa fa-pen"></i>&nbsp;&nbsp; {{__('Promote ')}}</div>
                                             </button>
                                         </form>
                                     </div>

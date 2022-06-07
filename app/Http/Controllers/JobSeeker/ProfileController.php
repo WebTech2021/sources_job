@@ -13,6 +13,7 @@ use App\Models\Upazila;
 use App\Traits\UploadAble;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
@@ -64,16 +65,37 @@ class ProfileController extends Controller
         return $pdf->stream( $seeker_details->first_name.' '.$seeker_details->last_name.'.pdf');
     }
 
-    public function createFeature(){
-        if (Feature::where(['featurable_id' => auth('jobSeeker')->user()->id,'type'=> 'promote'])->exists()){
+    public function createFeature(Request $request){
+//       $promote = Feature::where(['featurable_id' => auth('jobSeeker')->user()->id,'type'=>'promote'])->get();
+//       if (!$promote){
+//           return 'hello';
+//       }else{
+//           Feature::create([
+//            'type' => 'promote',
+//            'featurable_type' => JobSeeker::class,
+//            'featurable_id' => auth('jobSeeker')->user()->id,
+//        ]);
+//        return back();
+//       }
+
+        if (Feature::where([
+            'featurable_id' => auth('jobSeeker')->user()->id,'type'=>'promote'
+         ])->where('status', '!=','expired')->first()){
             Toastr::error('Already Promote listed!','Error');
             return  redirect()->back();
         }else{
-            Feature::create([
-                'type' => 'promote',
-                'featurable_type' => JobSeeker::class,
-                'featurable_id' => auth('jobSeeker')->user()->id,
-            ]);
+            $promote = Feature::where(['featurable_id' => auth('jobSeeker')->user()->id,'type'=>'promote'])->get();
+            if (!$promote){
+                Feature::create([
+                    'type' => 'promote',
+                    'featurable_type' => JobSeeker::class,
+                    'featurable_id' => auth('jobSeeker')->user()->id,
+                ]);
+            }else{
+                $promote = Feature::find(['featurable_id' => auth('jobSeeker')->user()->id,'type'=>'promote']);
+                $jobSeeker->update($request->except(['token']));
+                return back();
+            }
             return back();
         }
     }

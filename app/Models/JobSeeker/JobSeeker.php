@@ -92,37 +92,61 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(KeyFeatures::class, 'job_seeker_id', 'id');
     }
-    public function skill(){
-        return $this->hasMany(Skills::class,'job_seeker_id','id');
+
+    public function skill()
+    {
+        return $this->hasMany(Skills::class, 'job_seeker_id', 'id');
     }
-    public function objective(){
-        return $this->hasOne(CareerAndApplicationInformation::class,'job_seeker_id','id');
+
+    public function objective()
+    {
+        return $this->hasOne(CareerAndApplicationInformation::class, 'job_seeker_id', 'id');
     }
-    public function experiences(){
-        return $this->hasMany(jsExperience::class,'job_seeker_id','id');
+
+    public function experiences()
+    {
+        return $this->hasMany(jsExperience::class, 'job_seeker_id', 'id');
     }
-    public function education(){
-        return $this->hasMany(jsEducation::class,'job_seeker_id','id');
+
+    public function education()
+    {
+        return $this->hasMany(jsEducation::class, 'job_seeker_id', 'id');
     }
-    public function reference(){
-        return $this->hasMany(Reference::class,'job_seeker_id','id');
+
+    public function reference()
+    {
+        return $this->hasMany(Reference::class, 'job_seeker_id', 'id');
     }
-    public function portfolio(){
-        return $this->hasMany(Portfolio::class,'job_seeker_id','id');
+
+    public function portfolio()
+    {
+        return $this->hasMany(Portfolio::class, 'job_seeker_id', 'id');
     }
 
     public function featuredProfile()
     {
-        return $this->morphOne(Feature::class, 'featurable');
+        return $this->morphMany(Feature::class, 'featurable');
     }
 
     public function notices()
     {
         return $this->hasManyThrough(Notice::class, NoticeReceiver::class, 'notice_id', 'id');
     }
+
     public function myNotice()
     {
         return $this->hasMany(NoticeReceiver::class, 'user_id')->latest();
     }
+
+    public function latestFeature()
+    {
+        return $this->featuredProfile()->latest()->first()->status === 'expired';
+    }
+
+    public function p_status(){
+        return $this->hasOne(Feature::class,'featurable_id');
+    }
+
+
 
 }
