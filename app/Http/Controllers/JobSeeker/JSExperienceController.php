@@ -16,8 +16,14 @@ class JSExperienceController extends Controller
         $experiences = jsExperience::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
         return view('jobSeeker.experience.index',compact('experiences'));
     }
+
+    public function  create(){
+        return view('jobSeeker.experience.create');
+    }
+
     public function store(Request $request)
     {
+
         $request->validate([
             'designation'=>'required',
             'department'=>'required',
@@ -25,6 +31,7 @@ class JSExperienceController extends Controller
             'company_location'=>'required',
             'experience'=>'required',
             'start_date'=>'required',
+            'currently_working'=>'required',
         ]);
         $experience = new jsExperience();
         $experience->job_seeker_id = Auth::user()->id;
@@ -52,6 +59,7 @@ class JSExperienceController extends Controller
             'company_location'=>'required',
             'experience'=>'required',
             'start_date'=>'required',
+            'currently_working'=>'required',
         ]);
 
         try {

@@ -58,7 +58,7 @@
 
                                 <div class="form-group col-sm-4" id="d2_title">
                                     <label for="degree_title">Degree Title:</label><span class="text-danger">*</span>
-                                    <input class="form-control" placeholder="Exam Type/Degree Title" name="phd_title" type="text" value="{{old('phd_title')}}">
+                                    <input class="form-control" placeholder="Exam Type/Degree Title" name="phd_title" type="text" value="{{old('phd_title',$education->phd_title)}}" required>
                                 </div>
 
                                 <div class="form-group col-sm-4" id="education_board">

@@ -163,7 +163,7 @@
 
     })
 
-        // =============On Feature Type Change Start=============
+        // =============On education level Type Change Start=============
         $('#education_level').on('change', function () {
             $('#jsc').show();
             $('#degree_title').empty()
