@@ -25,6 +25,7 @@
         .heading{
             background: #eee;
             padding: 10px;
+            border-radius: 5px;
         }
        .table .title {
             border: 1px solid #ddd;
@@ -48,7 +49,7 @@
                 <table class="table">
                     <tr>
                         <td>
-                            <h2>{{$seeker_details->first_name.' '.$seeker_details->last_name}}</h2>
+                            <h2>{{ucwords($seeker_details->first_name.' '.$seeker_details->last_name)}}</h2>
                             <p>Mobile No:+88 {{$seeker_details->phone_number}}</p>
                             <p>Email: {{$seeker_details->email}}</p>
                             <p>Address: {{$seeker_details->p_address}}</p>
@@ -150,7 +151,7 @@
                             <td class="title">{{$data->company_name ?? ''}}</td>
                             <td class="title">{{$data->experience ?? ''}}</td>
                             <td class="title">{{$data->start_date != null ? \Carbon\Carbon::parse($data->start_date)->format('d M Y'):'-'}}</td>
-                            <td class="title">{{$data->end_date != null ? \Carbon\Carbon::parse($data->end_date)->format('d M Y'): 'currently working'}}</td>
+                            <td class="title">{{$data->end_date != null ? \Carbon\Carbon::parse($data->end_date)->format('d M Y'): 'Currently Working'}}</td>
                             <td class="title">{{$data->description ?? ''}}</td>
                         </tr>
                         @endforeach
@@ -181,9 +182,19 @@
                             <tr>
                                 <td class="title">{{$education->degree_title ?? ''}}</td>
                                 <td class="title">{{$education->group ?? ''}}</td>
-                                <td class="title">{{$education->institute_name ?? ''}}</td>
                                 <td class="title">{{$education->education_board ?? ''}}</td>
-                                <td class="title">{{$education->result ?? ''}}</td>
+                                <td class="title">{{$education->institute_name ?? ''}}</td>
+                                <td class="title">
+                                    @if($education->result == 'grade')
+                                        <p>CGPA-{{$education->cgpa }} out of {{$education->scale}}</p>
+                                    @elseif($education->result == '1st_class')
+                                        <p>First Division,Mark: {{$education->mark}}%</p>
+                                    @elseif($education->result == '2nd_class')
+                                        <p>Second Division,Mark: {{$data->mark}}%</p>
+                                    @elseif($education->result == '3rd_class')
+                                        <p>Third Division,Mark: {{$education->mark}}%</p>
+                                    @endif
+                                </td>
                                 <td class="title">{{$education->passing_year ?? ''}}</td>
                             </tr>
                         @endforeach
@@ -206,19 +217,19 @@
                             <th class="name_style">Preferred Job Category</th>
                             <td class="colon_style">:</td>
                             <th>
-                                {{ $seeker_details->career->category->name ?? ''}}
+                                {{ ucwords($seeker_details->career->category->name ?? '') }}
                             </th>
                         </tr>
                         <tr>
                             <td class="name_style">Job Type</td>
-                            <th class="colon_style">:</th>
+                            <td class="colon_style">:</td>
                             <td>
-                                {{$seeker_details->career->job_type ?? ''}}
+                                {{$seeker_details->career->job_type ?? '' }}
                             </td>
                         </tr>
                         <tr>
                             <td class="name_style">Last Education</td>
-                            <th class="colon_style">:</th>
+                            <td class="colon_style">:</td>
                             <td>
                                 {{$seeker_details->career->education ?? ''}}
                             </td>
@@ -248,7 +259,15 @@
                             <td class="name_style">Available From</td>
                             <td class="colon_style">:</td>
                             <td>
-                                {{$seeker_details->career->available_status ?? ' '}}
+                                @if( $seeker_details->career->available_status == 'this_month')
+                                    This Month
+                                @elseif($seeker_details->career->available_status == 'next_month')
+                                    Next Month
+                                @elseif($seeker_details->career->available_status == 'after_next_month')
+                                    After Next Month
+                                @else
+                                    -
+                                @endif
                             </td>
                         </tr>
                         </tbody>

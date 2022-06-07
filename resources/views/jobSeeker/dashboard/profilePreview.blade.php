@@ -56,10 +56,7 @@
 {{--                        @else--}}
                             <div class="dt-action-buttons text-right">
                                 @if($jobSeeker->featuredProfile()->exists())
-{{--                                    <p class="badge badge-glow badge-danger">Already Promoted</p>--}}
-                                    <button type="button" class="btn btn-secondary active" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-                                        Tooltip on top
-                                    </button>
+                                    <span class="badge badge-danger">Already Promote listed</span>
                                 @else
                                     <div class="dt-buttons d-inline-flex">
                                         <form action="{{route('jobSeeker.make.feature',encrypt($jobSeeker->id))}}" method="post">
@@ -86,9 +83,9 @@
                                         <div class="col-12  d-flex justify-content-between">
                                             <div class="left-content">
                                                 <h2>{{ucfirst($jobSeeker->first_name.' '.$jobSeeker->last_name ?? ' ')}}</h2>
-                                                <p class="p-0"><b>Address:</b> {{$jobSeeker->p_address ?? ''}}</p>
-                                                <p class="p-0"><b>Mobile No:</b>{{$jobSeeker->phone_number ?? ''}}</p>
+                                                <p class="p-0"><b>Mobile No:</b> +88 {{$jobSeeker->phone_number ?? ''}}</p>
                                                 <p class="p-0"><b>Email:</b> {{$jobSeeker->email ?? ''}}</p>
+                                                <p class="p-0"><b>Address:</b> {{$jobSeeker->p_address ?? ''}}</p>
                                             </div>
                                              <div class="right-side">
                                                  @if($jobSeeker->image)
@@ -172,7 +169,7 @@
                                                         <td>{{$data->start_date != null ? \Carbon\Carbon::parse($data->start_date)->format('d M Y'):'-'}}</td>
                                                         <td>{{$data->end_date != null ? \Carbon\Carbon::parse($data->end_date)->format('d M Y'): 'Currently working'}}</td>
                                                         {{--<td>{{$data->currently_working ?? 'no'}}</td>--}}
-                                                        <td>{{$data->description ?? ''}}</td>
+                                                        <td>{{$data->description ?? '-'}}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
@@ -198,9 +195,19 @@
                                                     <tr class="td_style">
                                                         <td>{{$education->degree_title ?? ''}}</td>
                                                         <td>{{$education->group ?? ''}}</td>
-                                                        <td>{{$education->institute_name ?? ''}}</td>
                                                         <td>{{$education->education_board ?? ''}}</td>
-                                                        <td>{{$education->result ?? ''}}</td>
+                                                        <td>{{$education->institute_name ?? ''}}</td>
+                                                        <td>
+                                                            @if($education->result == 'grade')
+                                                                <p>CGPA-{{ $education->cgpa }} out of {{$education->scale}}</p>
+                                                            @elseif($education->result == '1st_class')
+                                                                <p>First Division, Mark: {{$education->mark}}%</p>
+                                                            @elseif($education->result == '2nd_class')
+                                                                <p>Second Division, Mark: {{$education->mark}}%</p>
+                                                            @elseif($education->result == '3rd_class')
+                                                                <p>Third Division, Mark: {{$education->mark}}%</p>
+                                                            @endif
+                                                        </td>
                                                         <td>{{$education->passing_year ?? ''}}</td>
                                                     </tr>
                                                 @endforeach
@@ -260,7 +267,15 @@
                                                     <td class="name_style">Available From</td>
                                                     <td class="colon_style">:</td>
                                                     <td>
-                                                        {{$jobSeeker->career->available_status ?? ' '}}
+                                                        @if( $jobSeeker->career->available_status == 'this_month')
+                                                            This Month
+                                                        @elseif($jobSeeker->career->available_status == 'next_month')
+                                                            Next Month
+                                                        @elseif($jobSeeker->career->available_status == 'after_next_month')
+                                                            After Next Month
+                                                        @else
+                                                            -
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 </tbody>

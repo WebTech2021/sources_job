@@ -112,7 +112,7 @@
                                             @elseif($data->result == '3rd_class')
                                                  <p>Third Division,Mark: {{$data->mark}}%</p>
                                             @endif
-                                          </td>
+                                         </td>
                                          <td>{{$data->passing_year}}</td>
                                          <td>
                                             <div class="btn-group">

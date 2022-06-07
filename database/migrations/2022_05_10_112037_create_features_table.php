@@ -15,7 +15,7 @@ class CreateFeaturesTable extends Migration
     {
         Schema::create('features', function (Blueprint $table) {
             $table->id();
-            $table->enum('type',['feature','urgent'])->default('feature');
+            $table->enum('type',['feature','urgent','promote'])->default('feature');
             $table->string('featurable_type');
             $table->unsignedBigInteger('featurable_id');
             $table->dateTime('expired')->nullable();
