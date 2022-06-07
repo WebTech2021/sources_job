@@ -65,17 +65,17 @@ class ProfileController extends Controller
     }
 
     public function createFeature(){
-//        if (Feature::where(['featurable_id' => auth('jobSeeker')->user()->id,'type'=> 'promote'])->exists()){
-//            Toastr::error('Already Promote listed!','Error');
-//            return  redirect()->back();
-//        }else{
-//            Feature::create([
-//                'type' => 'promote',
-//                'featurable_type' => JobSeeker::class,
-//                'featurable_id' => auth('jobSeeker')->user()->id,
-//            ]);
-//            return back();
-//        }
+        if (Feature::where(['featurable_id' => auth('jobSeeker')->user()->id,'type'=> 'promote'])->exists()){
+            Toastr::error('Already Promote listed!','Error');
+            return  redirect()->back();
+        }else{
+            Feature::create([
+                'type' => 'promote',
+                'featurable_type' => JobSeeker::class,
+                'featurable_id' => auth('jobSeeker')->user()->id,
+            ]);
+            return back();
+        }
     }
 
     public function getSourcesOrgTable()
