@@ -84,7 +84,7 @@ class ProfileController extends Controller
                     'featurable_type' => JobSeeker::class,
                     'featurable_id' => auth('jobSeeker')->user()->id,
                 ]);
-                Toastr::success('Information Featured Successfully!','Success');
+                Toastr::success('Information Promote Successfully!','Success');
                 return back();
             }
         }
