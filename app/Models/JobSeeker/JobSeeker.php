@@ -140,7 +140,7 @@ class JobSeeker extends Authenticatable implements MustVerifyEmail
 
     public function latestFeature()
     {
-        return $this->featuredProfile()->latest()->first()->status === 'expired';
+        return $this->featuredProfile()->latest()->first();
     }
 
     public function p_status(){

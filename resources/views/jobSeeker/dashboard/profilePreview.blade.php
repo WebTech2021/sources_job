@@ -51,13 +51,26 @@
                         <div class="head-label">
                             <h4 class="mb-0">{{__('CV Preview')}}</h4>
                         </div>
-                        {{$jobSeeker->latestFeature() ? 'can': 'none'}}
+{{--                        {{$jobSeeker->latestFeature() && $jobSeeker->latestFeature()->status ===' expired' ? 'can': 'none'}}--}}
                              <div class="dt-action-buttons text-right">
-{{--                               {{$jobSeeker->p_status->status ??' '}}--}}
-                                 @if($jobSeeker->latestFeature())
+                                   <span class="p-2">
+                                     @if($jobSeeker->p_status->status == 'pending')
+                                           Promote Status: <b style="color:black">Pending</b>
+                                            @elseif($jobSeeker->p_status->status == 'expired')
+                                           Promote Status: <b style="color:red">Expired</b>
+                                            @elseif($jobSeeker->p_status->status == 'approved')
+                                           Promote Status: <b style="color: green">Approved</b>
+                                            @elseif($jobSeeker->p_status->status == 'unapproved')
+                                           Promote Status: <b style="color:red">Unapproved</b>
+                                            @else
+                                           Promote Status: <b>No Promote Status avalible</b>
+                                            @endif
+                                 </span>
+                                 @if(($jobSeeker->latestFeature() && $jobSeeker->latestFeature()->status ==='expired') || !$jobSeeker->latestFeature())
                                      <div class="dt-buttons d-inline-flex">
                                          <form action="{{route('jobSeeker.make.feature',encrypt($jobSeeker->id))}}" method="post">
                                              @csrf
+                                             <input type="text" name="status" value="pending" hidden>
                                              <button class="dt-button create-new btn btn-secondary ml-1 mr-1" type="submit"
                                                      style="width: 100%; border: none; outline:none;">
                                                  <div><i class="fa fa-pen"></i>&nbsp;&nbsp; {{__('Promote CV')}}</div>
@@ -72,7 +85,7 @@
                                             @csrf
                                             <button class="dt-button create-new btn btn-secondary ml-1 mr-1" type="submit"
                                                     style="width: 100%; border: none; outline:none;">
-                                                <div><i class="fa fa-pen"></i>&nbsp;&nbsp; {{__('Promote ')}}</div>
+                                                <div><i class="fa fa-pen"></i>&nbsp;&nbsp; {{__('Promote')}}</div>
                                             </button>
                                         </form>
                                     </div>

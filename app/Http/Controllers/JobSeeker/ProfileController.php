@@ -66,37 +66,27 @@ class ProfileController extends Controller
     }
 
     public function createFeature(Request $request){
-//       $promote = Feature::where(['featurable_id' => auth('jobSeeker')->user()->id,'type'=>'promote'])->get();
-//       if (!$promote){
-//           return 'hello';
-//       }else{
-//           Feature::create([
-//            'type' => 'promote',
-//            'featurable_type' => JobSeeker::class,
-//            'featurable_id' => auth('jobSeeker')->user()->id,
-//        ]);
-//        return back();
-//       }
-
         if (Feature::where([
             'featurable_id' => auth('jobSeeker')->user()->id,'type'=>'promote'
          ])->where('status', '!=','expired')->first()){
             Toastr::error('Already Promote listed!','Error');
             return  redirect()->back();
         }else{
-            $promote = Feature::where(['featurable_id' => auth('jobSeeker')->user()->id,'type'=>'promote'])->get();
-            if (!$promote){
+            $promote = Feature::where(['featurable_id' => auth('jobSeeker')->user()->id,'type'=>'promote'])->where('status', '=','expired')->first();
+            if ($promote){
+              $promote = Feature::findOrFail($promote->id);
+              $promote->update($request->except('token'));
+              Toastr::success('Information Updated Successfully!','Success');
+              return redirect()->back();
+            }else{
                 Feature::create([
                     'type' => 'promote',
                     'featurable_type' => JobSeeker::class,
                     'featurable_id' => auth('jobSeeker')->user()->id,
                 ]);
-            }else{
-                $promote = Feature::find(['featurable_id' => auth('jobSeeker')->user()->id,'type'=>'promote']);
-                $jobSeeker->update($request->except(['token']));
+                Toastr::success('Information Featured Successfully!','Success');
                 return back();
             }
-            return back();
         }
     }
 
