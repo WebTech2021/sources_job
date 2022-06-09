@@ -16,7 +16,7 @@ class CreateStatisticsTable extends Migration
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
             $table->foreignId('seeker_id')->constrained('job_seekers')->onDelete('cascade');
-            $table->foreignId('organization_id')->constrained('sources.organizations')->onDelete('cascade');
+            $table->foreignId('organization_id')->constrained(config('database.connections.sources.database').'.organizations')->onDelete('cascade');
             $table->dateTime('download_at')->nullable();
             $table->dateTime('view_at')->nullable();
             $table->timestamps();
