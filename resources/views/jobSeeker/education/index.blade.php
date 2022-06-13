@@ -49,54 +49,54 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             @if($data->education_level == 'secondary')
-                                                <p>Secondary</p>
+                                                <div>Secondary</div>
                                             @elseif($data->education_level == 'higher_secondary')
-                                                <p>Higher Secondary</p>
+                                                <div>Higher Secondary</div>
                                             @elseif($data->education_level == 'psc')
-                                                <p>PSC/5 pass</p>
+                                                <div>PSC/5 pass</div>
                                             @elseif($data->education_level == 'jsc')
-                                                <p>JSC/JDC/8 pass</p>
+                                                <div>JSC/JDC/8 pass</div>
                                             @elseif($data->education_level == 'diploma')
-                                                <p>Diploma</p>
+                                                <div>Diploma</div>
                                             @elseif($data->education_level == 'bachelor_honors')
-                                                <p>Bachelor/Honors</p>
+                                                <div>Bachelor/Honors</div>
                                             @elseif($data->education_level == 'masters')
-                                                <p>Masters</p>
+                                                <div>Masters</div>
                                             @elseif($data->education_level == 'phd')
-                                                <p>PHD</p>
+                                                <div>PHD</div>
                                             @else
-                                                <p>-</p>
+                                                <div>-</div>
                                             @endif
 
                                         </td>
                                         <td>{{$data->degree_title}}</td>
                                         <td>
                                             @if($data->education_board == 'Dhaka')
-                                                <p>Dhaka</p>
+                                                <div>Dhaka</div>
                                             @elseif($data->education_board == 'Barishal')
-                                                <p>Barishal</p>
+                                                <div>Barishal</div>
                                             @elseif($data->education_board == 'Chattogram')
-                                                <p>Chattogram</p>
+                                                <div>Chattogram</div>
                                             @elseif($data->education_board == 'Comilla')
-                                                <p>Comilla</p>
+                                                <div>Comilla</div>
                                             @elseif($data->education_board == 'Dinajpur')
-                                                <p>Dinajpur</p>
+                                                <div>Dinajpur</div>
                                             @elseif($data->education_board == 'Jashore')
-                                                <p>jashore</p>
+                                                <div>jashore</div>
                                             @elseif($data->education_board == 'Mymensingh')
-                                                <p>Mymensingh</p>
+                                                <div>Mymensingh</div>
                                             @elseif($data->education_board == 'Rajshahi')
-                                                <p>Rajshahi</p>
+                                                <div>Rajshahi</div>
                                             @elseif($data->education_board == 'Sylhet')
-                                                <p>Sylhet</p>
+                                                <div>Sylhet</div>
                                             @elseif($data->education_board == 'Madrasah')
-                                                <p>Madrasah</p>
+                                                <div>Madrasah</div>
                                             @elseif($data->education_board == 'Technical')
-                                                <p>Technical</p>
+                                                <div>Technical</div>
                                             @elseif($data->education_board == 'BOU')
-                                                <p>BOU</p>
+                                                <div>BOU</div>
                                             @else
-                                                <p>-</p>
+                                                <div>-</div>
                                             @endif
 
                                         </td>
@@ -104,13 +104,13 @@
                                         <td>{{$data->institute_name}}</td>
                                          <td>
                                             @if($data->result == 'grade')
-                                                <p>CGPA-{{ $data->cgpa }} out of {{$data->scale}}</p>
+                                                <div>CGPA-{{ $data->cgpa }} out of {{$data->scale}}</div>
                                             @elseif($data->result == '1st_class')
-                                                <p>First Division,Mark: {{$data->mark}}%</p>
+                                                <div>First Division,Mark: {{$data->mark}}%</div>
                                             @elseif($data->result == '2nd_class')
-                                                 <p>Second Division,Mark: {{$data->mark}}%</p>
+                                                 <div>Second Division,Mark: {{$data->mark}}%</div>
                                             @elseif($data->result == '3rd_class')
-                                                 <p>Third Division,Mark: {{$data->mark}}%</p>
+                                                 <div>Third Division,Mark: {{$data->mark}}%</div>
                                             @endif
                                          </td>
                                          <td>{{$data->passing_year}}</td>
