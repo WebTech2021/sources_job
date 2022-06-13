@@ -70,7 +70,7 @@ Route::group(['as' => 'jobSeeker.'], function () {
         Route::resource('/portfolio', JSPortfolioController::class);
         //job Seeker JOBS
         Route::get('/jobs-list', [JsJobsController::class, 'get_job_list'])->name('jobs.list');
-        Route::get('/job/details/{id}', [JsJobsController::class, 'job_details'])->name('jobs.details');
+        Route::get('/job/details/{slug}', [JsJobsController::class, 'job_details'])->name('jobs.details');
         Route::post('/job/apply/{id}', [JsJobsController::class, 'apply'])->name('job.apply');
         Route::get('/get-short-list', [JsJobsController::class, 'getShortlist'])->name('application.status');
 

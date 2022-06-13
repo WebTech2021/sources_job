@@ -69,7 +69,7 @@ class JsJobsController extends Controller
                     return \Carbon\Carbon::parse($job_data->to_date)->format('D, d M Y');
                 })
                 ->addColumn('job_title', function ($job_data) {
-                    return '<a href="' . route('jobSeeker.jobs.details', encrypt($job_data->id)) . '">' . $job_data->job_title. '</a>';
+                    return '<a href="' . route('jobSeeker.jobs.details',$job_data->slug) . '">' . $job_data->job_title. '</a>';
                 })
                 ->rawColumns(['nameWithImage', 'expire_date', 'salary', 'action', 'employment_status', 'job_title'])
                 ->tojson();
@@ -80,10 +80,10 @@ class JsJobsController extends Controller
     }
 
 
-    public function job_details($id)
+    public function job_details($slug)
     {
         try {
-            $job_details = Jobs::findOrfail($id);
+            $job_details = Jobs::where('slug','=',$slug)->firstOrFail();
             $id = $job_details->organization_id;
             $name = $this->getSourcesOrgTable()->where('id', '=', $id)->first()->name;
             return view('jobSeeker.jobs.show', compact('job_details','name'));

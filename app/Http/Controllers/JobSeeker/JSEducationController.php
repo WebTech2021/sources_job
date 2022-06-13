@@ -30,7 +30,6 @@ class JSEducationController extends Controller
             'group'=>'required',
             'institute_name'=>'required',
             'result'=>'required',
-//            'cgpa'=>'required|regex:/^[0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)*$/',
             'passing_year'=>'required|numeric',
         ]);
         $education = new jsEducation();
@@ -57,7 +56,6 @@ class JSEducationController extends Controller
             'group'=>'required',
             'institute_name'=>'required',
             'result'=>'required',
-//            'cgpa'=>'required|regex:/^[0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)*$/',
             'passing_year'=>'required|numeric',
         ]);
         try {
