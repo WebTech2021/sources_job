@@ -15,8 +15,8 @@ class CreateJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('organization_id')->constrained('sources.organizations')->onDelete('cascade');
-//            $table->foreignId('organization_id')->constrained(config('database.connections.sources.database').'.organizations')->onDelete('cascade');
+//            $table->foreignId('organization_id')->constrained('sources.organizations')->onDelete('cascade');
+            $table->foreignId('organization_id')->constrained(config('database.connections.sources.database').'.organizations')->onDelete('cascade');
             $table->text('job_title');
             $table->string('slug')->unique();
             $table->string('job_categories');

@@ -4,3 +4,53 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+
+li, p, span, a, th, td, tr, label, input, button, i, body,div {
+    font-size: 12px !important;
+}
+
+.main-menu.menu-light .navigation > li.active > a{
+    background: #094063 !important;
+    box-shadow : 0 0 0 0 !important;
+}
+
+.main-menu.menu-light .navigation > li ul .active{
+    background: #094063 !important;
+    box-shadow : 0 0 0 0 !important;
+}
+.bg-primary, .btn-primary:focus,.btn-primary:active, .btn-primary.active , .btn-primary {
+    background-color : #094063 !important;
+    box-shadow : 0 0 0 0 !important;
+    border-color: #094063 !important;
+}
+.nav-tabs .nav-link.active {
+    color : #094063 !important;
+    box-shadow : 0 0 0 0 !important;
+}
+.nav-tabs .nav-link:after {
+    background: #094063 !important;
+    box-shadow : 0 0 0 0 !important;
+}
+
+.btn-outline-primary{
+    border: 1px solid #094063 !important;
+    color:  #094063 !important;;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.btn-outline-primary:not(:disabled):not(.disabled):focus {
+background-color: unset !important;
+}
+
+svg.feather{
+    color: #625F6E !important;
+}
+
+span>a{
+    color: #094063 !important;
+}
+ .page-item.active .page-link{
+    background: #094063 !important;
+}
