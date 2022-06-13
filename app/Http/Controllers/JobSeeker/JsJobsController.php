@@ -83,7 +83,7 @@ class JsJobsController extends Controller
     public function job_details($id)
     {
         try {
-            $job_details = Jobs::findOrfail(decrypt($id));
+            $job_details = Jobs::findOrfail($id);
             $id = $job_details->organization_id;
             $name = $this->getSourcesOrgTable()->where('id', '=', $id)->first()->name;
             return view('jobSeeker.jobs.show', compact('job_details','name'));
