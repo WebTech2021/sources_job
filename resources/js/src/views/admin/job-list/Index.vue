@@ -40,15 +40,13 @@
             >
               <!-- Column: Name -->
               <span
-                v-if="props.column.field === 'contact'"
+                v-if="props.column.field === 'title'"
                 class="text-nowrap"
               >
                 <!-- link avatar -->
-                <b-avatar
-                  href="#foobar"
-                  :src="props.row.image"
-                />
-                <span>{{ props.row.first_name +' '+props.row.last_name }}</span>
+                <a
+                  :href="main_url+'/jobs/'+props.row.slug"
+                >{{ props.row.title }}</a>
 
               </span>
               <!-- Column: ads count -->
@@ -97,6 +95,15 @@
                         class="mr-50"
                       />
                       <span>Decline</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item
+                      @click.prevent="deleteJob(props.row.slug)"
+                    >
+                      <feather-icon
+                        icon="TrashIcon"
+                        class="mr-50"
+                      />
+                      <span>Delete</span>
                     </b-dropdown-item>
                   </b-dropdown>
                 </span>
@@ -232,6 +239,9 @@ export default {
     rows() {
       return this.$store.getters['admin/jobs/JOBS']
     },
+    main_url() {
+      return process.env.MIX_SOURCES_APP_URL
+    },
   },
   created() {
     this.getJobs()
@@ -264,6 +274,39 @@ export default {
           })
         }
       })
+    },
+    deleteJob(slug) {
+      this.$swal({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        customClass: {
+          confirmButton: 'btn btn-primary',
+          cancelButton: 'btn btn-outline-danger ml-1',
+        },
+        buttonsStyling: false,
+      })
+        .then(result => {
+          if (result.value) {
+            this.$store.dispatch('admin/jobs/DESTROY_JOB', {
+              slug,
+            }).then(response => {
+              if (response.data.success) {
+                this.getJobs()
+              }
+              this.$swal({
+                icon: response.data.success ? 'success' : 'error',
+                title: response.data.subject,
+                text: response.data.message,
+                customClass: {
+                  confirmButton: response.data.success ? 'btn btn-success' : 'btn btn-danger',
+                },
+              })
+            })
+          }
+        })
     },
     handleChangePage(page) {
       this.getJobs(page)

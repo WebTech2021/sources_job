@@ -158,7 +158,7 @@ class JobSeekerController extends Controller
             ]);
             if ($request->status==='declined')
             {
-                Http::post(config('app.mix_sources_url') . '/api/v1/job-declined', [
+                Http::post(config('app.mix_sources_url') . '/api/v1/job-pay-back', [
                    'slug' => $job->slug,
                    'role' => base64_encode("webtech-admin"),
                ]);
@@ -169,6 +169,28 @@ class JobSeekerController extends Controller
             DB::rollBack();
             info($e);
         }
+    }
+
+    public function destroyJob($id)
+    {
+        DB::beginTransaction();
+        try {
+            $job = Jobs::where(['slug' => $id])->first();
+            if (in_array($job->status, ['pending', 'publish']))
+            {
+                Http::post(config('app.mix_sources_url') . '/api/v1/job-pay-back', [
+                    'slug' => $job->slug,
+                    'role' => base64_encode("webtech-admin"),
+                ]);
+            }
+            $job->delete();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => 'Job Unable to Delete!', 'subject'=>'Failed']);
+//            info($e);
+        }
+        return response()->json(['success' => true, 'message' => 'Job Successfully Deleted!', 'subject'=>'Deleted']);
     }
 
     public function ExportJobSeeker()
