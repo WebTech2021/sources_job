@@ -25,7 +25,7 @@ class RegisterController extends Controller
     public function register(jsRegistrationRequest $request)
     {
         $data =JobSeeker::select('id')->latest()->first();
-        $id = $data->id;
+        $id = $data->id ?? '0';
         $digit = 100;
         $new_digit = $digit+$id+1;
         $code = date('ymd').$new_digit;

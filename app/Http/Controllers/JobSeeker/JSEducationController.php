@@ -16,15 +16,20 @@ class JSEducationController extends Controller
         $educations = jsEducation::where('job_seeker_id',auth('jobSeeker')->user()->id)->get();
         return view('jobSeeker.education.index',compact('educations'));
     }
+    public function create()
+    {
+        return view('jobSeeker.education.create');
+    }
+
     public function store(Request $request)
     {
+//        return $request->all();
         $request->validate([
             'education_level'=>'required',
-            'education_board'=>'required',
             'degree_title'=>'required',
             'group'=>'required',
             'institute_name'=>'required',
-            'result'=>'required|regex:/^[0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)*$/',
+            'result'=>'required',
             'passing_year'=>'required|numeric',
         ]);
         $education = new jsEducation();
@@ -48,11 +53,9 @@ class JSEducationController extends Controller
     {
         $request->validate([
             'education_level'=>'required',
-            'education_board'=>'required',
-            'degree_title'=>'required',
             'group'=>'required',
             'institute_name'=>'required',
-            'result'=>'required|numeric',
+            'result'=>'required',
             'passing_year'=>'required|numeric',
         ]);
         try {

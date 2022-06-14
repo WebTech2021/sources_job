@@ -8,9 +8,13 @@ use App\Models\District;
 use App\Models\Division;
 use App\Models\JobSeeker\Feature;
 use App\Models\JobSeeker\JobSeeker;
+use App\Models\Statistics;
 use App\Models\Upazila;
 use App\Traits\UploadAble;
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class ProfileController extends Controller
@@ -53,21 +57,42 @@ class ProfileController extends Controller
             'seeker_details' => $seeker_details,
           ];
          $pdf = PDF::loadHtml(view('jobSeeker.dashboard.pdf', $data));
+        Statistics::create([
+            'seeker_id'=>$seeker_details->id,
+            'download_at'=>Carbon::now(),
+            'organization_id'=>$this->getSourcesOrgTable()->first()->id,
+        ]);
         return $pdf->stream( $seeker_details->first_name.' '.$seeker_details->last_name.'.pdf');
     }
 
-    public function createFeature(){
-        if (Feature::where('featurable_id', '=', auth()->user()->id)->exists()){
+    public function createFeature(Request $request){
+        if (Feature::where([
+            'featurable_id' => auth('jobSeeker')->user()->id,'type'=>'promote'
+         ])->where('status', '!=','expired')->first()){
             Toastr::error('Already Promote listed!','Error');
             return  redirect()->back();
         }else{
-            Feature::create([
-                'type' => 'feature',
-                'featurable_type' => JobSeeker::class,
-                'featurable_id' => auth('jobSeeker')->user()->id,
-            ]);
-            return back();
+            $promote = Feature::where(['featurable_id' => auth('jobSeeker')->user()->id,'type'=>'promote'])->where('status', '=','expired')->first();
+            if ($promote){
+              $promote = Feature::findOrFail($promote->id);
+              $promote->update($request->except('token'));
+              Toastr::success('Information Updated Successfully!','Success');
+              return redirect()->back();
+            }else{
+                Feature::create([
+                    'type' => 'promote',
+                    'featurable_type' => JobSeeker::class,
+                    'featurable_id' => auth('jobSeeker')->user()->id,
+                ]);
+                Toastr::success('Information Promote Successfully!','Success');
+                return back();
+            }
         }
+    }
+
+    public function getSourcesOrgTable()
+    {
+        return DB::connection('sources')->table('organizations');
     }
 
 

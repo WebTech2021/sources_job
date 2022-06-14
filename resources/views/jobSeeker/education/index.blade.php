@@ -21,8 +21,8 @@
                         </div>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons d-inline-flex">
-                                <a href="#" class="dt-button create-new btn btn-primary ml-1 mr-1" tabindex="0"
-                                   aria-controls="DataTables_Table_0" type="button" data-toggle="modal" data-target="#default2">
+                                <a href="{{route('jobSeeker.education.create')}}" class="dt-button create-new btn btn-primary ml-1 mr-1" tabindex="0"
+                                   aria-controls="DataTables_Table_0" type="button">
                                     <span>{{__('Add Education')}} <i class="fas fa-plus"></i></span>
                                 </a>
                             </div>
@@ -38,7 +38,7 @@
                                     <th>Board</th>
                                     <th>Group</th>
                                     <th>Institute Name</th>
-                                    <th>Result(GPA)</th>
+                                    <th>Result</th>
                                     <th>Passing Year</th>
                                     <th>Action</th>
                                 </tr>
@@ -49,58 +49,72 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             @if($data->education_level == 'secondary')
-                                                <p>Secondary</p>
+                                                <div>Secondary</div>
                                             @elseif($data->education_level == 'higher_secondary')
-                                                <p>Higher Secondary</p>
+                                                <div>Higher Secondary</div>
+                                            @elseif($data->education_level == 'psc')
+                                                <div>PSC/5 pass</div>
+                                            @elseif($data->education_level == 'jsc')
+                                                <div>JSC/JDC/8 pass</div>
                                             @elseif($data->education_level == 'diploma')
-                                                <p>Diploma</p>
-                                            @elseif($data->education_level == 'bachelor/honors')
-                                                <p>Bachelor/Honors</p>
+                                                <div>Diploma</div>
+                                            @elseif($data->education_level == 'bachelor_honors')
+                                                <div>Bachelor/Honors</div>
                                             @elseif($data->education_level == 'masters')
-                                                <p>Masters</p>
+                                                <div>Masters</div>
                                             @elseif($data->education_level == 'phd')
-                                                <p>PHD</p>
+                                                <div>PHD</div>
                                             @else
-                                                <p>-</p>
+                                                <div>-</div>
                                             @endif
 
                                         </td>
                                         <td>{{$data->degree_title}}</td>
                                         <td>
-                                            @if($data->education_board == 'dhaka')
-                                                <p>Dhaka</p>
-                                            @elseif($data->education_board == 'barishal')
-                                                <p>Barishal</p>
-                                            @elseif($data->education_board == 'chattogram')
-                                                <p>Chattogram</p>
-                                            @elseif($data->education_board == 'comilla')
-                                                <p>Comilla</p>
-                                            @elseif($data->education_board == 'dinajpur')
-                                                <p>Dinajpur</p>
-                                            @elseif($data->education_board == 'jashore')
-                                                <p>jashore</p>
-                                            @elseif($data->education_board == 'mymensingh')
-                                                <p>Mymensingh</p>
-                                            @elseif($data->education_board == 'rajshahi')
-                                                <p>Rajshahi</p>
-                                            @elseif($data->education_board == 'sylhet')
-                                                <p>Sylhet</p>
-                                            @elseif($data->education_board == 'madrasah')
-                                                <p>Madrasah</p>
-                                            @elseif($data->education_board == 'technical')
-                                                <p>Technical</p>
-                                            @elseif($data->education_board == 'bou')
-                                                <p>BOU</p>
+                                            @if($data->education_board == 'Dhaka')
+                                                <div>Dhaka</div>
+                                            @elseif($data->education_board == 'Barishal')
+                                                <div>Barishal</div>
+                                            @elseif($data->education_board == 'Chattogram')
+                                                <div>Chattogram</div>
+                                            @elseif($data->education_board == 'Comilla')
+                                                <div>Comilla</div>
+                                            @elseif($data->education_board == 'Dinajpur')
+                                                <div>Dinajpur</div>
+                                            @elseif($data->education_board == 'Jashore')
+                                                <div>jashore</div>
+                                            @elseif($data->education_board == 'Mymensingh')
+                                                <div>Mymensingh</div>
+                                            @elseif($data->education_board == 'Rajshahi')
+                                                <div>Rajshahi</div>
+                                            @elseif($data->education_board == 'Sylhet')
+                                                <div>Sylhet</div>
+                                            @elseif($data->education_board == 'Madrasah')
+                                                <div>Madrasah</div>
+                                            @elseif($data->education_board == 'Technical')
+                                                <div>Technical</div>
+                                            @elseif($data->education_board == 'BOU')
+                                                <div>BOU</div>
                                             @else
-                                                <p>-</p>
+                                                <div>-</div>
                                             @endif
 
                                         </td>
                                         <td>{{$data->group}}</td>
                                         <td>{{$data->institute_name}}</td>
-                                        <td>{{$data->result}}</td>
-                                        <td>{{$data->passing_year}}</td>
-                                        <td>
+                                         <td>
+                                            @if($data->result == 'grade')
+                                                <div>CGPA-{{ $data->cgpa }} out of {{$data->scale}}</div>
+                                            @elseif($data->result == '1st_class')
+                                                <div>First Division,Mark: {{$data->mark}}%</div>
+                                            @elseif($data->result == '2nd_class')
+                                                 <div>Second Division,Mark: {{$data->mark}}%</div>
+                                            @elseif($data->result == '3rd_class')
+                                                 <div>Third Division,Mark: {{$data->mark}}%</div>
+                                            @endif
+                                         </td>
+                                         <td>{{$data->passing_year}}</td>
+                                         <td>
                                             <div class="btn-group">
                                                 <div class="mr-1">
                                                     <a href="{{route('jobSeeker.education.edit',encrypt($data->id))}}" class="btn btn-sm btn-primary" >
@@ -129,169 +143,6 @@
         </div>
     </section>
     <!-- add education -->
-    <div class="modal fade text-left" id="default2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel2">Add Educational Details</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{route('jobSeeker.education.store')}}" method="POST">
-                        @csrf
-                        <div class="row">
-                            <div class="form-group col-sm-6">
-                                <div class="position-relative" data-select2-id="64">
-                                    <label for="degree_title">Level of Education:</label><span class="text-danger">*</span>
-                                    <select class="select2 form-select select2-hidden-accessible form-control"  tabindex="-1" aria-hidden="true" name="education_level" required="">
-                                        <option value="" data-select2-id="2" selected disabled>Select One</option>
-                                        <option value="secondary">Secondary</option>
-                                        <option value="higher_secondary">Higher Secondary</option>
-                                        <option value="diploma">Diploma</option>
-                                        <option value="bachelor/honors">Bachelor/Honors</option>
-                                        <option value="masters">Masters</option>
-{{--                                        <option value="phd">PhD (Doctor of Philosophy)</option>--}}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="degree_title">Degree Title:</label><span class="text-danger">*</span>
-                                <input class="form-control" name="degree_title" type="text" id="degree_title" required="">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <div class="position-relative" data-select2-id="64">
-                                    <label for="degree_title">Board:</label><span class="text-danger">*</span>
-                                    <select class="select2 form-select select2-hidden-accessible form-control"  tabindex="-1" aria-hidden="true" name="education_board" required="" >
-                                        <option value="" data-select2-id="2" selected disabled>Select Option</option>
-                                        <option value="barishal">Barishal</option>
-                                        <option value="chattogram">Chattogram</option>
-                                        <option value="cumilla">Cumilla</option>
-                                        <option value="dhaka">Dhaka</option>
-                                        <option value="dinajpur">Dinajpur</option>
-                                        <option value="jashore">Jashore</option>
-                                        <option value="mymensingh">Mymensingh</option>
-                                        <option value="rajshahi">Rajshahi</option>
-                                        <option value="sylhet">Sylhet</option>
-                                        <option value="madrasah">Madrasah</option>
-                                        <option value="technical">Technical</option>
-                                        <option value="bou">BOU(Bangladesh Open University)</option>
-                                        <option value="foreign_institute">Foreign Institute</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="country">Concentration/Major/Group:</label><span class="text-danger">*</span>
-                                <input class="form-control" required="" name="group" type="text" id="group">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="institute">Institute Name:</label><span class="text-danger">*</span>
-                                <input class="form-control" required="" name="institute_name" type="text" id="institute_name">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="result">Result:</label><span class="text-danger">*</span>
-                                <input class="form-control" required="" name="result" type="text" id="result">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="year">Passing Year:</label><span class="text-danger">*</span>
-                                <select class="form-control" id="yearpicker" name="passing_year" required="">
-                                    <option value="" data-select2-id="2" selected disabled>Select Year</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-primary" id="btnEducationSave" data-loading-text="<span class='spinner-border spinner-border-sm'></span> Processing...">Save</button>
-                            <input class="btn btn-light ml-1 text-dark" type="reset" value="Reset">
-                            <button type="button" id="btnEducationCancel" class="btn btn-light ml-1 text-dark" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade text-left" id="default3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel2">Update Educational Details</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="#" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="row">
-                            <div class="form-group col-sm-6">
-                                <div class="position-relative" data-select2-id="64">
-                                    <label for="degree_title">Level of Education:</label><span class="text-danger">*</span>
-                                    <select class="select2 form-select select2-hidden-accessible form-control"  tabindex="-1" aria-hidden="true" name="education_level" >
-                                        <option value="" data-select2-id="2" selected disabled>Select Option</option>
-                                        <option value="secondary" selected="">Secondary</option>
-                                        <option value="higher_secondary">Higher Secondary</option>
-                                        <option value="diploma">Diploma</option>
-                                        <option value="bachelor/honors">Bachelor/Honors</option>
-                                        <option value="masters">Masters</option>
-                                        <option value="phd">PhD (Doctor of Philosophy)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="degree_title">Degree Title:</label><span class="text-danger">*</span>
-                                <input class="form-control" name="degree_title" type="text" id="degree_title" value="">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <div class="position-relative" data-select2-id="64">
-                                    <label for="degree_title">Board:</label><span class="text-danger">*</span>
-                                    <select class="select2 form-select select2-hidden-accessible form-control"  tabindex="-1" aria-hidden="true" name="education_board" >
-                                        <option value="" data-select2-id="2" selected disabled>Select Option</option>
-                                        <option value="barishal">Barishal</option>
-                                        <option value="chattogram">Chattogram</option>
-                                        <option value="cumilla">Cumilla</option>
-                                        <option value="dhaka">Dhaka</option>
-                                        <option value="dinajpur">Dinajpur</option>
-                                        <option value="jashore">Jashore</option>
-                                        <option value="mymensingh">Mymensingh</option>
-                                        <option value="rajshahi">Rajshahi</option>
-                                        <option value="sylhet">Sylhet</option>
-                                        <option value="madrasah">Madrasah</option>
-                                        <option value="technical">Technical</option>
-                                        <option value="bou">BOU</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="country">Concentration/Major/Group:</label><span class="text-danger">*</span>
-                                <input class="form-control" required="" name="group" type="text" id="group">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="institute">Institute Name:</label><span class="text-danger">*</span>
-                                <input class="form-control" required="" name="institute_name" type="text" id="institute_name">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="result">Result:</label><span class="text-danger">*</span>
-                                <input class="form-control" required="" name="result" type="text" id="result">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="year">Year:</label><span class="text-danger">*</span>
-                                <select class="form-control" id="yearpicker" name="passing_year">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-primary" id="btnEducationSave" data-loading-text="<span class='spinner-border spinner-border-sm'></span> Processing...">Save</button>
-                            <input class="btn btn-light ml-1 text-dark" type="reset" value="Reset">
-                            <button type="button" id="btnEducationCancel" class="btn btn-light ml-1 text-dark" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Basic trigger modal end -->
 @endsection
 @push('scripts')
@@ -302,6 +153,7 @@
         {
             $('#yearpicker').append($('<option />').val(i).html(i));
         }
+
     </script>
 @endpush
 

@@ -43,30 +43,67 @@
     </div>
 @endsection
 @section('content')
+    <section id="alerts-closable">
+        <div class="row">
+            <div class="col-md-12">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="padding: 0.71rem 1rem !important;border: 1px solid transparent !important;">
+                        <div class="alert-body text-center">
+                            To include your profile in <b style="color: #0C1D2F">Promote</b> listed, You <b style="color: #0C1D2F">Must</b> have to fill all the information including <a href="{{route('jobSeeker.key.features')}}"><b style="color: #0C1D2F">KEY FEATURES</b></a> as well as <a href="{{route('jobSeeker.profileInfo.edit')}}"><b style="color: #0C1D2F">CV DETAILS</b></a>
+                        </div>
+                        <button type="button" class="close notice_close" id="notice_close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </section>
     <section id="basic-datatable">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header border-bottom p-1">
                         <div class="head-label">
-                            <h4 class="mb-0">{{__('CV Preview')}}</h4>
+                            <h4 class="mb-0"><i class="fa fa-eye"></i>&nbsp;&nbsp;  {{__('CV Preview')}}</h4>
                         </div>
-{{--                        @if($jobSeeker->)--}}
-{{--                            <p>fill up all information for cv</p>--}}
-{{--                        @else--}}
-                            <div class="dt-action-buttons text-right">
-                                @if($jobSeeker->featuredProfile()->exists())
-{{--                                    <p class="badge badge-glow badge-danger">Already Promoted</p>--}}
-                                    <button type="button" class="btn btn-secondary active" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-                                        Tooltip on top
-                                    </button>
+{{--                        {{$jobSeeker->latestFeature() && $jobSeeker->latestFeature()->status ===' expired' ? 'can': 'none'}}--}}
+                             <div class="dt-action-buttons text-right">
+                                   <span class="p-2">
+                                    @if(is_null($jobSeeker->p_status))
+                                        {{ ' '}}
+                                    @else
+                                         @if($jobSeeker->p_status->status == 'pending')
+                                               Promote Status: <b style="color:black">Pending</b>
+                                                @elseif($jobSeeker->p_status->status == 'expired')
+                                               Promote Status: <b style="color:red">Expired</b>
+                                                @elseif($jobSeeker->p_status->status == 'approved')
+                                               Promote Status: <b style="color: green">Approved</b>
+                                                @elseif($jobSeeker->p_status->status == 'unapproved')
+                                               Promote Status: <b style="color:red">Unapproved</b>
+                                                @else
+                                               Promote Status: <b>No Promote Status available</b>
+                                           @endif
+                                   @endif
+                                 </span>
+                                 @if(($jobSeeker->latestFeature() && $jobSeeker->latestFeature()->status ==='expired') || !$jobSeeker->latestFeature())
+                                     <div class="dt-buttons d-inline-flex">
+                                         <form action="{{route('jobSeeker.make.feature',encrypt($jobSeeker->id))}}" method="post">
+                                             @csrf
+                                             <input type="text" name="status" value="pending" hidden>
+                                             <button class="dt-button create-new btn btn-secondary ml-1 mr-1" type="submit"
+                                                     style="width: 100%; border: none; outline:none;">
+                                                 <div><i class="fa fa-check-circle"></i>&nbsp;&nbsp; {{__('Promote CV')}}</div>
+                                             </button>
+                                         </form>
+                                     </div>
+                                @elseif($jobSeeker->featuredProfile()->exists())
+                                    <span class="badge badge-danger">Already Promote listed</span>
                                 @else
                                     <div class="dt-buttons d-inline-flex">
                                         <form action="{{route('jobSeeker.make.feature',encrypt($jobSeeker->id))}}" method="post">
                                             @csrf
                                             <button class="dt-button create-new btn btn-secondary ml-1 mr-1" type="submit"
                                                     style="width: 100%; border: none; outline:none;">
-                                                <div><i class="fa fa-pen"></i>&nbsp;&nbsp; {{__('Promote CV')}}</div>
+                                                <div><i class="fa fa-pen"></i>&nbsp;&nbsp; {{__('Promote')}}</div>
                                             </button>
                                         </form>
                                     </div>
@@ -86,9 +123,9 @@
                                         <div class="col-12  d-flex justify-content-between">
                                             <div class="left-content">
                                                 <h2>{{ucfirst($jobSeeker->first_name.' '.$jobSeeker->last_name ?? ' ')}}</h2>
-                                                <p class="p-0"><b>Address:</b> {{$jobSeeker->p_address ?? ''}}</p>
-                                                <p class="p-0"><b>Mobile No:</b>{{$jobSeeker->phone_number ?? ''}}</p>
+                                                <p class="p-0"><b>Mobile No:</b> +88 {{$jobSeeker->phone_number ?? ''}}</p>
                                                 <p class="p-0"><b>Email:</b> {{$jobSeeker->email ?? ''}}</p>
+                                                <p class="p-0"><b>Address:</b> {{$jobSeeker->p_address ?? ''}}</p>
                                             </div>
                                              <div class="right-side">
                                                  @if($jobSeeker->image)
@@ -172,7 +209,7 @@
                                                         <td>{{$data->start_date != null ? \Carbon\Carbon::parse($data->start_date)->format('d M Y'):'-'}}</td>
                                                         <td>{{$data->end_date != null ? \Carbon\Carbon::parse($data->end_date)->format('d M Y'): 'Currently working'}}</td>
                                                         {{--<td>{{$data->currently_working ?? 'no'}}</td>--}}
-                                                        <td>{{$data->description ?? ''}}</td>
+                                                        <td>{{$data->description ?? '-'}}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
@@ -198,9 +235,19 @@
                                                     <tr class="td_style">
                                                         <td>{{$education->degree_title ?? ''}}</td>
                                                         <td>{{$education->group ?? ''}}</td>
-                                                        <td>{{$education->institute_name ?? ''}}</td>
                                                         <td>{{$education->education_board ?? ''}}</td>
-                                                        <td>{{$education->result ?? ''}}</td>
+                                                        <td>{{$education->institute_name ?? ''}}</td>
+                                                        <td>
+                                                            @if($education->result == 'grade')
+                                                                <p>CGPA-{{ $education->cgpa ?? ' ' }} out of {{$education->scale ?? ' '}}</p>
+                                                            @elseif($education->result == '1st_class')
+                                                                <p>First Division, Mark: {{$education->mark ?? ' '}}%</p>
+                                                            @elseif($education->result == '2nd_class')
+                                                                <p>Second Division, Mark: {{$education->mark ?? ' '}}%</p>
+                                                            @elseif($education->result == '3rd_class')
+                                                                <p>Third Division, Mark: {{$education->mark ?? ' '}}%</p>
+                                                            @endif
+                                                        </td>
                                                         <td>{{$education->passing_year ?? ''}}</td>
                                                     </tr>
                                                 @endforeach
@@ -259,10 +306,22 @@
                                                 <tr>
                                                     <td class="name_style">Available From</td>
                                                     <td class="colon_style">:</td>
+                                                    @if(is_null($jobSeeker->career))
+                                                        <td></td>
+                                                    @else
                                                     <td>
-                                                        {{$jobSeeker->career->available_status ?? ' '}}
+                                                        @if($jobSeeker->career->available_status == 'this_month'  )
+                                                            This Month
+                                                        @elseif($jobSeeker->career->available_status == 'next_month' )
+                                                            Next Month
+                                                        @elseif($jobSeeker->career->available_status == 'after_next_month')
+                                                            After Next Month
+                                                        @else
+                                                            -
+                                                        @endif
                                                     </td>
-                                                </tr>
+                                                    @endif
+                                                 </tr>
                                                 </tbody>
                                             </table>
                                         </div>

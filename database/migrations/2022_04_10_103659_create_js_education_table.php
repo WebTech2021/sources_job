@@ -18,11 +18,15 @@ class CreateJsEducationTable extends Migration
             $table->foreignId('job_seeker_id')->constrained('job_seekers')->onDelete('cascade');
             $table->string('education_level');
             $table->string('degree_title');
-            $table->string('education_board');
-            $table->string('group');
+            $table->string('education_board')->nullable();
+            $table->string('group')->nullable();
             $table->string('institute_name');
+            $table->string('phd_title')->nullable();
             $table->string('result');
             $table->integer('passing_year');
+            $table->string('scale')->nullable();
+            $table->string('mark')->nullable();
+            $table->string('cgpa')->nullable();
             $table->timestamps();
         });
     }

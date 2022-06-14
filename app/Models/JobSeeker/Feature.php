@@ -13,7 +13,7 @@ class Feature extends Model
     ];
 
     public function featurable(){
-        return $this->morphTo();
+        return $this->morphTo('featurable');
     }
 
 }

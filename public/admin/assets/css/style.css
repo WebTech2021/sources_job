@@ -10,3 +10,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .tox-notification--in{
     display:none !important;
 }
+
+li, p, span, a, th, td, tr, label, input, button, i, body {
+    font-size: 12px !important;
+}
