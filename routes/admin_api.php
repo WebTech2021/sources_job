@@ -15,7 +15,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::patch('update-my-info', [\App\Http\Controllers\Api\Admin\AdminProfileController::class, 'updateInfo']);
         Route::post('logout', [\App\Http\Controllers\Api\Admin\AuthController::class, 'logout'])->name('logout');
 
-        Route::put('job-list/{id}', [JobSeekerController::class, 'changeJobStatus']);
+        Route::delete('job/{id}', [JobSeekerController::class, 'destroyJob']);
+        Route::put('job/{id}', [JobSeekerController::class, 'changeJobStatus']);
         Route::get('job-list',[JobSeekerController::class,'getJobList'])->name('job.list');
         Route::post('/login-as-jobSeeker',[JobSeekerController::class,'loginAsJobSeeker'])->name('login.as.jobSeeker');
         Route::get('/job-seeker-export', [JobSeekerController::class, 'ExportJobSeeker'])->name('jobSeeker-export');
