@@ -88,6 +88,16 @@
                       />
                       <span>Publish</span>
                     </b-dropdown-item>
+                    <b-dropdown-item
+                      v-if="props.row.status!=='expired' && props.row.status !=='declined'"
+                      @click.prevent="changeStatus(props.row.slug, 'declined')"
+                    >
+                      <feather-icon
+                        icon="XIcon"
+                        class="mr-50"
+                      />
+                      <span>Decline</span>
+                    </b-dropdown-item>
                   </b-dropdown>
                 </span>
               </span>
