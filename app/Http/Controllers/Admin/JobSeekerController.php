@@ -18,6 +18,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
@@ -151,10 +152,17 @@ class JobSeekerController extends Controller
     {
         DB::beginTransaction();
         try {
-            $job = Jobs::where(['status' => 'pending', 'slug' => $id])->first();
+            $job = Jobs::where(['slug' => $id])->first();
             $job->update([
-                'status' => $request->status,
+                'status' =>  $request->status,
             ]);
+            if ($request->status==='declined')
+            {
+                Http::post(config('app.mix_sources_url') . '/api/v1/job-declined', [
+                   'slug' => $job->slug,
+                   'role' => base64_encode("webtech-admin"),
+               ]);
+            }
             DB::commit();
             return response()->json(['success' => true, 'message' => 'Status changed!']);
         } catch (\Exception $e) {

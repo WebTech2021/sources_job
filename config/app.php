@@ -53,7 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
-
+    'mix_sources_url' => env('MIX_SOURCES_APP_URL', 'https://sources.com.bd'),
     'asset_url' => env('ASSET_URL', null),
     'seller_image_url'=>env('MIX_SOURCES_APP_URL','https://sources.com.bd').'/images/company-logo',
 

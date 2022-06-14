@@ -37,7 +37,7 @@ class CreateJobsTable extends Migration
             $table->text('job_notes')->nullable();
             $table->dateTime('from_date')->nullable();
             $table->dateTime('to_date')->nullable();
-            $table->enum('status',['draft','publish','expired', 'pending'])->default('draft');
+            $table->enum('status',['draft','publish','expired', 'pending', 'declined'])->default('draft');
             $table->timestamps();
         });
     }
