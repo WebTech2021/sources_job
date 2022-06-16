@@ -380,7 +380,8 @@ export default {
             this.$store.dispatch('admin/category/DELETE_CATEGORY', slug)
               .then(response => {
                 if (response.data.success) {
-                  this.getCategories()
+                  const index = this.rows.data.findIndex(x => x.slug === slug)
+                  this.rows.data.splice(index, 1)
                   this.$swal({
                     icon: 'success',
                     title: 'Deleted!',
