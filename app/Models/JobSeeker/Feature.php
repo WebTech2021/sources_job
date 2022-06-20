@@ -9,7 +9,7 @@ class Feature extends Model
 {
     use HasFactory;
     protected $fillable=[
-       'type','status','featurable_type', 'featurable_id','expired','feature_data_id'
+       'status','featurable_type', 'featurable_id','expired','feature_data_id'
     ];
 
     public function featurable(){
