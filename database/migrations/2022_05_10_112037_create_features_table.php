@@ -15,10 +15,11 @@ class CreateFeaturesTable extends Migration
     {
         Schema::create('features', function (Blueprint $table) {
             $table->id();
-            $table->enum('type',['feature','urgent','promote'])->default('feature');
+            $table->foreignId('feature_data_id')->constrained('feature_data')->onDelete('cascade');
             $table->string('featurable_type');
             $table->unsignedBigInteger('featurable_id');
             $table->dateTime('expired')->nullable();
+            $table->enum('type',['feature','urgent','promote'])->default('feature');
             $table->enum('status',['pending','approved','unapproved','expired'])->default('pending');
             $table->timestamps();
         });
