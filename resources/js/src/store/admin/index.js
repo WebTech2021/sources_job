@@ -11,6 +11,8 @@ import jobSeeker from './job-seeker'
 import jobs from './job'
 import education from './education'
 import notice from './notice'
+import request from './request'
+import promotion from './promotion'
 
 export default {
   namespaced: true,
@@ -27,6 +29,8 @@ export default {
     jobs,
     education,
     notice,
+    request,
+    promotion,
   },
   state: {
     admin: null,

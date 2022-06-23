@@ -28,9 +28,18 @@ export default [
     },
   },
   {
-    path: '/admin/job-list',
+    path: '/admin/jobs',
     name: 'admin.job.list',
     component: () => import('@/views/admin/job-list/Index.vue'),
+    meta: {
+      authAdminOnly: true,
+      pageTitle: 'Job List',
+    },
+  },
+  {
+    path: '/admin/jobs/edit/:slug',
+    name: 'admin.job.edit',
+    component: () => import('@/views/admin/job-list/Edit.vue'),
     meta: {
       authAdminOnly: true,
       pageTitle: 'Job List',
@@ -77,24 +86,75 @@ export default [
     },
   },
   {
-    path: '/admin/feature-setting',
-    name: 'admin.feature.setting',
+    path: '/admin/feature-urgent-setting',
+    name: 'admin.feature.urgent.setting',
     // eslint-disable-next-line import/no-unresolved
-    component: () => import('@/views/admin/feature/Setting.vue'),
+    component: () => import('@/views/admin/setting/FeatureUrgentCostSetup.vue'),
     meta: {
       authAdminOnly: true,
-      pageTitle: 'Setting',
+      pageTitle: 'Feature & Urgent',
       breadcrumb: [
+        {
+          text: 'Cost Setup',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: '/admin/job-promotion',
+    name: 'admin.all.promotion',
+    // eslint-disable-next-line import/no-unresolved
+    component: () => import('@/views/admin/promotion/FeatureUrgent.vue'),
+    meta: {
+      authAdminOnly: true,
+      pageTitle: 'Promotion',
+      breadcrumb: [
+        {
+          text: 'All',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: '/admin/request/feature',
+    name: 'admin.feature.request',
+    // eslint-disable-next-line import/no-unresolved
+    component: () => import('@/views/admin/request/FeatureUrgent.vue'),
+    meta: {
+      authAdminOnly: true,
+      pageTitle: 'Feature Request',
+      breadcrumb: [
+        {
+          text: 'Pending Request',
+          active: true,
+        },
         {
           text: 'Feature',
           active: true,
         },
+      ],
+    },
+  },
+  {
+    path: '/admin/request/urgent',
+    name: 'admin.urgent.request',
+    // eslint-disable-next-line import/no-unresolved
+    component: () => import('@/views/admin/request/FeatureUrgent.vue'),
+    meta: {
+      authAdminOnly: true,
+      pageTitle: 'Urgent Request',
+      breadcrumb: [
         {
-          text: 'setting',
+          text: 'Pending Request',
+          active: true,
+        },
+        {
+          text: 'Urgent',
           active: true,
         },
       ],
-
     },
   },
   {

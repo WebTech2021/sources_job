@@ -18,8 +18,12 @@ class FeatureSettingController extends Controller
      */
     public function index()
     {
-        $features = FeatureData::latest();
-        return response()->json(['success' => true, 'features' => new PaginateResource($features->paginate(\request()->per_page ?? 20), FeatureDataResource::class)]);
+        $type = \request()->type;
+        $features = FeatureData::query();
+        if ($type && $type!=='all'){
+            $features = $features->where('type', $type);
+        }
+        return response()->json(['success' => true, 'features' => new PaginateResource($features->latest()->paginate(\request()->per_page ?? 20), FeatureDataResource::class)]);
     }
 
     /**
