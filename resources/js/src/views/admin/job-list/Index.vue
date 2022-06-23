@@ -67,6 +67,15 @@
                       />
                     </template>
                     <b-dropdown-item
+                      @click.prevent="$router.push({name:'admin.job.edit', params:{slug:props.row.slug}})"
+                    >
+                      <feather-icon
+                        icon="EditIcon"
+                        class="mr-50"
+                      />
+                      <span>Edit</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item
                       v-if="props.row.ads_count<1"
                       @click.prevent="deleteData(props.row.id)"
                     >

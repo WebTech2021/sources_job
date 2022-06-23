@@ -25,15 +25,35 @@ export default [
     icon: 'BookIcon',
   },
   {
-    title: 'Feature',
-    icon: 'AwardIcon',
+    title: 'Promotions',
+    route: 'admin.all.promotion',
+    icon: 'LoaderIcon',
+  },
+  {
+    title: 'Pending Request',
+    icon: 'AirplayIcon',
+    children: [
+      {
+        title: 'Feature Request',
+        route: 'admin.feature.request',
+        icon: 'PlayIcon',
+      },
+      {
+        title: 'Urgent Request',
+        route: 'admin.urgent.request',
+        icon: 'FastForwardIcon',
+      },
+    ],
+  },
+  {
+    title: 'Setting',
+    icon: 'SlidersIcon',
     children: [{
-      title: 'Setting',
-      route: 'admin.feature.setting',
-      icon: 'SlidersIcon',
+      title: 'Feature/Urgent Cost Setup',
+      route: 'admin.feature.urgent.setting',
+      icon: 'ToolIcon',
     }],
   },
-
   {
     title: 'Notice Board',
     icon: 'ListIcon',

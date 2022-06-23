@@ -10,11 +10,12 @@ use PhpOffice\PhpSpreadsheet\Calculation\Category;
 class Jobs extends Model
 {
     use HasFactory;
-    protected $fillable =['status'
-//        'organization_id','job_title','vacancy','employment_status','gander',
-//        'workplace','job_location','min_experience','job_categories',
-//        'salary','salary_type','job_responsibilities','educational_requirements',
-//        'additional_requirements','other_benefits','job_context','to_date','job_notes','status','slug','from_date'
+    protected $table = 'jobs';
+    protected $fillable =['status',
+        'organization_id','job_title','vacancy','employment_status','gender',
+        'workplace','job_location','min_experience','job_categories',
+        'salary','salary_type','job_responsibilities','educational_requirements','age',
+        'additional_requirements','other_benefits','job_context','to_date','job_notes','status','slug','from_date'
     ];
 
     public function checkApplication(){
@@ -24,7 +25,4 @@ class Jobs extends Model
     public function category(){
         return $this->belongsTo(JobCategory::class, 'job_categories', 'id');
     }
-
-
-
 }
