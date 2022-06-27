@@ -42,7 +42,18 @@ export default [
     component: () => import('@/views/admin/job-list/Edit.vue'),
     meta: {
       authAdminOnly: true,
-      pageTitle: 'Job List',
+      pageTitle: 'Job Edit',
+      breadcrumb: [
+        {
+          text: 'Jobs',
+          to: { name: 'admin.job.list' },
+          active: false,
+        },
+        {
+          text: '',
+          active: true,
+        },
+      ],
     },
   },
   {
