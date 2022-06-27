@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\JobUpdateRequest;
 use App\Http\Resources\JobDetailResource;
 use App\Http\Resources\JobResource;
 use App\Models\Jobs;
@@ -55,16 +56,18 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(JobUpdateRequest $request, $id)
     {
+        $validated = $request->validated();
         try {
             $job = Jobs::where('slug', $id)->first();
-            $job->fill($request->all());
+            $job->fill($validated);
             $job->save();
         }catch (\Exception $exception){
             return response()->json(['success'=>false, 'message'=>$exception->getMessage()]);
         }
-        return response()->json(['success'=>true, 'job'=>new JobDetailResource($job)]);
+        return response()->json(['success'=>true, 'message'=>'Job updated!']);
+
     }
 
     /**
