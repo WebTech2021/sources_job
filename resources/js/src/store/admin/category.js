@@ -60,8 +60,8 @@ export default {
     DELETE_CATEGORY(context, payload) {
       return new Promise((resolve, reject) => {
         axiosAdmin.delete(`api/v1/admin/categories/${payload}`)
-          .then(() => {
-            resolve('success')
+          .then(response => {
+            resolve(response)
           }).catch(error => {
             reject(error)
           })

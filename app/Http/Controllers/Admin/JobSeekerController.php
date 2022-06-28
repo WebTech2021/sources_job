@@ -6,11 +6,13 @@ use App\Exports\JobSeekerExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\jsRegistrationRequest;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Resources\FeatureResource;
 use App\Http\Resources\JobResource;
 use App\Http\Resources\JobSeekerResource;
 use App\Http\Resources\PaginateResource;
 use App\Mail\JobSeekerBlocked;
 use App\Models\Jobs;
+use App\Models\JobSeeker\Feature;
 use App\Models\JobSeeker\JobSeeker;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
@@ -234,6 +236,39 @@ class JobSeekerController extends Controller
 //      }
         return response()->json(['success' => true, 'jobs' => new PaginateResource($job_list->latest()->paginate(\request()->per_page ?? 20), JobResource::class)]);
 
+    }
+
+    public function changeStatus(Request $request)
+    {
+        try {
+            $feature = Feature::with('featureData')->findOrFail(decrypt($request->id));
+            $feature->status = $request->status;
+            $feature->expired = Carbon::now()->addDays($feature->featureData->days);
+            $feature->save();
+        }catch (\Exception $exception)
+        {
+            return response()->json(['success' => false, 'message'=> 'Job '.$feature->featureData->type. ' request failed', 'subject'=>$feature->featureData->type.' Failed']);
+        }
+        return response()->json(['success' => true, 'message'=> 'Job '.$feature->featureData->type.' request '.$request->status.' successfully', 'subject'=>'Request '.$request->status]);
+    }
+    public function getFeatureUrgentRequests()
+    {
+        $type= \request()->type;
+        $requests = Feature::with('featurable')->whereHas('featureData', function ($q) use ($type) {
+            return $q->where(['status'=> 'pending', 'type'=>$type]);
+        });
+        return response()->json(['success' => true, 'requests' => new PaginateResource($requests->latest()->paginate(\request()->per_page ?? 20), FeatureResource::class)]);
+    }
+    public function jobPromotionList()
+    {
+        $type= \request()->type;
+        $promotions = Feature::with('featurable')->whereHas('featureData', function ($q) use ($type) {
+             if ($type==='all'){
+               return  $q->where(['status'=> 'approved']);
+             }
+           return $q->where(['status'=> 'approved', 'type'=>$type]);
+        });
+        return response()->json(['success' => true, 'promotions' => new PaginateResource($promotions->latest()->paginate(\request()->per_page ?? 20), FeatureResource::class)]);
     }
 
 }

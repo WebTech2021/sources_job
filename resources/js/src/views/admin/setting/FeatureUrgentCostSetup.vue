@@ -5,6 +5,29 @@
         <div class="card">
           <div class="card-header">
             <span class="card-title" />
+            <div>
+              <b-button
+                v-ripple.400="'rgba(40, 199, 111, 0.15)'"
+                variant="outline-primary"
+                @click="getSettings('all')"
+              >
+                All
+              </b-button>
+              <b-button
+                v-ripple.400="'rgba(40, 199, 111, 0.15)'"
+                variant="outline-success"
+                @click="getSettings('feature')"
+              >
+                Feature
+              </b-button>
+              <b-button
+                v-ripple.400="'rgba(234, 84, 85, 0.15)'"
+                variant="outline-danger"
+                @click="getSettings('urgent')"
+              >
+                Urgent
+              </b-button>
+            </div>
             <b-button
               variant="primary"
               @click.prevent="openModal"
@@ -243,7 +266,7 @@ import { required } from '@core/utils/validations/validations'
 import ToastificationContent from '../../../@core/components/toastification/ToastificationContent'
 
 export default {
-  name: 'Setting',
+  name: 'FeatureUrgentCostSetup',
   components: {
     VueGoodTable,
     BCol,
@@ -402,12 +425,13 @@ export default {
         }
       })
     },
-    getSettings(current_page = 1) {
+    getSettings(promotionType = 'all', current_page = 1) {
       this.$store.dispatch('admin/settings/SETTING_LIST', {
         params: {
           page: current_page,
           per_page: this.pageLength,
           searchTerm: this.searchTerm,
+          type: promotionType,
         },
       })
     },

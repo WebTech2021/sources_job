@@ -27,9 +27,29 @@ export default {
           })
       })
     },
+    JOB_DETAIL(context, payload) {
+      return new Promise((resolve, reject) => {
+        axiosAdmin.get(`api/v1/admin/job/${payload.slug}`)
+          .then(response => {
+            resolve(response)
+          }).catch(error => {
+            reject(error)
+          })
+      })
+    },
+    JOB_UPDATE(context, payload) {
+      return new Promise((resolve, reject) => {
+        axiosAdmin.put(`api/v1/admin/job/${payload.form.slug}`, payload.form)
+          .then(response => {
+            resolve(response)
+          }).catch(error => {
+            reject(error)
+          })
+      })
+    },
     CHANGE_STATUS(context, payload) {
       return new Promise((resolve, reject) => {
-        axiosAdmin.put(`api/v1/admin/job/${payload.slug}`, payload)
+        axiosAdmin.put(`api/v1/admin/job/status/${payload.slug}`, payload)
           .then(response => {
             // console.log(response)
             resolve(response)
