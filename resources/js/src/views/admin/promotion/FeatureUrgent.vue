@@ -250,7 +250,7 @@ export default {
           sortable: false,
         },
         {
-          label: 'Expired on',
+          label: 'Expire on',
           field: 'expire_date',
           thClass: 'text-center',
           tdClass: 'text-center',
