@@ -111,12 +111,15 @@ export default {
     },
   },
   mounted() {
+    this.$store.dispatch('admin/getAuthUserInfo')
+
     // console.log(this.$store.getters['admin/getAdminInfo'])
-    if (this.$route.meta.authAdminOnly) {
-      this.$store.dispatch('admin/getAuthUserInfo')
-    } else {
-      this.$store.dispatch('user/getAuthUserInfo')
-    }
+    // if both admin and user have vue panels
+    // if (this.$route.meta.authAdminOnly) {
+    //   this.$store.dispatch('admin/getAuthUserInfo')
+    // } else {
+    //   this.$store.dispatch('user/getAuthUserInfo')
+    // }
   },
   methods: {
     logout() {
